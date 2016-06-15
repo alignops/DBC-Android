@@ -1,0 +1,27 @@
+buildscript {
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		classpath 'com.android.tools.build:gradle:2.2.0-alpha3'
+		classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+		classpath 'me.tatarka.retrolambda.projectlombok:lombok.ast:0.2.3.a2'
+	}
+
+	configurations.classpath.exclude group: 'com.android.tools.external.lombok'
+}
+
+allprojects {
+	repositories {
+		jcenter()
+	}
+}
+
+task clean(type: Delete) {
+	delete rootProject.buildDir
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.14'
+	distributionUrl = "https://services.gradle.org/distributions/gradle-${gradleVersion}-all.zip"
+}

@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+	compileSdkVersion 23
+	buildToolsVersion "23.0.3"
+
+	defaultConfig {
+		minSdkVersion 16
+		targetSdkVersion 23
+		versionCode 1
+		versionName "1.0"
+	}
+
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+
+	buildTypes {
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
+		debug {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
+	}
+}
+
+dependencies {
+	compile 'com.android.support:support-annotations:23.4.0'
+	compile 'org.jetbrains:annotations:15.0'
+
+	testCompile 'junit:junit:4.12'
+	testCompile 'org.assertj:assertj-core:3.4.1'
+
+	retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.3.0'
+}
