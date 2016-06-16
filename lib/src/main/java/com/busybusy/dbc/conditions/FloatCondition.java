@@ -17,6 +17,7 @@
 package com.busybusy.dbc.conditions;
 
 import com.busybusy.dbc.DbcAssertionException;
+import com.busybusy.dbc.checks.FloatChecks;
 
 import org.jetbrains.annotations.NonNls;
 
@@ -26,7 +27,7 @@ import org.jetbrains.annotations.NonNls;
  * @author Trevor
  */
 @NonNls
-public class FloatCondition extends NumberCondition<Float>
+public class FloatCondition extends NumberCondition<Float> implements FloatChecks
 {
 	public FloatCondition(Float subject) { super(subject); }
 
@@ -34,55 +35,78 @@ public class FloatCondition extends NumberCondition<Float>
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Float isGreaterThan(Float number)
+	public void isGreaterThan(Float number)
 	{
 		if (!(Float.compare(this.subject, number) > 0))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected float <" + this.subject + "> to be greater than <" + number + ">"));
 		}
-
-		return this.subject;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Float isGreaterThanOrEqual(Float number)
+	public void isGreaterThanOrEqual(Float number)
 	{
 		if (!(Float.compare(this.subject, number) >= 0))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected float <" + this.subject + "> to be greater than or equal to <" + number + ">"));
 		}
-
-		return this.subject;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Float isLessThan(Float number)
+	public void isLessThan(Float number)
 	{
 		if (!(Float.compare(this.subject, number) < 0))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected float <" + this.subject + "> to be less than <" + number + ">"));
 		}
-
-		return this.subject;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Float isLessThanOrEqual(Float number)
+	public void isLessThanOrEqual(Float number)
 	{
 		if (!(Float.compare(this.subject, number) <= 0))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected float <" + this.subject + "> to be less than or equal to <" + number + ">"));
 		}
+	}
 
-		return this.subject;
+	@Override
+	public void isNear(Float floatingPointNumber)
+	{
+
+	}
+
+	@Override
+	public void isNear(Float floatingPointNumber, Float tolerance)
+	{
+
+	}
+
+	@Override
+	public void isNearZero()
+	{
+
+	}
+
+	@Override
+	public void isNearZero(Float tolerance)
+	{
+
+	}
+
+	@Deprecated
+	@Override
+	public void isEqualTo(Float toCompare)
+	{
+		DbcAssertionException.throwNew(new RuntimeException("The is equal to method should be avoided on floating point numbers, use isNear instead"));
 	}
 }

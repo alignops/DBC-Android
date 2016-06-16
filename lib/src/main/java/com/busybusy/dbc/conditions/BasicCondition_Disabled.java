@@ -21,6 +21,8 @@ import com.busybusy.dbc.checks.BasicChecks;
 
 import org.jetbrains.annotations.NonNls;
 
+import java.util.Comparator;
+
 
 /**
  * Disabled version of basic condition checks
@@ -42,26 +44,29 @@ public class BasicCondition_Disabled<T> implements BasicChecks<T>
 	 * {@inheritDoc}
 	 */
 	@Override
-	public T isNull()
-	{
-		return this.subject;
-	}
+	public void isNull() {}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public T isNotNull()
-	{
-		return this.subject;
-	}
+	public void isNotNull() {}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public T passes(DbcBlock<T> testBlock)
-	{
-		return this.subject;
-	}
+	public void passes(DbcBlock<T> testBlock) {}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void isEqualTo(T toCompare) {}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void isEqualTo(T toCompare, Comparator<T> customComparator) {}
 }

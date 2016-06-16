@@ -23,11 +23,10 @@ import com.busybusy.dbc.checks.NumberChecks;
  *
  * @author Trevor
  * @see IntegerCondition
- * @see LongCondition
  * @see FloatCondition
  * @see DoubleCondition
  */
-public abstract class NumberCondition<T extends Number> extends BasicCondition<T> implements NumberChecks<T>
+abstract class NumberCondition<T extends Number> extends BasicCondition<T> implements NumberChecks<T>
 {
-	public NumberCondition(T subject) { super(subject); }
+	NumberCondition(T subject) { super(subject); }
 }

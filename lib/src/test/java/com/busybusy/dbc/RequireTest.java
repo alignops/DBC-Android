@@ -23,7 +23,6 @@ import org.junit.runners.JUnit4;
 import java.util.UUID;
 
 import static com.busybusy.dbc.Dbc.requireThat;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
@@ -38,7 +37,7 @@ public class RequireTest
 	@Test
 	public void that_basic() throws Exception
 	{
-		assertThat(requireThat(INPUT_STRING).isNotNull())
+		assertThat(Dbc.require(INPUT_STRING).isNotNull())
 				.isNotNull()
 				.isEqualTo(INPUT_STRING);
 
@@ -50,12 +49,12 @@ public class RequireTest
 	@Test
 	public void that_string() throws Exception
 	{
-		assertThat(requireThat(INPUT_STRING).isValid()).isEqualTo(INPUT_STRING);
+		assertThat(Dbc.require(INPUT_STRING).isValid()).isEqualTo(INPUT_STRING);
 	}
 
 	@Test
 	public void that_uuid() throws Exception
 	{
-		assertThat(requireThat(INPUT_UUID).isValidUUID()).isEqualTo(INPUT_UUID);
+		assertThat(Dbc.require(INPUT_UUID).isValidUUID()).isEqualTo(INPUT_UUID);
 	}
 }

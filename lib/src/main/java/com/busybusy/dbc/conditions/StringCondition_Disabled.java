@@ -37,17 +37,11 @@ public class StringCondition_Disabled extends BasicCondition_Disabled<String> im
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String isValid()
-	{
-		return this.subject;
-	}
+	public void isValid() {}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String isValidUUID()
-	{
-		return this.subject;
-	}
+	public void isValidUUID() {}
 }

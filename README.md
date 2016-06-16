@@ -63,9 +63,12 @@ public String someMethod(@NonNull String arg1) {
     
     String postFix = getPostFix();
     checkThat(postFix).passes(CustomChecks::someCheck); //Java 8 method refference
+    checkThat(postFix).passes((it) -> it.length() > 2); //Java 8 lambda syntax
+    checkThat(postFix).passes(new SomeCustomYetFrequentCheck()); //todo compare this error message against the static method reference error message. I expect this one to be better.
     
     String result = arg1 + postFix;
-    return ensureThat(result).isValid();
+    ensureThat(result).isValid();
+    return result;
 }
 ```
 

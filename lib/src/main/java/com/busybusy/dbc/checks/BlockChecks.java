@@ -29,7 +29,6 @@ public interface BlockChecks<T>
 	 * Assert that the subject value passes custom testBlock
 	 *
 	 * @param testBlock code to run against subject value
-	 * @return subject of check
 	 */
-	T passes(DbcBlock<T> testBlock);
+	void passes(DbcBlock<T> testBlock);
 }

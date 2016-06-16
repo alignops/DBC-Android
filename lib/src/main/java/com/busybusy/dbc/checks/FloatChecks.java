@@ -16,16 +16,10 @@
 
 package com.busybusy.dbc.checks;
 
-import java.util.Comparator;
-
 /**
- * Combined marker type
- *
  * @author Trevor
  */
-public interface BasicChecks<T> extends NullChecks<T>, BlockChecks<T>
-{
-	void isEqualTo(T toCompare);
 
-	void isEqualTo(T toCompare, Comparator<T> customComparator);
+public interface FloatChecks extends NumberChecks<Float>, FloatingPointChecks<Float>
+{
 }

@@ -28,15 +28,11 @@ public interface NullChecks<T>
 
 	/**
 	 * Assert that the subject value is null
-	 *
-	 * @return subject of check
 	 */
-	T isNull();
+	void isNull();
 
 	/**
 	 * Assert that the subject value is not null
-	 *
-	 * @return subject of check
 	 */
-	T isNotNull();
+	void isNotNull();
 }

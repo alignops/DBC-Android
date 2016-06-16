@@ -28,36 +28,27 @@ public interface NumberChecks<T extends Number> extends BasicChecks<T>
 	 * Assert that the subject value is greater than the provided value
 	 *
 	 * @param number Number to compare against subject
-	 * @return subject of check
 	 */
-	T isGreaterThan(T number);
+	void isGreaterThan(T number);
 
 	/**
 	 * Assert that the subject value is greater than or equal to the provided value
 	 *
 	 * @param number Number to compare against subject
-	 * @return subject of check
 	 */
-	T isGreaterThanOrEqual(T number);
+	void isGreaterThanOrEqual(T number);
 
 	/**
 	 * Assert that the subject value is less than the provided value
 	 *
 	 * @param number Number to compare against subject
-	 * @return subject of check
 	 */
-	T isLessThan(T number);
+	void isLessThan(T number);
 
 	/**
 	 * Assert that the subject value is less than or equal to the provided value
 	 *
 	 * @param number Number to compare against subject
-	 * @return subject of check
 	 */
-	T isLessThanOrEqual(T number);
-
-	/*
-	Intentionally omitting equals here, because this is designed for runtime checking the inclusion of a
-	constant condition imply's that you should simply use a constant value rather than a variable one.
-	*/
+	void isLessThanOrEqual(T number);
 }

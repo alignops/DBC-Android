@@ -34,35 +34,23 @@ public class NumberCondition_Disabled<T extends Number> extends BasicCondition_D
 	 * {@inheritDoc}
 	 */
 	@Override
-	public T isGreaterThan(T number)
-	{
-		return this.subject;
-	}
+	public void isGreaterThan(T number) {}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public T isGreaterThanOrEqual(T number)
-	{
-		return this.subject;
-	}
+	public void isGreaterThanOrEqual(T number) {}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public T isLessThan(T number)
-	{
-		return this.subject;
-	}
+	public void isLessThan(T number) {}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public T isLessThanOrEqual(T number)
-	{
-		return this.subject;
-	}
+	public void isLessThanOrEqual(T number) {}
 }

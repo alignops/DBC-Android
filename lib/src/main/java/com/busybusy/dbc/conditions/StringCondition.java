@@ -37,31 +37,27 @@ public class StringCondition extends BasicCondition<String> implements StringChe
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String isValid()
+	public void isValid()
 	{
-		String result = this.isNotNull();
+		this.isNotNull();
 
-		if (result.trim().length() == 0)
+		if (this.subject.trim().length() == 0)
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("The provided String is empty"));
 		}
-
-		return result;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String isValidUUID()
+	public void isValidUUID()
 	{
-		String result = this.isNotNull();
+		this.isNotNull();
 
-		if (!result.matches(UUID_PATTERN))
+		if (!this.subject.matches(UUID_PATTERN))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("The provided String is not a valid UUID: " + result));
+			DbcAssertionException.throwNew(new IllegalArgumentException("The provided String is not a valid UUID: " + this.subject));
 		}
-
-		return result;
 	}
 }

@@ -26,63 +26,55 @@ import org.jetbrains.annotations.NonNls;
  * @author Trevor
  */
 @NonNls
-public class IntegerCondition extends NumberCondition<Integer>
+public class IntegerCondition<T extends Number> extends NumberCondition<T>
 {
-	public IntegerCondition(Integer subject) { super(subject); }
+	public IntegerCondition(T subject) { super(subject); }
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Integer isGreaterThan(Integer number)
+	public void isGreaterThan(T number)
 	{
-		if (!(this.subject > number))
+		if (!(this.subject.longValue() > number.longValue()))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected integer <" + this.subject + "> to be greater than <" + number + ">"));
 		}
-
-		return this.subject;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Integer isGreaterThanOrEqual(Integer number)
+	public void isGreaterThanOrEqual(T number)
 	{
-		if (!(this.subject >= number))
+		if (!(this.subject.longValue() >= number.longValue()))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected integer <" + this.subject + "> to be greater than or equal to <" + number + ">"));
 		}
-
-		return this.subject;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Integer isLessThan(Integer number)
+	public void isLessThan(T number)
 	{
-		if (!(this.subject < number))
+		if (!(this.subject.longValue() < number.longValue()))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected integer <" + this.subject + "> to be less than <" + number + ">"));
 		}
-
-		return this.subject;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Integer isLessThanOrEqual(Integer number)
+	public void isLessThanOrEqual(T number)
 	{
-		if (!(this.subject <= number))
+		if (!(this.subject.longValue() <= number.longValue()))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected integer <" + this.subject + "> to be less than or equal to <" + number + ">"));
 		}
-
-		return this.subject;
 	}
 }

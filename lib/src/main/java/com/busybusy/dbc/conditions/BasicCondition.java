@@ -22,6 +22,8 @@ import com.busybusy.dbc.checks.BasicChecks;
 
 import org.jetbrains.annotations.NonNls;
 
+import java.util.Comparator;
+
 /**
  * Basic checks on any java object
  *
@@ -39,41 +41,47 @@ public class BasicCondition<T> implements BasicChecks<T>
 	 * {@inheritDoc}
 	 */
 	@Override
-	public T isNull()
+	public void isNull()
 	{
 		if (this.subject != null)
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("A null argument was required but was:" + this.subject));
 		}
-
-		return null;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public T isNotNull()
+	public void isNotNull()
 	{
 		if (this.subject == null)
 		{
 			DbcAssertionException.throwNew(new NullPointerException("A non null argument was required but was null"));
 		}
-
-		return this.subject;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public T passes(DbcBlock<T> testBlock)
+	public void passes(DbcBlock<T> testBlock)
 	{
 		if (!testBlock.checkState(this.subject))
 		{
 			DbcAssertionException.throwNew(new IllegalStateException("Assertion in <" + testBlock + "> failed on subject: " + this.subject));
 		}
+	}
 
-		return this.subject;
+	@Override
+	public void isEqualTo(T toCompare)
+	{
+
+	}
+
+	@Override
+	public void isEqualTo(T toCompare, Comparator<T> customComparator)
+	{
+
 	}
 }

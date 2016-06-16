@@ -25,15 +25,11 @@ public interface StringChecks extends BasicChecks<String>
 {
 	/**
 	 * Assert that the subject value is non null and has a trimmed length > 0
-	 *
-	 * @return subject of check
 	 */
-	String isValid();
+	void isValid();
 
 	/**
 	 * Assert That the subject value is non null and matches a UUIDv4 REGEX
-	 *
-	 * @return subject of check
 	 */
-	String isValidUUID();
+	void isValidUUID();
 }

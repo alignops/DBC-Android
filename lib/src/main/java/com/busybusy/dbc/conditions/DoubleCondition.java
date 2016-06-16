@@ -17,6 +17,7 @@
 package com.busybusy.dbc.conditions;
 
 import com.busybusy.dbc.DbcAssertionException;
+import com.busybusy.dbc.checks.DoubleChecks;
 
 import org.jetbrains.annotations.NonNls;
 
@@ -26,7 +27,7 @@ import org.jetbrains.annotations.NonNls;
  * @author Trevor
  */
 @NonNls
-public class DoubleCondition extends NumberCondition<Double>
+public class DoubleCondition extends NumberCondition<Double> implements DoubleChecks
 {
 	public DoubleCondition(Double subject) { super(subject); }
 
@@ -34,55 +35,78 @@ public class DoubleCondition extends NumberCondition<Double>
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Double isGreaterThan(Double number)
+	public void isGreaterThan(Double number)
 	{
 		if (!(Double.compare(this.subject, number) > 0))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be greater than <" + number + ">"));
 		}
-
-		return this.subject;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Double isGreaterThanOrEqual(Double number)
+	public void isGreaterThanOrEqual(Double number)
 	{
 		if (!(Double.compare(this.subject, number) >= 0))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be greater than or equal to <" + number + ">"));
 		}
-
-		return this.subject;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Double isLessThan(Double number)
+	public void isLessThan(Double number)
 	{
 		if (!(Double.compare(this.subject, number) < 0))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be less than <" + number + ">"));
 		}
-
-		return this.subject;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Double isLessThanOrEqual(Double number)
+	public void isLessThanOrEqual(Double number)
 	{
 		if (!(Double.compare(this.subject, number) <= 0))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be less than or equal to <" + number + ">"));
 		}
+	}
 
-		return this.subject;
+	@Override
+	public void isNear(Double floatingPointNumber)
+	{
+
+	}
+
+	@Override
+	public void isNear(Double floatingPointNumber, Double tolerance)
+	{
+
+	}
+
+	@Override
+	public void isNearZero()
+	{
+
+	}
+
+	@Override
+	public void isNearZero(Double tolerance)
+	{
+
+	}
+
+	@Deprecated
+	@Override
+	public void isEqualTo(Double toCompare)
+	{
+		DbcAssertionException.throwNew(new RuntimeException("The is equal to method should be avoided on floating point numbers, use isNear instead"));
 	}
 }

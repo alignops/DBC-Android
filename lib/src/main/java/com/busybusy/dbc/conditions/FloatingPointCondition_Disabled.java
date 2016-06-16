@@ -14,18 +14,12 @@
  *  limitations under the License.
  */
 
-package com.busybusy.dbc.checks;
-
-import java.util.Comparator;
+package com.busybusy.dbc.conditions;
 
 /**
- * Combined marker type
- *
  * @author Trevor
  */
-public interface BasicChecks<T> extends NullChecks<T>, BlockChecks<T>
-{
-	void isEqualTo(T toCompare);
 
-	void isEqualTo(T toCompare, Comparator<T> customComparator);
+public class FloatingPointCondition_Disabled
+{
 }
