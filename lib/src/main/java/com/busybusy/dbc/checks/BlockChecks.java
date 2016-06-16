@@ -14,25 +14,22 @@
  *  limitations under the License.
  */
 
-package com.busybusy.dbc;
+package com.busybusy.dbc.checks;
+
+import com.busybusy.dbc.DbcBlock;
 
 /**
- * Exception type throw from DBC operations. It is used as a wrapper around the underlying issue
+ * Custom checks via functional interface on objects
  *
  * @author Trevor
  */
-public class DbcAssertionException extends RuntimeException
+public interface BlockChecks<T>
 {
-	private DbcAssertionException(Throwable throwable)
-	{
-		super(throwable);
-	}
-
 	/**
-	 * @param throwable the throwable to use as the cause of the new exception
+	 * Assert that the subject value passes custom testBlock
+	 *
+	 * @param testBlock code to run against subject value
+	 * @return subject of check
 	 */
-	public static void throwNew(Throwable throwable)
-	{
-		throw new DbcAssertionException(throwable);
-	}
+	T passes(DbcBlock<T> testBlock);
 }

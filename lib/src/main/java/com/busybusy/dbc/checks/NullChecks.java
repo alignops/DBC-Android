@@ -14,25 +14,29 @@
  *  limitations under the License.
  */
 
-package com.busybusy.dbc;
+package com.busybusy.dbc.checks;
+
 
 /**
- * Exception type throw from DBC operations. It is used as a wrapper around the underlying issue
+ * Nullability checks on objects
  *
+ * @param <T>
  * @author Trevor
  */
-public class DbcAssertionException extends RuntimeException
+public interface NullChecks<T>
 {
-	private DbcAssertionException(Throwable throwable)
-	{
-		super(throwable);
-	}
 
 	/**
-	 * @param throwable the throwable to use as the cause of the new exception
+	 * Assert that the subject value is null
+	 *
+	 * @return subject of check
 	 */
-	public static void throwNew(Throwable throwable)
-	{
-		throw new DbcAssertionException(throwable);
-	}
+	T isNull();
+
+	/**
+	 * Assert that the subject value is not null
+	 *
+	 * @return subject of check
+	 */
+	T isNotNull();
 }

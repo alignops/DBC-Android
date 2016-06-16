@@ -14,25 +14,13 @@
  *  limitations under the License.
  */
 
-package com.busybusy.dbc;
+package com.busybusy.dbc.checks;
 
 /**
- * Exception type throw from DBC operations. It is used as a wrapper around the underlying issue
+ * Combined marker type
  *
  * @author Trevor
  */
-public class DbcAssertionException extends RuntimeException
+public interface BasicChecks<T> extends NullChecks<T>, BlockChecks<T>
 {
-	private DbcAssertionException(Throwable throwable)
-	{
-		super(throwable);
-	}
-
-	/**
-	 * @param throwable the throwable to use as the cause of the new exception
-	 */
-	public static void throwNew(Throwable throwable)
-	{
-		throw new DbcAssertionException(throwable);
-	}
 }

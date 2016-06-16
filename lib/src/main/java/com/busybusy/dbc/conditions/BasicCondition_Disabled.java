@@ -14,25 +14,54 @@
  *  limitations under the License.
  */
 
-package com.busybusy.dbc;
+package com.busybusy.dbc.conditions;
+
+import com.busybusy.dbc.DbcBlock;
+import com.busybusy.dbc.checks.BasicChecks;
+
+import org.jetbrains.annotations.NonNls;
+
 
 /**
- * Exception type throw from DBC operations. It is used as a wrapper around the underlying issue
+ * Disabled version of basic condition checks
  *
+ * @param <T>
  * @author Trevor
  */
-public class DbcAssertionException extends RuntimeException
+@NonNls
+public class BasicCondition_Disabled<T> implements BasicChecks<T>
 {
-	private DbcAssertionException(Throwable throwable)
+	final T subject;
+
+	public BasicCondition_Disabled(T subject)
 	{
-		super(throwable);
+		this.subject = subject;
 	}
 
 	/**
-	 * @param throwable the throwable to use as the cause of the new exception
+	 * {@inheritDoc}
 	 */
-	public static void throwNew(Throwable throwable)
+	@Override
+	public T isNull()
 	{
-		throw new DbcAssertionException(throwable);
+		return this.subject;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public T isNotNull()
+	{
+		return this.subject;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public T passes(DbcBlock<T> testBlock)
+	{
+		return this.subject;
 	}
 }

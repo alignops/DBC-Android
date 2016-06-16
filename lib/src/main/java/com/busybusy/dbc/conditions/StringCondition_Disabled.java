@@ -14,25 +14,40 @@
  *  limitations under the License.
  */
 
-package com.busybusy.dbc;
+package com.busybusy.dbc.conditions;
+
+import com.busybusy.dbc.checks.StringChecks;
+
+import org.jetbrains.annotations.NonNls;
 
 /**
- * Exception type throw from DBC operations. It is used as a wrapper around the underlying issue
+ * Disabled version of string checks
  *
  * @author Trevor
  */
-public class DbcAssertionException extends RuntimeException
+@NonNls
+public class StringCondition_Disabled extends BasicCondition_Disabled<String> implements StringChecks
 {
-	private DbcAssertionException(Throwable throwable)
+	public StringCondition_Disabled(String subject)
 	{
-		super(throwable);
+		super(subject);
 	}
 
 	/**
-	 * @param throwable the throwable to use as the cause of the new exception
+	 * {@inheritDoc}
 	 */
-	public static void throwNew(Throwable throwable)
+	@Override
+	public String isValid()
 	{
-		throw new DbcAssertionException(throwable);
+		return this.subject;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String isValidUUID()
+	{
+		return this.subject;
 	}
 }

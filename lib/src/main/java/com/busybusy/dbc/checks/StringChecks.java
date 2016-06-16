@@ -14,25 +14,26 @@
  *  limitations under the License.
  */
 
-package com.busybusy.dbc;
+package com.busybusy.dbc.checks;
 
 /**
- * Exception type throw from DBC operations. It is used as a wrapper around the underlying issue
+ * Checks on string based objects
  *
  * @author Trevor
  */
-public class DbcAssertionException extends RuntimeException
+public interface StringChecks extends BasicChecks<String>
 {
-	private DbcAssertionException(Throwable throwable)
-	{
-		super(throwable);
-	}
+	/**
+	 * Assert that the subject value is non null and has a trimmed length > 0
+	 *
+	 * @return subject of check
+	 */
+	String isValid();
 
 	/**
-	 * @param throwable the throwable to use as the cause of the new exception
+	 * Assert That the subject value is non null and matches a UUIDv4 REGEX
+	 *
+	 * @return subject of check
 	 */
-	public static void throwNew(Throwable throwable)
-	{
-		throw new DbcAssertionException(throwable);
-	}
+	String isValidUUID();
 }

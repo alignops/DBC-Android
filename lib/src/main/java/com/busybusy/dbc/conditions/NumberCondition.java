@@ -14,25 +14,20 @@
  *  limitations under the License.
  */
 
-package com.busybusy.dbc;
+package com.busybusy.dbc.conditions;
+
+import com.busybusy.dbc.checks.NumberChecks;
 
 /**
- * Exception type throw from DBC operations. It is used as a wrapper around the underlying issue
+ * Base implementation type of number checks
  *
  * @author Trevor
+ * @see IntegerCondition
+ * @see LongCondition
+ * @see FloatCondition
+ * @see DoubleCondition
  */
-public class DbcAssertionException extends RuntimeException
+public abstract class NumberCondition<T extends Number> extends BasicCondition<T> implements NumberChecks<T>
 {
-	private DbcAssertionException(Throwable throwable)
-	{
-		super(throwable);
-	}
-
-	/**
-	 * @param throwable the throwable to use as the cause of the new exception
-	 */
-	public static void throwNew(Throwable throwable)
-	{
-		throw new DbcAssertionException(throwable);
-	}
+	public NumberCondition(T subject) { super(subject); }
 }
