@@ -76,7 +76,7 @@ public String someMethod(@NonNull String arg1) {
     check(postFix).passes(new DbcBlock<String>() {   
         @Override
         boolean checkState(String subject) {
-            subject.length() > 2;
+            return subject.length() > 2;
         }
     }); 
     
