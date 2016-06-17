@@ -17,17 +17,19 @@
 package com.busybusy.dbc.conditions;
 
 import com.busybusy.dbc.DbcAssertionException;
-import com.busybusy.dbc.checks.DoubleChecks;
+import com.busybusy.dbc.checks.FloatingPointChecks;
 
 import org.jetbrains.annotations.NonNls;
 
+import static com.busybusy.dbc.Dbc.require;
+
 /**
- * Double implementation of number checks
+ * {@linkplain FloatingPointChecks} {@linkplain Double} type implementation
  *
  * @author Trevor
  */
 @NonNls
-public class DoubleCondition extends NumberCondition<Double> implements DoubleChecks
+public class DoubleCondition extends BasicCondition<Double> implements FloatingPointChecks<Double>
 {
 	public DoubleCondition(Double subject) { super(subject); }
 
@@ -37,6 +39,9 @@ public class DoubleCondition extends NumberCondition<Double> implements DoubleCh
 	@Override
 	public void isGreaterThan(Double number)
 	{
+		this.isNotNull();
+		require(number).isNotNull();
+
 		if (!(Double.compare(this.subject, number) > 0))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be greater than <" + number + ">"));
@@ -49,6 +54,9 @@ public class DoubleCondition extends NumberCondition<Double> implements DoubleCh
 	@Override
 	public void isGreaterThanOrEqual(Double number)
 	{
+		this.isNotNull();
+		require(number).isNotNull();
+
 		if (!(Double.compare(this.subject, number) >= 0))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be greater than or equal to <" + number + ">"));
@@ -61,6 +69,9 @@ public class DoubleCondition extends NumberCondition<Double> implements DoubleCh
 	@Override
 	public void isLessThan(Double number)
 	{
+		this.isNotNull();
+		require(number).isNotNull();
+
 		if (!(Double.compare(this.subject, number) < 0))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be less than <" + number + ">"));
@@ -73,40 +84,79 @@ public class DoubleCondition extends NumberCondition<Double> implements DoubleCh
 	@Override
 	public void isLessThanOrEqual(Double number)
 	{
+		this.isNotNull();
+		require(number).isNotNull();
+
 		if (!(Double.compare(this.subject, number) <= 0))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be less than or equal to <" + number + ">"));
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void isNear(Double floatingPointNumber)
 	{
+		this.isNotNull();
+		require(floatingPointNumber).isNotNull();
 
+		if (!(Math.abs(this.subject - floatingPointNumber) < DEFAULT_DOUBLE_EPSILON))
+		{
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be near <" + floatingPointNumber + "> with epsilon <" + DEFAULT_DOUBLE_EPSILON + ">"));
+		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public void isNear(Double floatingPointNumber, Double tolerance)
+	public void isNearWithTolerance(Double floatingPointNumber, Double tolerance)
 	{
+		this.isNotNull();
+		require(floatingPointNumber).isNotNull();
 
+		if (!(Math.abs(this.subject - floatingPointNumber) < tolerance))
+		{
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be near <" + floatingPointNumber + "> with epsilon <" + tolerance + ">"));
+		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void isNearZero()
 	{
+		this.isNotNull();
 
+		if (!(Math.abs(this.subject) < DEFAULT_DOUBLE_EPSILON))
+		{
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be near zero with epsilon <" + DEFAULT_DOUBLE_EPSILON + ">"));
+		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public void isNearZero(Double tolerance)
+	public void isNearZeroWithTolerance(Double tolerance)
 	{
+		this.isNotNull();
+		require(tolerance).isNotNull();
 
+		if (!(Math.abs(this.subject) < tolerance))
+		{
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be near zero with epsilon <" + tolerance + ">"));
+		}
 	}
 
+	/**
+	 * Use {@linkplain #isNear(Double)} instead
+	 * {@inheritDoc}
+	 */
 	@Deprecated
 	@Override
-	public void isEqualTo(Double toCompare)
-	{
-		DbcAssertionException.throwNew(new RuntimeException("The is equal to method should be avoided on floating point numbers, use isNear instead"));
-	}
+	public void isEqualTo(Double toCompare) { isNear(toCompare); }
 }

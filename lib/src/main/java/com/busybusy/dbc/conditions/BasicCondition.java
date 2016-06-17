@@ -16,6 +16,8 @@
 
 package com.busybusy.dbc.conditions;
 
+import android.support.annotation.NonNull;
+
 import com.busybusy.dbc.DbcAssertionException;
 import com.busybusy.dbc.DbcBlock;
 import com.busybusy.dbc.checks.BasicChecks;
@@ -24,8 +26,10 @@ import org.jetbrains.annotations.NonNls;
 
 import java.util.Comparator;
 
+import static com.busybusy.dbc.Dbc.require;
+
 /**
- * Basic checks on any java object
+ * {@linkplain BasicChecks} primary implementation
  *
  * @param <T> type of object
  * @author Trevor
@@ -65,23 +69,45 @@ public class BasicCondition<T> implements BasicChecks<T>
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void passes(DbcBlock<T> testBlock)
+	public void passes(@NonNull DbcBlock<T> testBlock)
 	{
+		require(testBlock).isNotNull();
+		this.isNotNull();
+
 		if (!testBlock.checkState(this.subject))
 		{
-			DbcAssertionException.throwNew(new IllegalStateException("Assertion in <" + testBlock + "> failed on subject: " + this.subject));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Assertion in <" + testBlock + "> failed on subject: " + this.subject));
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void isEqualTo(T toCompare)
 	{
+		require(toCompare).isNotNull();
+		this.isNotNull();
 
+		if (!subject.equals(toCompare))
+		{
+			DbcAssertionException.throwNew(new IllegalArgumentException("Equality test failed on subject: " + this.subject));
+		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public void isEqualTo(T toCompare, Comparator<T> customComparator)
+	public void isEqualTo(T toCompare, @NonNull Comparator<T> customComparator)
 	{
+		require(toCompare).isNotNull();
+		require(customComparator).isNotNull();
+		this.isNotNull();
 
+		if (customComparator.compare(this.subject, toCompare) != 0)
+		{
+			DbcAssertionException.throwNew(new IllegalArgumentException("Equality test <" + customComparator + "> failed on subject: " + this.subject));
+		}
 	}
 }

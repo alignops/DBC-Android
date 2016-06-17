@@ -16,17 +16,40 @@
 
 package com.busybusy.dbc.conditions;
 
-import com.busybusy.dbc.checks.NumberChecks;
+import com.busybusy.dbc.checks.MapChecks;
+
+import java.util.Map;
 
 /**
- * Base implementation type of number checks
+ * {@linkplain MapChecks} disabled implementation
  *
  * @author Trevor
- * @see IntegerCondition
- * @see FloatCondition
- * @see DoubleCondition
  */
-abstract class NumberCondition<T extends Number> extends BasicCondition<T> implements NumberChecks<T>
+public class MapCondition_Disabled<T extends Map<K, V>, K, V> extends BasicCondition_Disabled<T> implements MapChecks<T, K, V>
 {
-	NumberCondition(T subject) { super(subject); }
+	public MapCondition_Disabled(T subject) { super(subject); }
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void isNotEmpty() { }
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void hasSize(int size) { }
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void hasSizeBetween(int startInclusive, int endInclusive) { }
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void containsKey(K key) { }
 }

@@ -16,10 +16,46 @@
 
 package com.busybusy.dbc.conditions;
 
+import com.busybusy.dbc.checks.FloatingPointChecks;
+
 /**
+ * {@linkplain FloatingPointChecks} disabled implementation
+ *
  * @author Trevor
  */
 
-public class FloatingPointCondition_Disabled
+public class FloatingPointCondition_Disabled<T extends Number> extends NumberCondition_Disabled<T> implements FloatingPointChecks<T>
 {
+	public FloatingPointCondition_Disabled(T subject) { super(subject); }
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void isNear(T floatingPointNumber) { }
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void isNearWithTolerance(T floatingPointNumber, T tolerance) { }
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void isNearZero() { }
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void isNearZeroWithTolerance(T tolerance) { }
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Deprecated
+	@Override
+	public void isEqualTo(T toCompare) { }
 }

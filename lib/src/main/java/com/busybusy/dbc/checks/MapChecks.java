@@ -14,28 +14,21 @@
  *  limitations under the License.
  */
 
-package com.busybusy.dbc;
+package com.busybusy.dbc.checks;
 
-import org.jetbrains.annotations.Contract;
+import java.util.Map;
 
 /**
- * Exception type throw from DBC operations. It is used as a wrapper around the underlying issue
+ * Marker interface for CollectionChecks targeting {@linkplain Map} types
  *
  * @author Trevor
  */
-public class DbcAssertionException extends RuntimeException
+public interface MapChecks<T extends Map<K, V>, K, V> extends CollectionChecks<T>
 {
-	private DbcAssertionException(Throwable throwable)
-	{
-		super(throwable);
-	}
-
 	/**
-	 * @param throwable the throwable to use as the cause of the new exception
+	 * Assert that the subject map contains key
+	 *
+	 * @param key key to verify
 	 */
-	@Contract("_ -> fail")
-	public static void throwNew(Throwable throwable)
-	{
-		throw new DbcAssertionException(throwable);
-	}
+	void containsKey(K key);
 }

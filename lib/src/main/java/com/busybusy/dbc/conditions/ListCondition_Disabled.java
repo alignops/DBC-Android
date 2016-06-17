@@ -14,12 +14,36 @@
  *  limitations under the License.
  */
 
-package com.busybusy.dbc.checks;
+package com.busybusy.dbc.conditions;
+
+import com.busybusy.dbc.checks.ListChecks;
+
+import java.util.List;
 
 /**
+ * {@linkplain ListChecks} disabled implementation
+ *
  * @author Trevor
  */
-
-public interface DoubleChecks extends NumberChecks<Double>, FloatingPointChecks<Double>
+public class ListCondition_Disabled<T extends List<E>, E> extends BasicCondition_Disabled<T> implements ListChecks<T, E>
 {
+	public ListCondition_Disabled(T subject) { super(subject); }
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void isNotEmpty() { }
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void hasSize(int size) { }
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void hasSizeBetween(int startInclusive, int endInclusive) { }
 }

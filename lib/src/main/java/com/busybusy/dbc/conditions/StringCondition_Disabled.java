@@ -21,7 +21,7 @@ import com.busybusy.dbc.checks.StringChecks;
 import org.jetbrains.annotations.NonNls;
 
 /**
- * Disabled version of string checks
+ * {@linkplain StringChecks} disabled implementation
  *
  * @author Trevor
  */

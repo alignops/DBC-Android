@@ -22,7 +22,7 @@ import com.busybusy.dbc.checks.StringChecks;
 import org.jetbrains.annotations.NonNls;
 
 /**
- * Implementation of string checks
+ * {@linkplain StringChecks} primary implementation
  *
  * @author Trevor
  */

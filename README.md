@@ -59,15 +59,29 @@ import static com.busybusy.dbc.Dbc.*;
 
 @NonNull
 public String someMethod(@NonNull String arg1) {
-    requireThat(arg1).isNotNull();
+    require(arg1).isNotNull();
     
     String postFix = getPostFix();
-    checkThat(postFix).passes(CustomChecks::someCheck); //Java 8 method refference
-    checkThat(postFix).passes((it) -> it.length() > 2); //Java 8 lambda syntax
-    checkThat(postFix).passes(new SomeCustomYetFrequentCheck()); //todo compare this error message against the static method reference error message. I expect this one to be better.
+    
+    //Java 8 method refference
+    check(postFix).passes(CustomChecks::someCheck); 
+    
+    //Java 8 lambda syntax
+    check(postFix).passes((subject) -> subject.length() > 2);
+    
+    //Prebuilt check with concrete type
+    check(postFix).passes(new SomeCustomYetFrequentCheck()); 
+    
+    //Java 6/7 anonymous class
+    check(postFix).passes(new DbcBlock<String>() {   
+        @Override
+        boolean checkState(String subject) {
+            subject.length() > 2;
+        }
+    }); 
     
     String result = arg1 + postFix;
-    ensureThat(result).isValid();
+    ensure(result).isValid();
     return result;
 }
 ```

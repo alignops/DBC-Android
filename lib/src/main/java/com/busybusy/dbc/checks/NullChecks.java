@@ -20,12 +20,10 @@ package com.busybusy.dbc.checks;
 /**
  * Nullability checks on objects
  *
- * @param <T>
  * @author Trevor
  */
-public interface NullChecks<T>
+public interface NullChecks
 {
-
 	/**
 	 * Assert that the subject value is null
 	 */

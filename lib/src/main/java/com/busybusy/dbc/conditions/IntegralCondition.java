@@ -17,18 +17,19 @@
 package com.busybusy.dbc.conditions;
 
 import com.busybusy.dbc.DbcAssertionException;
+import com.busybusy.dbc.checks.NumberChecks;
 
 import org.jetbrains.annotations.NonNls;
 
 /**
- * Integer implementation of number checks
+ * {@linkplain NumberChecks} integral implementation
  *
  * @author Trevor
  */
 @NonNls
-public class IntegerCondition<T extends Number> extends NumberCondition<T>
+public class IntegralCondition<T extends Number> extends BasicCondition<T> implements NumberChecks<T>
 {
-	public IntegerCondition(T subject) { super(subject); }
+	public IntegralCondition(T subject) { super(subject); }
 
 	/**
 	 * {@inheritDoc}

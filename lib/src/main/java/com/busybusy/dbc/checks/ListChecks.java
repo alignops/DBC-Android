@@ -14,28 +14,15 @@
  *  limitations under the License.
  */
 
-package com.busybusy.dbc;
+package com.busybusy.dbc.checks;
 
-import org.jetbrains.annotations.Contract;
+import java.util.List;
 
 /**
- * Exception type throw from DBC operations. It is used as a wrapper around the underlying issue
+ * Marker interface for CollectionChecks targeting {@linkplain List} types
  *
  * @author Trevor
  */
-public class DbcAssertionException extends RuntimeException
+public interface ListChecks<T extends List<E>, E> extends CollectionChecks<T>
 {
-	private DbcAssertionException(Throwable throwable)
-	{
-		super(throwable);
-	}
-
-	/**
-	 * @param throwable the throwable to use as the cause of the new exception
-	 */
-	@Contract("_ -> fail")
-	public static void throwNew(Throwable throwable)
-	{
-		throw new DbcAssertionException(throwable);
-	}
 }

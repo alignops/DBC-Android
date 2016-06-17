@@ -17,9 +17,31 @@
 package com.busybusy.dbc.checks;
 
 /**
+ * Checks that can be expressed on lists or maps
+ *
  * @author Trevor
+ * @see ListChecks
+ * @see MapChecks
  */
-
-public interface FloatChecks extends NumberChecks<Float>, FloatingPointChecks<Float>
+public interface CollectionChecks<T> extends BasicChecks<T>
 {
+	/**
+	 * Assert that the subject list or map is not empty
+	 */
+	void isNotEmpty();
+
+	/**
+	 * Assert that the subject list or map has specific size
+	 *
+	 * @param size
+	 */
+	void hasSize(int size);
+
+	/**
+	 * Assert that the subject list or map has size within range
+	 *
+	 * @param startInclusive minimum size
+	 * @param endInclusive   maximum size
+	 */
+	void hasSizeBetween(int startInclusive, int endInclusive);
 }

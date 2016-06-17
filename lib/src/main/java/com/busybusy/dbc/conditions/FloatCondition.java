@@ -17,17 +17,19 @@
 package com.busybusy.dbc.conditions;
 
 import com.busybusy.dbc.DbcAssertionException;
-import com.busybusy.dbc.checks.FloatChecks;
+import com.busybusy.dbc.checks.FloatingPointChecks;
 
 import org.jetbrains.annotations.NonNls;
 
+import static com.busybusy.dbc.Dbc.require;
+
 /**
- * Float implementation of number checks
+ * {@linkplain FloatingPointChecks} {@linkplain Float} type implementation
  *
  * @author Trevor
  */
 @NonNls
-public class FloatCondition extends NumberCondition<Float> implements FloatChecks
+public class FloatCondition extends BasicCondition<Float> implements FloatingPointChecks<Float>
 {
 	public FloatCondition(Float subject) { super(subject); }
 
@@ -37,6 +39,9 @@ public class FloatCondition extends NumberCondition<Float> implements FloatCheck
 	@Override
 	public void isGreaterThan(Float number)
 	{
+		this.isNotNull();
+		require(number).isNotNull();
+
 		if (!(Float.compare(this.subject, number) > 0))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected float <" + this.subject + "> to be greater than <" + number + ">"));
@@ -49,6 +54,9 @@ public class FloatCondition extends NumberCondition<Float> implements FloatCheck
 	@Override
 	public void isGreaterThanOrEqual(Float number)
 	{
+		this.isNotNull();
+		require(number).isNotNull();
+
 		if (!(Float.compare(this.subject, number) >= 0))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected float <" + this.subject + "> to be greater than or equal to <" + number + ">"));
@@ -61,6 +69,9 @@ public class FloatCondition extends NumberCondition<Float> implements FloatCheck
 	@Override
 	public void isLessThan(Float number)
 	{
+		this.isNotNull();
+		require(number).isNotNull();
+
 		if (!(Float.compare(this.subject, number) < 0))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected float <" + this.subject + "> to be less than <" + number + ">"));
@@ -73,40 +84,81 @@ public class FloatCondition extends NumberCondition<Float> implements FloatCheck
 	@Override
 	public void isLessThanOrEqual(Float number)
 	{
+		this.isNotNull();
+		require(number).isNotNull();
+
 		if (!(Float.compare(this.subject, number) <= 0))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected float <" + this.subject + "> to be less than or equal to <" + number + ">"));
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void isNear(Float floatingPointNumber)
 	{
+		this.isNotNull();
+		require(floatingPointNumber).isNotNull();
 
+		if (!(Math.abs(this.subject - floatingPointNumber) < DEFAULT_DOUBLE_EPSILON))
+		{
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected float <" + this.subject + "> to be near <" + floatingPointNumber + "> with epsilon <" + DEFAULT_DOUBLE_EPSILON + ">"));
+		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public void isNear(Float floatingPointNumber, Float tolerance)
+	public void isNearWithTolerance(Float floatingPointNumber, Float tolerance)
 	{
+		this.isNotNull();
+		require(floatingPointNumber).isNotNull();
+		require(tolerance).isNotNull();
 
+		if (!(Math.abs(this.subject - floatingPointNumber) < tolerance))
+		{
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected float <" + this.subject + "> to be near <" + floatingPointNumber + "> with epsilon <" + tolerance + ">"));
+		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void isNearZero()
 	{
+		this.isNotNull();
 
+		if (!(Math.abs(this.subject) < DEFAULT_FLOAT_EPSILON))
+		{
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected float <" + this.subject + "> to be near zero with epsilon <" + DEFAULT_FLOAT_EPSILON + ">"));
+		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public void isNearZero(Float tolerance)
+	public void isNearZeroWithTolerance(Float tolerance)
 	{
+		this.isNotNull();
+		require(tolerance).isNotNull();
 
+		if (!(Math.abs(this.subject) < tolerance))
+		{
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected float <" + this.subject + "> to be near zero with epsilon <" + tolerance + ">"));
+		}
 	}
 
+	/**
+	 * Use {@linkplain #isNear(Float)} instead
+	 * <p>
+	 * {@inheritDoc}
+	 */
 	@Deprecated
 	@Override
-	public void isEqualTo(Float toCompare)
-	{
-		DbcAssertionException.throwNew(new RuntimeException("The is equal to method should be avoided on floating point numbers, use isNear instead"));
-	}
+	public void isEqualTo(Float toCompare) { isNear(toCompare); }
 }

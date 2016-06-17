@@ -25,7 +25,7 @@ import java.util.Comparator;
 
 
 /**
- * Disabled version of basic condition checks
+ * {@linkplain BasicChecks} disabled implementation
  *
  * @param <T>
  * @author Trevor
@@ -33,12 +33,7 @@ import java.util.Comparator;
 @NonNls
 public class BasicCondition_Disabled<T> implements BasicChecks<T>
 {
-	final T subject;
-
-	public BasicCondition_Disabled(T subject)
-	{
-		this.subject = subject;
-	}
+	public BasicCondition_Disabled(@SuppressWarnings("UnusedParameters") T subject) {}
 
 	/**
 	 * {@inheritDoc}

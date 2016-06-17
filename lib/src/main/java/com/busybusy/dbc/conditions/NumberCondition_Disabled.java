@@ -21,7 +21,7 @@ import com.busybusy.dbc.checks.NumberChecks;
 import org.jetbrains.annotations.NonNls;
 
 /**
- * Disabled implementation of number checks
+ * {@linkplain NumberChecks} disabled implementation
  *
  * @author Trevor
  */
