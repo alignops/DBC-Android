@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.github.dcendents.android-maven'
 
 android {
 	compileSdkVersion 24
@@ -37,4 +38,26 @@ dependencies {
 	testCompile 'org.assertj:assertj-core:3.4.1'
 
 	retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.3.0'
+}
+
+
+task sourcesJar(type: Jar) {
+	from android.sourceSets.main.java.srcDirs
+	classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+	failOnError false
+	source = android.sourceSets.main.java.sourceFiles
+	classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+	classifier = 'javadoc'
+	from javadoc.destinationDir
+}
+
+artifacts {
+	archives sourcesJar
+	archives javadocJar
 }
