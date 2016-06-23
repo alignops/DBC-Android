@@ -21,6 +21,8 @@ import com.busybusy.dbc.checks.MapChecks;
 
 import java.util.Map;
 
+import static com.busybusy.dbc.Dbc.require;
+
 /**
  * {@linkplain MapChecks} primary implementation
  *
@@ -36,14 +38,14 @@ public final class MapCondition<T extends Map<K, V>, K, V> extends BasicConditio
 	@Override
 	public MapCondition<T, K, V> isNotEmpty()
 	{
-		this.isNotNull();
+		require(this.subject).isNotNull();
 
 		if (this.enabled && this.subject.isEmpty())
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Expected non empty map"));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected non empty map"), this.message);
 		}
 
-		return this;
+		return result();
 	}
 
 	/**
@@ -52,14 +54,14 @@ public final class MapCondition<T extends Map<K, V>, K, V> extends BasicConditio
 	@Override
 	public MapCondition<T, K, V> hasSize(int size)
 	{
-		this.isNotNull();
+		require(this.subject).isNotNull();
 
 		if (this.enabled && !(this.subject.size() == size))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Expected map size to be <" + size + "> but was <" + this.subject.size() + ">"));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected map size to be <" + size + "> but was <" + this.subject.size() + ">"), this.message);
 		}
 
-		return this;
+		return result();
 	}
 
 	/**
@@ -68,15 +70,15 @@ public final class MapCondition<T extends Map<K, V>, K, V> extends BasicConditio
 	@Override
 	public MapCondition<T, K, V> hasSizeBetween(int startInclusive, int endInclusive)
 	{
-		this.isNotNull();
+		require(this.subject).isNotNull();
 
 		int mapSize = this.subject.size();
 		if (this.enabled && !((mapSize >= startInclusive && mapSize <= endInclusive) || (mapSize <= startInclusive && mapSize >= endInclusive)))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Expected map size to be between <" + startInclusive + "> and < " + endInclusive + "> but was <" + mapSize + ">"));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected map size to be between <" + startInclusive + "> and < " + endInclusive + "> but was <" + mapSize + ">"), this.message);
 		}
 
-		return this;
+		return result();
 	}
 
 	/**
@@ -85,13 +87,13 @@ public final class MapCondition<T extends Map<K, V>, K, V> extends BasicConditio
 	@Override
 	public MapCondition<T, K, V> containsKey(K key)
 	{
-		this.isNotNull();
+		require(this.subject).isNotNull();
 
 		if (this.enabled && !this.subject.containsKey(key))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Expected map to contain key: " + key));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected map to contain key: " + key), this.message);
 		}
 
-		return this;
+		return result();
 	}
 }

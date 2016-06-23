@@ -21,6 +21,8 @@ import com.busybusy.dbc.checks.NumberChecks;
 
 import org.jetbrains.annotations.NonNls;
 
+import static com.busybusy.dbc.Dbc.require;
+
 /**
  * {@linkplain NumberChecks} integral implementation
  *
@@ -37,12 +39,15 @@ public class IntegralCondition<T extends Number> extends BasicCondition<T, Integ
 	@Override
 	public IntegralCondition<T> isGreaterThan(T number)
 	{
+		require(this.subject).isNotNull();
+		require(number).isNotNull();
+
 		if (this.enabled && !(this.subject.longValue() > number.longValue()))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Expected integer <" + this.subject + "> to be greater than <" + number + ">"));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected integer <" + this.subject + "> to be greater than <" + number + ">"), this.message);
 		}
 
-		return this;
+		return result();
 	}
 
 	/**
@@ -51,12 +56,15 @@ public class IntegralCondition<T extends Number> extends BasicCondition<T, Integ
 	@Override
 	public IntegralCondition<T> isGreaterThanOrEqual(T number)
 	{
+		require(this.subject).isNotNull();
+		require(number).isNotNull();
+
 		if (this.enabled && !(this.subject.longValue() >= number.longValue()))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Expected integer <" + this.subject + "> to be greater than or equal to <" + number + ">"));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected integer <" + this.subject + "> to be greater than or equal to <" + number + ">"), this.message);
 		}
 
-		return this;
+		return result();
 	}
 
 	/**
@@ -65,12 +73,15 @@ public class IntegralCondition<T extends Number> extends BasicCondition<T, Integ
 	@Override
 	public IntegralCondition<T> isLessThan(T number)
 	{
+		require(this.subject).isNotNull();
+		require(number).isNotNull();
+
 		if (this.enabled && !(this.subject.longValue() < number.longValue()))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Expected integer <" + this.subject + "> to be less than <" + number + ">"));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected integer <" + this.subject + "> to be less than <" + number + ">"), this.message);
 		}
 
-		return this;
+		return result();
 	}
 
 	/**
@@ -79,11 +90,14 @@ public class IntegralCondition<T extends Number> extends BasicCondition<T, Integ
 	@Override
 	public IntegralCondition<T> isLessThanOrEqual(T number)
 	{
+		require(this.subject).isNotNull();
+		require(number).isNotNull();
+
 		if (this.enabled && !(this.subject.longValue() <= number.longValue()))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Expected integer <" + this.subject + "> to be less than or equal to <" + number + ">"));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected integer <" + this.subject + "> to be less than or equal to <" + number + ">"), this.message);
 		}
 
-		return this;
+		return result();
 	}
 }

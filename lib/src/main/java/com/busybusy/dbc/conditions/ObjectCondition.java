@@ -17,6 +17,8 @@
 package com.busybusy.dbc.conditions;
 
 /**
+ * Generic type recursion limiter of the {@linkplain BasicCondition} for the basic {@linkplain Object} case
+ *
  * @author Trevor
  */
 public final class ObjectCondition extends BasicCondition<Object, ObjectCondition>

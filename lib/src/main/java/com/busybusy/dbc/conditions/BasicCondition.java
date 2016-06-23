@@ -25,6 +25,7 @@ import com.busybusy.dbc.checks.BasicChecks;
 import org.jetbrains.annotations.NonNls;
 
 import java.util.Comparator;
+import java.util.concurrent.Callable;
 
 import static com.busybusy.dbc.Dbc.require;
 
@@ -37,6 +38,7 @@ import static com.busybusy.dbc.Dbc.require;
 @NonNls
 public abstract class BasicCondition<T, Self extends BasicCondition<T, Self>> implements BasicChecks<T, Self>
 {
+	protected       Message message;
 	protected final boolean enabled;
 	protected final T       subject;
 
@@ -50,15 +52,42 @@ public abstract class BasicCondition<T, Self extends BasicCondition<T, Self>> im
 	 * {@inheritDoc}
 	 */
 	@Override
+	public Self message(@NonNull String message)
+	{
+		require(message).isValid();
+
+		this.message = new Message(message);
+
+		//noinspection unchecked
+		return (Self) this;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Self message(@NonNull Callable<String> lazyMessage)
+	{
+		require(lazyMessage).isNotNull();
+
+		this.message = new Message(lazyMessage);
+
+		//noinspection unchecked
+		return (Self) this;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public Self isNull()
 	{
 		if (this.enabled && this.subject != null)
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("A null argument was required but was:" + this.subject));
+			DbcAssertionException.throwNew(new IllegalArgumentException("A null argument was required but was:" + this.subject), this.message);
 		}
 
-		//noinspection unchecked
-		return (Self) this;
+		return result();
 	}
 
 	/**
@@ -69,11 +98,10 @@ public abstract class BasicCondition<T, Self extends BasicCondition<T, Self>> im
 	{
 		if (this.enabled && this.subject == null)
 		{
-			DbcAssertionException.throwNew(new NullPointerException("A non null argument was required but was null"));
+			DbcAssertionException.throwNew(new NullPointerException("A non null argument was required but was null"), this.message);
 		}
 
-		//noinspection unchecked
-		return (Self) this;
+		return result();
 	}
 
 	/**
@@ -82,16 +110,15 @@ public abstract class BasicCondition<T, Self extends BasicCondition<T, Self>> im
 	@Override
 	public Self passes(@NonNull DbcBlock<T> testBlock)
 	{
+		require(this.subject).isNotNull();
 		require(testBlock).isNotNull();
-		this.isNotNull();
 
 		if (this.enabled && !testBlock.checkState(this.subject))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Assertion in <" + testBlock + "> failed on subject: " + this.subject));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Assertion in <" + testBlock + "> failed on subject: " + this.subject), this.message);
 		}
 
-		//noinspection unchecked
-		return (Self) this;
+		return result();
 	}
 
 	/**
@@ -100,16 +127,15 @@ public abstract class BasicCondition<T, Self extends BasicCondition<T, Self>> im
 	@Override
 	public Self isEqualTo(T toCompare)
 	{
+		require(this.subject).isNotNull();
 		require(toCompare).isNotNull();
-		this.isNotNull();
 
 		if (this.enabled && !subject.equals(toCompare))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Equality test failed on subject: " + this.subject));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Equality test failed on subject: " + this.subject), this.message);
 		}
 
-		//noinspection unchecked
-		return (Self) this;
+		return result();
 	}
 
 	/**
@@ -118,14 +144,21 @@ public abstract class BasicCondition<T, Self extends BasicCondition<T, Self>> im
 	@Override
 	public Self isEqualTo(T toCompare, @NonNull Comparator<T> customComparator)
 	{
+		require(this.subject).isNotNull();
 		require(toCompare).isNotNull();
 		require(customComparator).isNotNull();
-		this.isNotNull();
 
 		if (this.enabled && customComparator.compare(this.subject, toCompare) != 0)
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Equality test <" + customComparator + "> failed on subject: " + this.subject));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Equality test <" + customComparator + "> failed on subject: " + this.subject), this.message);
 		}
+
+		return result();
+	}
+
+	protected Self result()
+	{
+		this.message = null;
 
 		//noinspection unchecked
 		return (Self) this;

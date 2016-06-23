@@ -16,6 +16,11 @@
 
 package com.busybusy.dbc;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
+import com.busybusy.dbc.conditions.Message;
+
 import org.jetbrains.annotations.Contract;
 
 /**
@@ -25,17 +30,29 @@ import org.jetbrains.annotations.Contract;
  */
 public class DbcAssertionException extends RuntimeException
 {
-	private DbcAssertionException(Throwable throwable)
+	public DbcAssertionException(Throwable cause)
 	{
-		super(throwable);
+		super(cause);
+	}
+
+	public DbcAssertionException(String message, Throwable cause)
+	{
+		super(message, cause);
 	}
 
 	/**
 	 * @param throwable the throwable to use as the cause of the new exception
 	 */
-	@Contract("_ -> fail")
-	public static void throwNew(Throwable throwable)
+	@Contract("_, _ -> fail")
+	public static void throwNew(@NonNull Throwable throwable, @Nullable Message message)
 	{
-		throw new DbcAssertionException(throwable);
+		if (message == null)
+		{
+			throw new DbcAssertionException(throwable);
+		}
+		else
+		{
+			throw new DbcAssertionException(message.toString(), throwable);
+		}
 	}
 }

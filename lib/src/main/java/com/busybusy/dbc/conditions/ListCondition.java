@@ -21,6 +21,8 @@ import com.busybusy.dbc.checks.ListChecks;
 
 import java.util.List;
 
+import static com.busybusy.dbc.Dbc.require;
+
 /**
  * {@linkplain ListChecks} primary implementation
  *
@@ -36,14 +38,14 @@ public final class ListCondition<T extends List<E>, E> extends BasicCondition<T,
 	@Override
 	public ListCondition<T, E> isNotEmpty()
 	{
-		this.isNotNull();
+		require(this.subject).isNotNull();
 
 		if (this.enabled && this.subject.isEmpty())
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Expected non empty list"));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected non empty list"), this.message);
 		}
 
-		return this;
+		return result();
 	}
 
 	/**
@@ -52,14 +54,14 @@ public final class ListCondition<T extends List<E>, E> extends BasicCondition<T,
 	@Override
 	public ListCondition<T, E> hasSize(int size)
 	{
-		this.isNotNull();
+		require(this.subject).isNotNull();
 
 		if (this.enabled && !(this.subject.size() == size))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Expected list size to be <" + size + "> but was <" + this.subject.size() + ">"));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected list size to be <" + size + "> but was <" + this.subject.size() + ">"), this.message);
 		}
 
-		return this;
+		return result();
 	}
 
 	/**
@@ -68,14 +70,14 @@ public final class ListCondition<T extends List<E>, E> extends BasicCondition<T,
 	@Override
 	public ListCondition<T, E> hasSizeBetween(int startInclusive, int endInclusive)
 	{
-		this.isNotNull();
+		require(this.subject).isNotNull();
 
 		int listSize = this.subject.size();
 		if (this.enabled && !((listSize >= startInclusive && listSize <= endInclusive) || (listSize <= startInclusive && listSize >= endInclusive)))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Expected list size to be between <" + startInclusive + "> and < " + endInclusive + "> but was <" + listSize + ">"));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected list size to be between <" + startInclusive + "> and < " + endInclusive + "> but was <" + listSize + ">"), this.message);
 		}
 
-		return this;
+		return result();
 	}
 }

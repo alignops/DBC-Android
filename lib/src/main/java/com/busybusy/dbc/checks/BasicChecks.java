@@ -16,7 +16,10 @@
 
 package com.busybusy.dbc.checks;
 
+import android.support.annotation.NonNull;
+
 import java.util.Comparator;
+import java.util.concurrent.Callable;
 
 /**
  * Combined marker type
@@ -25,6 +28,20 @@ import java.util.Comparator;
  */
 public interface BasicChecks<T, Self extends BasicChecks<T, Self>> extends NullChecks<BasicChecks<T, Self>>, BlockChecks<T, Self>
 {
+	/**
+	 * Add a custom message to the assertion to log if the check fails
+	 *
+	 * @param message Message to use if the next check fails
+	 */
+	Self message(@NonNull String message);
+
+	/**
+	 * Add a custom message that is only evaluated when the check fails
+	 *
+	 * @param lazyMessage A callable setup to produce a message if the next check fails
+	 */
+	Self message(@NonNull Callable<String> lazyMessage);
+
 	/**
 	 * Assert that the subject object is equal to param with .equals(T)
 	 *

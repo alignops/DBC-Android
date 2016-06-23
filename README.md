@@ -61,6 +61,9 @@ import static com.busybusy.dbc.Dbc.*;
 public String someMethod(@NonNull String arg1) {
     require(arg1).isNotNull();
     
+    //or with a custom message
+    require(arg1).message("See foo() for usage example").isNotNull();
+    
     String postFix = getPostFix();
     
     check(postFix).passes(CustomChecks::someCheck) //Java 8 method refference 

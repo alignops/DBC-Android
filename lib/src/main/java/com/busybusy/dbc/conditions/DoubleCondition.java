@@ -39,15 +39,15 @@ public final class DoubleCondition extends BasicCondition<Double, DoubleConditio
 	@Override
 	public DoubleCondition isGreaterThan(Double number)
 	{
-		this.isNotNull();
+		require(this.subject).isNotNull();
 		require(number).isNotNull();
 
 		if (this.enabled && !(Double.compare(this.subject, number) > 0))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be greater than <" + number + ">"));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be greater than <" + number + ">"), this.message);
 		}
 
-		return this;
+		return result();
 	}
 
 	/**
@@ -56,15 +56,15 @@ public final class DoubleCondition extends BasicCondition<Double, DoubleConditio
 	@Override
 	public DoubleCondition isGreaterThanOrEqual(Double number)
 	{
-		this.isNotNull();
+		require(this.subject).isNotNull();
 		require(number).isNotNull();
 
 		if (this.enabled && !(Double.compare(this.subject, number) >= 0))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be greater than or equal to <" + number + ">"));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be greater than or equal to <" + number + ">"), this.message);
 		}
 
-		return this;
+		return result();
 	}
 
 	/**
@@ -73,15 +73,15 @@ public final class DoubleCondition extends BasicCondition<Double, DoubleConditio
 	@Override
 	public DoubleCondition isLessThan(Double number)
 	{
-		this.isNotNull();
+		require(this.subject).isNotNull();
 		require(number).isNotNull();
 
 		if (this.enabled && !(Double.compare(this.subject, number) < 0))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be less than <" + number + ">"));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be less than <" + number + ">"), this.message);
 		}
 
-		return this;
+		return result();
 	}
 
 	/**
@@ -90,15 +90,15 @@ public final class DoubleCondition extends BasicCondition<Double, DoubleConditio
 	@Override
 	public DoubleCondition isLessThanOrEqual(Double number)
 	{
-		this.isNotNull();
+		require(this.subject).isNotNull();
 		require(number).isNotNull();
 
 		if (this.enabled && !(Double.compare(this.subject, number) <= 0))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be less than or equal to <" + number + ">"));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be less than or equal to <" + number + ">"), this.message);
 		}
 
-		return this;
+		return result();
 	}
 
 	/**
@@ -107,15 +107,15 @@ public final class DoubleCondition extends BasicCondition<Double, DoubleConditio
 	@Override
 	public DoubleCondition isNear(Double floatingPointNumber)
 	{
-		this.isNotNull();
+		require(this.subject).isNotNull();
 		require(floatingPointNumber).isNotNull();
 
 		if (this.enabled && !(Math.abs(this.subject - floatingPointNumber) < DEFAULT_DOUBLE_EPSILON))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be near <" + floatingPointNumber + "> with epsilon <" + DEFAULT_DOUBLE_EPSILON + ">"));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be near <" + floatingPointNumber + "> with epsilon <" + DEFAULT_DOUBLE_EPSILON + ">"), this.message);
 		}
 
-		return this;
+		return result();
 	}
 
 	/**
@@ -124,15 +124,15 @@ public final class DoubleCondition extends BasicCondition<Double, DoubleConditio
 	@Override
 	public DoubleCondition isNearWithTolerance(Double floatingPointNumber, Double tolerance)
 	{
-		this.isNotNull();
+		require(this.subject).isNotNull();
 		require(floatingPointNumber).isNotNull();
 
 		if (this.enabled && !(Math.abs(this.subject - floatingPointNumber) < tolerance))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be near <" + floatingPointNumber + "> with epsilon <" + tolerance + ">"));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be near <" + floatingPointNumber + "> with epsilon <" + tolerance + ">"), this.message);
 		}
 
-		return this;
+		return result();
 	}
 
 	/**
@@ -141,14 +141,14 @@ public final class DoubleCondition extends BasicCondition<Double, DoubleConditio
 	@Override
 	public DoubleCondition isNearZero()
 	{
-		this.isNotNull();
+		require(this.subject).isNotNull();
 
 		if (this.enabled && !(Math.abs(this.subject) < DEFAULT_DOUBLE_EPSILON))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be near zero with epsilon <" + DEFAULT_DOUBLE_EPSILON + ">"));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be near zero with epsilon <" + DEFAULT_DOUBLE_EPSILON + ">"), this.message);
 		}
 
-		return this;
+		return result();
 	}
 
 	/**
@@ -157,15 +157,15 @@ public final class DoubleCondition extends BasicCondition<Double, DoubleConditio
 	@Override
 	public DoubleCondition isNearZeroWithTolerance(Double tolerance)
 	{
-		this.isNotNull();
+		require(this.subject).isNotNull();
 		require(tolerance).isNotNull();
 
 		if (this.enabled && !(Math.abs(this.subject) < tolerance))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be near zero with epsilon <" + tolerance + ">"));
+			DbcAssertionException.throwNew(new IllegalArgumentException("Expected double <" + this.subject + "> to be near zero with epsilon <" + tolerance + ">"), this.message);
 		}
 
-		return this;
+		return result();
 	}
 
 	/**

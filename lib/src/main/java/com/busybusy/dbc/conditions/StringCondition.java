@@ -21,6 +21,8 @@ import com.busybusy.dbc.checks.StringChecks;
 
 import org.jetbrains.annotations.NonNls;
 
+import static com.busybusy.dbc.Dbc.require;
+
 /**
  * {@linkplain StringChecks} primary implementation
  *
@@ -37,14 +39,14 @@ public final class StringCondition extends BasicCondition<String, StringConditio
 	@Override
 	public StringCondition isValid()
 	{
-		this.isNotNull();
+		require(this.subject).isNotNull();
 
 		if (this.enabled && this.subject.trim().length() == 0)
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("The provided String is empty"));
+			DbcAssertionException.throwNew(new IllegalArgumentException("The provided String is empty"), this.message);
 		}
 
-		return this;
+		return result();
 	}
 
 	/**
@@ -53,13 +55,13 @@ public final class StringCondition extends BasicCondition<String, StringConditio
 	@Override
 	public StringCondition isValidUUID()
 	{
-		this.isNotNull();
+		require(this.subject).isNotNull();
 
 		if (this.enabled && !this.subject.matches(StringChecks.UUID_PATTERN))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("The provided String is not a valid UUID: " + this.subject));
+			DbcAssertionException.throwNew(new IllegalArgumentException("The provided String is not a valid UUID: " + this.subject), this.message);
 		}
 
-		return this;
+		return result();
 	}
 }
