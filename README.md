@@ -21,39 +21,9 @@ dependencies {
 ```
 
 ## Usage
-In your Application's onCreate() method, initialize the configuration on which categories should throw exception
-
-```java
-DbcManager.getInstance().setConfig(BuildConfig.DBC_REQUIRE, BuildConfig.DBC_CHECK, BuildConfig.DBC_ENSURE);
-```
-
-It is recommended that you utilize the android build systems configuration / flavors to configure DbcManager
-This is accomplished by adding the following lines in your module's build.gradle file under the appropriate sections of your build config
- 
-```groovy
-android {
-    defaultConfig {
-        ...
-        buildConfigField "boolean", "DBC_REQUIRE", "true"        
-        buildConfigField "boolean", "DBC_CHECK", "true"        
-        buildConfigField "boolean", "DBC_ENSURE", "true"
-    }
-    
-    buildTypes {
-        release {
-            ...
-            buildConfigField "boolean", "DBC_CHECK", "false"        
-            buildConfigField "boolean", "DBC_ENSURE", "false"
-        }
-        debug {
-            ...
-        }
-    }
-}
-```
+To remove the assertions from your code simple ensure that proguard minify is enabled
 
 Use the design by contract assertions throughout your code to verify assumptions
-
 ```java
 import static com.busybusy.dbc.Dbc.*;
 
