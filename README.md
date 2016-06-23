@@ -62,7 +62,7 @@ public String someMethod(@NonNull String arg1) {
     require(arg1).isNotNull();
     
     //or with a custom message
-    require(arg1).message("See foo() for usage example").isNotNull();
+    require(arg1).message("See \"foo()\" for \"someMethod(String)\" usage example").isNotNull();
     
     String postFix = getPostFix();
     
@@ -70,10 +70,11 @@ public String someMethod(@NonNull String arg1) {
                   .passes((subject) -> subject.length() > 2) //Java 8 lambda syntax
                   .passes(new SomeCustomYetFrequentCheck()) //Prebuilt check with concrete type 
                   .passes(new DbcBlock<String>() { //Java 6/7 anonymous class   
-                                @Override
-                                boolean checkState(String subject) {
-                                    return subject.length() > 2;
-                                }}); 
+                      @Override
+                      boolean checkState(String subject) {
+                          return subject.length() > 2;
+                      }
+                  }); 
     
     String result = arg1 + postFix;
     ensure(result).isValid();
