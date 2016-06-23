@@ -21,15 +21,17 @@ package com.busybusy.dbc.checks;
  *
  * @author Trevor
  */
-public interface StringChecks extends BasicChecks<String>
+public interface StringChecks<Self extends StringChecks<Self>> extends BasicChecks<String, Self>
 {
+	String UUID_PATTERN = "[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}";
+
 	/**
 	 * Assert that the subject value is non null and has a trimmed length > 0
 	 */
-	void isValid();
+	Self isValid();
 
 	/**
 	 * Assert That the subject value is non null and matches a UUIDv4 REGEX
 	 */
-	void isValidUUID();
+	Self isValidUUID();
 }

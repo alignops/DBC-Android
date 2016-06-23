@@ -63,22 +63,14 @@ public String someMethod(@NonNull String arg1) {
     
     String postFix = getPostFix();
     
-    //Java 8 method refference
-    check(postFix).passes(CustomChecks::someCheck); 
-    
-    //Java 8 lambda syntax
-    check(postFix).passes((subject) -> subject.length() > 2);
-    
-    //Prebuilt check with concrete type
-    check(postFix).passes(new SomeCustomYetFrequentCheck()); 
-    
-    //Java 6/7 anonymous class
-    check(postFix).passes(new DbcBlock<String>() {   
-        @Override
-        boolean checkState(String subject) {
-            return subject.length() > 2;
-        }
-    }); 
+    check(postFix).passes(CustomChecks::someCheck) //Java 8 method refference 
+                  .passes((subject) -> subject.length() > 2) //Java 8 lambda syntax
+                  .passes(new SomeCustomYetFrequentCheck()) //Prebuilt check with concrete type 
+                  .passes(new DbcBlock<String>() { //Java 6/7 anonymous class   
+                                @Override
+                                boolean checkState(String subject) {
+                                    return subject.length() > 2;
+                                }}); 
     
     String result = arg1 + postFix;
     ensure(result).isValid();

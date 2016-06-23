@@ -17,23 +17,19 @@
 package com.busybusy.dbc;
 
 import com.busybusy.dbc.conditions.BasicCondition;
-import com.busybusy.dbc.conditions.BasicCondition_Disabled;
 import com.busybusy.dbc.conditions.DoubleCondition;
 import com.busybusy.dbc.conditions.FloatCondition;
-import com.busybusy.dbc.conditions.FloatingPointCondition_Disabled;
 import com.busybusy.dbc.conditions.IntegralCondition;
 import com.busybusy.dbc.conditions.ListCondition;
-import com.busybusy.dbc.conditions.ListCondition_Disabled;
 import com.busybusy.dbc.conditions.MapCondition;
-import com.busybusy.dbc.conditions.MapCondition_Disabled;
-import com.busybusy.dbc.conditions.NumberCondition_Disabled;
+import com.busybusy.dbc.conditions.ObjectCondition;
 import com.busybusy.dbc.conditions.StringCondition;
-import com.busybusy.dbc.conditions.StringCondition_Disabled;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -48,145 +44,145 @@ public class DbcTest
 	@Test
 	public void requireObject() throws Exception
 	{
-		testMethod(Dbc::require, new Object(), BasicCondition.class, BasicCondition_Disabled.class);
+		testMethod(Dbc::require, new Object(), ObjectCondition.class);
 	}
 
 	@Test
 	public void requireDouble() throws Exception
 	{
-		testMethod(Dbc::require, 2.0D, DoubleCondition.class, FloatingPointCondition_Disabled.class);
+		testMethod(Dbc::require, 2.0D, DoubleCondition.class);
 	}
 
 	@Test
 	public void requireFloat() throws Exception
 	{
-		testMethod(Dbc::require, 2.0F, FloatCondition.class, FloatingPointCondition_Disabled.class);
+		testMethod(Dbc::require, 2.0F, FloatCondition.class);
 	}
 
 	@Test
 	public void requireInteger() throws Exception
 	{
-		testMethod(Dbc::require, 2, IntegralCondition.class, NumberCondition_Disabled.class);
+		testMethod(Dbc::require, 2, IntegralCondition.class);
 	}
 
 	@Test
 	public void requireLong() throws Exception
 	{
-		testMethod(Dbc::require, 2L, IntegralCondition.class, NumberCondition_Disabled.class);
+		testMethod(Dbc::require, 2L, IntegralCondition.class);
 	}
 
 	@Test
 	public void requireList() throws Exception
 	{
-		testMethod(Dbc::require, new ArrayList<>(), ListCondition.class, ListCondition_Disabled.class);
+		testMethod(Dbc::require, new ArrayList<>(), ListCondition.class);
 	}
 
 	@Test
 	public void requireMap() throws Exception
 	{
-		testMethod(Dbc::require, new HashMap<>(), MapCondition.class, MapCondition_Disabled.class);
+		testMethod(Dbc::require, new HashMap<>(), MapCondition.class);
 	}
 
 	@Test
 	public void requireString() throws Exception
 	{
-		testMethod(Dbc::require, "String", StringCondition.class, StringCondition_Disabled.class);
+		testMethod(Dbc::require, "String", StringCondition.class);
 	}
 
 	@Test
 	public void checkObject() throws Exception
 	{
-		testMethod(Dbc::check, new Object(), BasicCondition.class, BasicCondition_Disabled.class);
+		testMethod(Dbc::check, new Object(), ObjectCondition.class);
 	}
 
 	@Test
 	public void checkDouble() throws Exception
 	{
-		testMethod(Dbc::check, 2.0D, DoubleCondition.class, FloatingPointCondition_Disabled.class);
+		testMethod(Dbc::check, 2.0D, DoubleCondition.class);
 	}
 
 	@Test
 	public void checkFloat() throws Exception
 	{
-		testMethod(Dbc::check, 2.0F, FloatCondition.class, FloatingPointCondition_Disabled.class);
+		testMethod(Dbc::check, 2.0F, FloatCondition.class);
 	}
 
 	@Test
 	public void checkInteger() throws Exception
 	{
-		testMethod(Dbc::check, 2, IntegralCondition.class, NumberCondition_Disabled.class);
+		testMethod(Dbc::check, 2, IntegralCondition.class);
 	}
 
 	@Test
 	public void checkLong() throws Exception
 	{
-		testMethod(Dbc::check, 2L, IntegralCondition.class, NumberCondition_Disabled.class);
+		testMethod(Dbc::check, 2L, IntegralCondition.class);
 	}
 
 	@Test
 	public void checkList() throws Exception
 	{
-		testMethod(Dbc::check, new ArrayList<>(), ListCondition.class, ListCondition_Disabled.class);
+		testMethod(Dbc::check, new ArrayList<>(), ListCondition.class);
 	}
 
 	@Test
 	public void checkMap() throws Exception
 	{
-		testMethod(Dbc::check, new HashMap<>(), MapCondition.class, MapCondition_Disabled.class);
+		testMethod(Dbc::check, new HashMap<>(), MapCondition.class);
 	}
 
 	@Test
 	public void checkString() throws Exception
 	{
-		testMethod(Dbc::check, "String", StringCondition.class, StringCondition_Disabled.class);
+		testMethod(Dbc::check, "String", StringCondition.class);
 	}
 
 	@Test
 	public void ensureObject() throws Exception
 	{
-		testMethod(Dbc::ensure, new Object(), BasicCondition.class, BasicCondition_Disabled.class);
+		testMethod(Dbc::ensure, new Object(), ObjectCondition.class);
 	}
 
 	@Test
 	public void ensureDouble() throws Exception
 	{
-		testMethod(Dbc::ensure, 2.0D, DoubleCondition.class, FloatingPointCondition_Disabled.class);
+		testMethod(Dbc::ensure, 2.0D, DoubleCondition.class);
 	}
 
 	@Test
 	public void ensureFloat() throws Exception
 	{
-		testMethod(Dbc::ensure, 2.0F, FloatCondition.class, FloatingPointCondition_Disabled.class);
+		testMethod(Dbc::ensure, 2.0F, FloatCondition.class);
 	}
 
 	@Test
 	public void ensureInteger() throws Exception
 	{
-		testMethod(Dbc::ensure, 2, IntegralCondition.class, NumberCondition_Disabled.class);
+		testMethod(Dbc::ensure, 2, IntegralCondition.class);
 	}
 
 	@Test
 	public void ensureLong() throws Exception
 	{
-		testMethod(Dbc::ensure, 2L, IntegralCondition.class, NumberCondition_Disabled.class);
+		testMethod(Dbc::ensure, 2L, IntegralCondition.class);
 	}
 
 	@Test
 	public void ensureList() throws Exception
 	{
-		testMethod(Dbc::ensure, new ArrayList<>(), ListCondition.class, ListCondition_Disabled.class);
+		testMethod(Dbc::ensure, new ArrayList<>(), ListCondition.class);
 	}
 
 	@Test
 	public void ensureMap() throws Exception
 	{
-		testMethod(Dbc::ensure, new HashMap<>(), MapCondition.class, MapCondition_Disabled.class);
+		testMethod(Dbc::ensure, new HashMap<>(), MapCondition.class);
 	}
 
 	@Test
 	public void ensureString() throws Exception
 	{
-		testMethod(Dbc::ensure, "String", StringCondition.class, StringCondition_Disabled.class);
+		testMethod(Dbc::ensure, "String", StringCondition.class);
 	}
 
 	private interface Func<ParamType, ReturnType>
@@ -194,18 +190,26 @@ public class DbcTest
 		ReturnType apply(ParamType param);
 	}
 
-	private <T, R> void testMethod(Func<T, ? extends R> method, T target, Class<? extends R> expectedResultEnabled, Class<? extends R> expectedResultDisabled)
+	private <T, R extends BasicCondition> void testMethod(Func<T, ? extends R> method, T target, Class<? extends R> expectedResult) throws Exception
 	{
-		enable();
-		testMethodReturnsType(method, target, expectedResultEnabled);
-		disable();
-		testMethodReturnsType(method, target, expectedResultDisabled);
+		testMethodReturnsType(method, target, expectedResult);
 	}
 
-	private <T, R> void testMethodReturnsType(Func<T, ? extends R> method, T target, Class<? extends R> expectedResult)
+	private <T, R extends BasicCondition> void testMethodReturnsType(Func<T, ? extends R> method, T target, Class<? extends R> expectedResult) throws Exception
 	{
-		R result = method.apply(target);
+		R     result;
+		Field field = BasicCondition.class.getDeclaredField("enabled");
+		field.setAccessible(true);
+
+		enable();
+		result = method.apply(target);
 		assertThat(result).isInstanceOf(expectedResult);
+		assertThat(field.getBoolean(result)).isTrue();
+
+		disable();
+		result = method.apply(target);
+		assertThat(result).isInstanceOf(expectedResult);
+		assertThat(field.getBoolean(result)).isFalse();
 	}
 
 	private void enable()

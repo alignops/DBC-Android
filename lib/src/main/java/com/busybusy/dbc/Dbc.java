@@ -16,25 +16,13 @@
 
 package com.busybusy.dbc;
 
-import com.busybusy.dbc.checks.BasicChecks;
-import com.busybusy.dbc.checks.FloatingPointChecks;
-import com.busybusy.dbc.checks.ListChecks;
-import com.busybusy.dbc.checks.MapChecks;
-import com.busybusy.dbc.checks.NumberChecks;
-import com.busybusy.dbc.checks.StringChecks;
-import com.busybusy.dbc.conditions.BasicCondition;
-import com.busybusy.dbc.conditions.BasicCondition_Disabled;
 import com.busybusy.dbc.conditions.DoubleCondition;
 import com.busybusy.dbc.conditions.FloatCondition;
-import com.busybusy.dbc.conditions.FloatingPointCondition_Disabled;
 import com.busybusy.dbc.conditions.IntegralCondition;
 import com.busybusy.dbc.conditions.ListCondition;
-import com.busybusy.dbc.conditions.ListCondition_Disabled;
 import com.busybusy.dbc.conditions.MapCondition;
-import com.busybusy.dbc.conditions.MapCondition_Disabled;
-import com.busybusy.dbc.conditions.NumberCondition_Disabled;
+import com.busybusy.dbc.conditions.ObjectCondition;
 import com.busybusy.dbc.conditions.StringCondition;
-import com.busybusy.dbc.conditions.StringCondition_Disabled;
 
 import java.util.List;
 import java.util.Map;
@@ -106,291 +94,123 @@ public class Dbc
 {
 	private Dbc() {}
 
-	public static <T> BasicChecks<T> require(T subject)
+	public static <T> ObjectCondition require(T subject)
 	{
-		if (DbcManager.getInstance().requireEnabled())
-		{
-			return new BasicCondition<>(subject);
-		}
-		else
-		{
-			return new BasicCondition_Disabled<>(subject);
-		}
+		return new ObjectCondition(subject, DbcManager.getInstance().requireEnabled());
 	}
 
-	public static FloatingPointChecks<Double> require(Double subject)
+	public static DoubleCondition require(Double subject)
 	{
-		if (DbcManager.getInstance().requireEnabled())
-		{
-			return new DoubleCondition(subject);
-		}
-		else
-		{
-			return new FloatingPointCondition_Disabled<>(subject);
-		}
+		return new DoubleCondition(subject, DbcManager.getInstance().requireEnabled());
 	}
 
-	public static FloatingPointChecks<Float> require(Float subject)
+	public static FloatCondition require(Float subject)
 	{
-		if (DbcManager.getInstance().requireEnabled())
-		{
-			return new FloatCondition(subject);
-		}
-		else
-		{
-			return new FloatingPointCondition_Disabled<>(subject);
-		}
+		return new FloatCondition(subject, DbcManager.getInstance().requireEnabled());
 	}
 
-	public static NumberChecks<Integer> require(Integer subject)
+	public static IntegralCondition<Integer> require(Integer subject)
 	{
-		if (DbcManager.getInstance().requireEnabled())
-		{
-			return new IntegralCondition<>(subject);
-		}
-		else
-		{
-			return new NumberCondition_Disabled<>(subject);
-		}
+		return new IntegralCondition<>(subject, DbcManager.getInstance().requireEnabled());
 	}
 
-	public static NumberChecks<Long> require(Long subject)
+	public static IntegralCondition<Long> require(Long subject)
 	{
-		if (DbcManager.getInstance().requireEnabled())
-		{
-			return new IntegralCondition<>(subject);
-		}
-		else
-		{
-			return new NumberCondition_Disabled<>(subject);
-		}
+		return new IntegralCondition<>(subject, DbcManager.getInstance().requireEnabled());
 	}
 
-	public static <T extends List<E>, E> ListChecks<T, E> require(T subject)
+	public static <T extends List<E>, E> ListCondition<T, E> require(T subject)
 	{
-		if (DbcManager.getInstance().requireEnabled())
-		{
-			return new ListCondition<>(subject);
-		}
-		else
-		{
-			return new ListCondition_Disabled<>(subject);
-		}
+		return new ListCondition<>(subject, DbcManager.getInstance().requireEnabled());
 	}
 
-	public static <T extends Map<K, V>, K, V> MapChecks<T, K, V> require(T subject)
+	public static <T extends Map<K, V>, K, V> MapCondition<T, K, V> require(T subject)
 	{
-		if (DbcManager.getInstance().requireEnabled())
-		{
-			return new MapCondition<>(subject);
-		}
-		else
-		{
-			return new MapCondition_Disabled<>(subject);
-		}
+		return new MapCondition<>(subject, DbcManager.getInstance().requireEnabled());
 	}
 
-	public static StringChecks require(String subject)
+	public static StringCondition require(String subject)
 	{
-		if (DbcManager.getInstance().requireEnabled())
-		{
-			return new StringCondition(subject);
-		}
-		else
-		{
-			return new StringCondition_Disabled(subject);
-		}
+		return new StringCondition(subject, DbcManager.getInstance().requireEnabled());
 	}
 
-	public static <T> BasicChecks<T> check(T subject)
+	public static <T> ObjectCondition check(T subject)
 	{
-		if (DbcManager.getInstance().checkEnabled())
-		{
-			return new BasicCondition<>(subject);
-		}
-		else
-		{
-			return new BasicCondition_Disabled<>(subject);
-		}
+		return new ObjectCondition(subject, DbcManager.getInstance().checkEnabled());
 	}
 
-	public static FloatingPointChecks<Double> check(Double subject)
+	public static DoubleCondition check(Double subject)
 	{
-		if (DbcManager.getInstance().checkEnabled())
-		{
-			return new DoubleCondition(subject);
-		}
-		else
-		{
-			return new FloatingPointCondition_Disabled<>(subject);
-		}
+		return new DoubleCondition(subject, DbcManager.getInstance().checkEnabled());
 	}
 
-	public static FloatingPointChecks<Float> check(Float subject)
+	public static FloatCondition check(Float subject)
 	{
-		if (DbcManager.getInstance().checkEnabled())
-		{
-			return new FloatCondition(subject);
-		}
-		else
-		{
-			return new FloatingPointCondition_Disabled<>(subject);
-		}
+		return new FloatCondition(subject, DbcManager.getInstance().checkEnabled());
 	}
 
-	public static NumberChecks<Integer> check(Integer subject)
+	public static IntegralCondition<Integer> check(Integer subject)
 	{
-		if (DbcManager.getInstance().checkEnabled())
-		{
-			return new IntegralCondition<>(subject);
-		}
-		else
-		{
-			return new NumberCondition_Disabled<>(subject);
-		}
+		return new IntegralCondition<>(subject, DbcManager.getInstance().checkEnabled());
 	}
 
-	public static NumberChecks<Long> check(Long subject)
+	public static IntegralCondition<Long> check(Long subject)
 	{
-		if (DbcManager.getInstance().checkEnabled())
-		{
-			return new IntegralCondition<>(subject);
-		}
-		else
-		{
-			return new NumberCondition_Disabled<>(subject);
-		}
+		return new IntegralCondition<>(subject, DbcManager.getInstance().checkEnabled());
 	}
 
-	public static <T extends List<E>, E> ListChecks<T, E> check(T subject)
+	public static <T extends List<E>, E> ListCondition<T, E> check(T subject)
 	{
-		if (DbcManager.getInstance().checkEnabled())
-		{
-			return new ListCondition<>(subject);
-		}
-		else
-		{
-			return new ListCondition_Disabled<>(subject);
-		}
+		return new ListCondition<>(subject, DbcManager.getInstance().checkEnabled());
 	}
 
-	public static <T extends Map<K, V>, K, V> MapChecks<T, K, V> check(T subject)
+	public static <T extends Map<K, V>, K, V> MapCondition<T, K, V> check(T subject)
 	{
-		if (DbcManager.getInstance().checkEnabled())
-		{
-			return new MapCondition<>(subject);
-		}
-		else
-		{
-			return new MapCondition_Disabled<>(subject);
-		}
+		return new MapCondition<>(subject, DbcManager.getInstance().checkEnabled());
 	}
 
-	public static StringChecks check(String subject)
+	public static StringCondition check(String subject)
 	{
-		if (DbcManager.getInstance().checkEnabled())
-		{
-			return new StringCondition(subject);
-		}
-		else
-		{
-			return new StringCondition_Disabled(subject);
-		}
+		return new StringCondition(subject, DbcManager.getInstance().checkEnabled());
 	}
 
-	public static <T> BasicChecks<T> ensure(T subject)
+	public static <T> ObjectCondition ensure(T subject)
 	{
-		if (DbcManager.getInstance().ensureEnabled())
-		{
-			return new BasicCondition<>(subject);
-		}
-		else
-		{
-			return new BasicCondition_Disabled<>(subject);
-		}
+		return new ObjectCondition(subject, DbcManager.getInstance().ensureEnabled());
 	}
 
-	public static FloatingPointChecks<Double> ensure(Double subject)
+	public static DoubleCondition ensure(Double subject)
 	{
-		if (DbcManager.getInstance().ensureEnabled())
-		{
-			return new DoubleCondition(subject);
-		}
-		else
-		{
-			return new FloatingPointCondition_Disabled<>(subject);
-		}
+		return new DoubleCondition(subject, DbcManager.getInstance().ensureEnabled());
 	}
 
-	public static FloatingPointChecks<Float> ensure(Float subject)
+	public static FloatCondition ensure(Float subject)
 	{
-		if (DbcManager.getInstance().ensureEnabled())
-		{
-			return new FloatCondition(subject);
-		}
-		else
-		{
-			return new FloatingPointCondition_Disabled<>(subject);
-		}
+		return new FloatCondition(subject, DbcManager.getInstance().ensureEnabled());
 	}
 
-	public static NumberChecks<Integer> ensure(Integer subject)
+	public static IntegralCondition<Integer> ensure(Integer subject)
 	{
-		if (DbcManager.getInstance().ensureEnabled())
-		{
-			return new IntegralCondition<>(subject);
-		}
-		else
-		{
-			return new NumberCondition_Disabled<>(subject);
-		}
+		return new IntegralCondition<>(subject, DbcManager.getInstance().ensureEnabled());
 	}
 
-	public static NumberChecks<Long> ensure(Long subject)
+	public static IntegralCondition<Long> ensure(Long subject)
 	{
-		if (DbcManager.getInstance().ensureEnabled())
-		{
-			return new IntegralCondition<>(subject);
-		}
-		else
-		{
-			return new NumberCondition_Disabled<>(subject);
-		}
+		return new IntegralCondition<>(subject, DbcManager.getInstance().ensureEnabled());
 	}
 
-	public static <T extends List<E>, E> ListChecks<T, E> ensure(T subject)
+	public static <T extends List<E>, E> ListCondition<T, E> ensure(T subject)
 	{
-		if (DbcManager.getInstance().ensureEnabled())
-		{
-			return new ListCondition<>(subject);
-		}
-		else
-		{
-			return new ListCondition_Disabled<>(subject);
-		}
+		return new ListCondition<>(subject, DbcManager.getInstance().ensureEnabled());
 	}
 
-	public static <T extends Map<K, V>, K, V> MapChecks<T, K, V> ensure(T subject)
+	public static <T extends Map<K, V>, K, V> MapCondition<T, K, V> ensure(T subject)
 	{
-		if (DbcManager.getInstance().ensureEnabled())
-		{
-			return new MapCondition<>(subject);
-		}
-		else
-		{
-			return new MapCondition_Disabled<>(subject);
-		}
+		return new MapCondition<>(subject, DbcManager.getInstance().ensureEnabled());
 	}
 
-	public static StringChecks ensure(String subject)
+	public static StringCondition ensure(String subject)
 	{
-		if (DbcManager.getInstance().ensureEnabled())
-		{
-			return new StringCondition(subject);
-		}
-		else
-		{
-			return new StringCondition_Disabled(subject);
-		}
+		return new StringCondition(subject, DbcManager.getInstance().ensureEnabled());
 	}
 }

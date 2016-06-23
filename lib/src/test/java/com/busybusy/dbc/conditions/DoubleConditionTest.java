@@ -31,9 +31,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class DoubleConditionTest
 {
 	@Test
-	public void isGreaterThan() throws Exception
+	public void isGreaterThan_enabled() throws Exception
 	{
-		DoubleCondition condition = new DoubleCondition(2.0D);
+		DoubleCondition condition = new DoubleCondition(2.0D, true);
 		condition.isGreaterThan(1D);
 
 		assertThatThrownBy(() -> condition.isGreaterThan(3D))
@@ -42,9 +42,16 @@ public class DoubleConditionTest
 	}
 
 	@Test
-	public void isGreaterThanOrEqual() throws Exception
+	public void isGreaterThan_disabled() throws Exception
 	{
-		DoubleCondition condition = new DoubleCondition(2.0D);
+		DoubleCondition condition = new DoubleCondition(2.0D, false);
+		condition.isGreaterThan(1D).isGreaterThan(3D);
+	}
+
+	@Test
+	public void isGreaterThanOrEqual_enabled() throws Exception
+	{
+		DoubleCondition condition = new DoubleCondition(2.0D, true);
 		condition.isGreaterThanOrEqual(2D);
 
 		assertThatThrownBy(() -> condition.isGreaterThanOrEqual(3D))
@@ -53,9 +60,16 @@ public class DoubleConditionTest
 	}
 
 	@Test
-	public void isLessThan() throws Exception
+	public void isGreaterThanOrEqual_disabled() throws Exception
 	{
-		DoubleCondition condition = new DoubleCondition(2.0D);
+		DoubleCondition condition = new DoubleCondition(2.0D, false);
+		condition.isGreaterThanOrEqual(2D).isGreaterThanOrEqual(3D);
+	}
+
+	@Test
+	public void isLessThan_enabled() throws Exception
+	{
+		DoubleCondition condition = new DoubleCondition(2.0D, true);
 		condition.isLessThan(3D);
 
 		assertThatThrownBy(() -> condition.isLessThan(1D))
@@ -64,9 +78,16 @@ public class DoubleConditionTest
 	}
 
 	@Test
-	public void isLessThanOrEqual() throws Exception
+	public void isLessThan_disabled() throws Exception
 	{
-		DoubleCondition condition = new DoubleCondition(2.0D);
+		DoubleCondition condition = new DoubleCondition(2.0D, false);
+		condition.isLessThan(3D).isLessThan(1D);
+	}
+
+	@Test
+	public void isLessThanOrEqual_enabled() throws Exception
+	{
+		DoubleCondition condition = new DoubleCondition(2.0D, true);
 		condition.isLessThanOrEqual(2D);
 
 		assertThatThrownBy(() -> condition.isLessThanOrEqual(1D))
@@ -75,9 +96,16 @@ public class DoubleConditionTest
 	}
 
 	@Test
-	public void isNear() throws Exception
+	public void isLessThanOrEqual_disabled() throws Exception
 	{
-		DoubleCondition condition = new DoubleCondition(2.0D);
+		DoubleCondition condition = new DoubleCondition(2.0D, false);
+		condition.isLessThanOrEqual(2D).isLessThanOrEqual(1D);
+	}
+
+	@Test
+	public void isNear_enabled() throws Exception
+	{
+		DoubleCondition condition = new DoubleCondition(2.0D, true);
 		condition.isNear(2D);
 
 		assertThatThrownBy(() -> condition.isNear(1D))
@@ -86,9 +114,16 @@ public class DoubleConditionTest
 	}
 
 	@Test
-	public void isNearCustomTolerance() throws Exception
+	public void isNear_disabled() throws Exception
 	{
-		DoubleCondition condition = new DoubleCondition(2.0D);
+		DoubleCondition condition = new DoubleCondition(2.0D, false);
+		condition.isNear(2D).isNear(1D);
+	}
+
+	@Test
+	public void isNearCustomTolerance_enabled() throws Exception
+	{
+		DoubleCondition condition = new DoubleCondition(2.0D, true);
 		condition.isNearWithTolerance(3D, 2.5D);
 
 		assertThatThrownBy(() -> condition.isNearWithTolerance(1D, .5D))
@@ -97,37 +132,71 @@ public class DoubleConditionTest
 	}
 
 	@Test
-	public void isNearZero() throws Exception
+	public void isNearCustomTolerance_disabled() throws Exception
 	{
-		DoubleCondition condition = new DoubleCondition(0.22E-16);
+		DoubleCondition condition = new DoubleCondition(2.0D, false);
+		condition.isNearWithTolerance(3D, 2.5D).isNearWithTolerance(1D, .5D);
+	}
+
+	@Test
+	public void isNearZero_enabled() throws Exception
+	{
+		DoubleCondition condition = new DoubleCondition(0.22E-16, true);
 		condition.isNearZero();
 
-		DoubleCondition badCondition = new DoubleCondition(2D);
+		DoubleCondition badCondition = new DoubleCondition(2D, true);
 		assertThatThrownBy(badCondition::isNearZero)
 				.isInstanceOf(DbcAssertionException.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
 	}
 
 	@Test
-	public void isNearZeroCustomTolerance() throws Exception
+	public void isNearZero_disabled() throws Exception
 	{
-		DoubleCondition condition = new DoubleCondition(1D);
+		DoubleCondition condition = new DoubleCondition(0.22E-16, false);
+		condition.isNearZero();
+
+		DoubleCondition badCondition = new DoubleCondition(2D, false);
+		badCondition.isNearZero();
+	}
+
+	@Test
+	public void isNearZeroCustomTolerance_enabled() throws Exception
+	{
+		DoubleCondition condition = new DoubleCondition(1D, true);
 		condition.isNearZeroWithTolerance(1.5D);
 
-		DoubleCondition badCondition = new DoubleCondition(2D);
+		DoubleCondition badCondition = new DoubleCondition(2D, true);
 		assertThatThrownBy(() -> badCondition.isNearZeroWithTolerance(1.5D))
 				.isInstanceOf(DbcAssertionException.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
 	}
 
 	@Test
-	public void isEqualTo() throws Exception
+	public void isNearZeroCustomTolerance_disabled() throws Exception
 	{
-		DoubleCondition condition = new DoubleCondition(2.0D);
+		DoubleCondition condition = new DoubleCondition(1D, false);
+		condition.isNearZeroWithTolerance(1.5D);
+
+		DoubleCondition badCondition = new DoubleCondition(2D, false);
+		badCondition.isNearZeroWithTolerance(1.5D);
+	}
+
+	@Test
+	public void isEqualTo_enabled() throws Exception
+	{
+		DoubleCondition condition = new DoubleCondition(2.0D, true);
 		condition.isEqualTo(2D);
 
 		assertThatThrownBy(() -> condition.isEqualTo(1D))
 				.isInstanceOf(DbcAssertionException.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
+	}
+
+	@Test
+	public void isEqualTo_disabled() throws Exception
+	{
+		DoubleCondition condition = new DoubleCondition(2.0D, false);
+		condition.isEqualTo(2D).isEqualTo(1D);
 	}
 }

@@ -23,12 +23,12 @@ import java.util.Map;
  *
  * @author Trevor
  */
-public interface MapChecks<T extends Map<K, V>, K, V> extends CollectionChecks<T>
+public interface MapChecks<T extends Map<K, V>, K, V, Self extends MapChecks<T, K, V, Self>> extends CollectionChecks<T, Self>
 {
 	/**
 	 * Assert that the subject map contains key
 	 *
 	 * @param key key to verify
 	 */
-	void containsKey(K key);
+	Self containsKey(K key);
 }

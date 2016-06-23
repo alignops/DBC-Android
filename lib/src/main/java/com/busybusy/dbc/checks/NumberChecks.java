@@ -22,33 +22,33 @@ package com.busybusy.dbc.checks;
  * @param <T> Number type object
  * @author Trevor
  */
-public interface NumberChecks<T extends Number> extends BasicChecks<T>
+public interface NumberChecks<T extends Number, Self extends NumberChecks<T, Self>> extends BasicChecks<T, Self>
 {
 	/**
 	 * Assert that the subject value is greater than the provided value
 	 *
 	 * @param number Number to compare against subject
 	 */
-	void isGreaterThan(T number);
+	Self isGreaterThan(T number);
 
 	/**
 	 * Assert that the subject value is greater than or equal to the provided value
 	 *
 	 * @param number Number to compare against subject
 	 */
-	void isGreaterThanOrEqual(T number);
+	Self isGreaterThanOrEqual(T number);
 
 	/**
 	 * Assert that the subject value is less than the provided value
 	 *
 	 * @param number Number to compare against subject
 	 */
-	void isLessThan(T number);
+	Self isLessThan(T number);
 
 	/**
 	 * Assert that the subject value is less than or equal to the provided value
 	 *
 	 * @param number Number to compare against subject
 	 */
-	void isLessThanOrEqual(T number);
+	Self isLessThanOrEqual(T number);
 }

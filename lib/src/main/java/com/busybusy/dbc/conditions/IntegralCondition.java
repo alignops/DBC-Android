@@ -27,55 +27,63 @@ import org.jetbrains.annotations.NonNls;
  * @author Trevor
  */
 @NonNls
-public class IntegralCondition<T extends Number> extends BasicCondition<T> implements NumberChecks<T>
+public class IntegralCondition<T extends Number> extends BasicCondition<T, IntegralCondition<T>> implements NumberChecks<T, IntegralCondition<T>>
 {
-	public IntegralCondition(T subject) { super(subject); }
+	public IntegralCondition(T subject, boolean enabled) { super(subject, enabled); }
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void isGreaterThan(T number)
+	public IntegralCondition<T> isGreaterThan(T number)
 	{
-		if (!(this.subject.longValue() > number.longValue()))
+		if (this.enabled && !(this.subject.longValue() > number.longValue()))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected integer <" + this.subject + "> to be greater than <" + number + ">"));
 		}
+
+		return this;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void isGreaterThanOrEqual(T number)
+	public IntegralCondition<T> isGreaterThanOrEqual(T number)
 	{
-		if (!(this.subject.longValue() >= number.longValue()))
+		if (this.enabled && !(this.subject.longValue() >= number.longValue()))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected integer <" + this.subject + "> to be greater than or equal to <" + number + ">"));
 		}
+
+		return this;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void isLessThan(T number)
+	public IntegralCondition<T> isLessThan(T number)
 	{
-		if (!(this.subject.longValue() < number.longValue()))
+		if (this.enabled && !(this.subject.longValue() < number.longValue()))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected integer <" + this.subject + "> to be less than <" + number + ">"));
 		}
+
+		return this;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void isLessThanOrEqual(T number)
+	public IntegralCondition<T> isLessThanOrEqual(T number)
 	{
-		if (!(this.subject.longValue() <= number.longValue()))
+		if (this.enabled && !(this.subject.longValue() <= number.longValue()))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected integer <" + this.subject + "> to be less than or equal to <" + number + ">"));
 		}
+
+		return this;
 	}
 }

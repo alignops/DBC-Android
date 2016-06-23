@@ -29,128 +29,144 @@ import static com.busybusy.dbc.Dbc.require;
  * @author Trevor
  */
 @NonNls
-public class FloatCondition extends BasicCondition<Float> implements FloatingPointChecks<Float>
+public final class FloatCondition extends BasicCondition<Float, FloatCondition> implements FloatingPointChecks<Float, FloatCondition>
 {
-	public FloatCondition(Float subject) { super(subject); }
+	public FloatCondition(Float subject, boolean enabled) { super(subject, enabled); }
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void isGreaterThan(Float number)
+	public FloatCondition isGreaterThan(Float number)
 	{
 		this.isNotNull();
 		require(number).isNotNull();
 
-		if (!(Float.compare(this.subject, number) > 0))
+		if (this.enabled && !(Float.compare(this.subject, number) > 0))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected float <" + this.subject + "> to be greater than <" + number + ">"));
 		}
+
+		return this;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void isGreaterThanOrEqual(Float number)
+	public FloatCondition isGreaterThanOrEqual(Float number)
 	{
 		this.isNotNull();
 		require(number).isNotNull();
 
-		if (!(Float.compare(this.subject, number) >= 0))
+		if (this.enabled && !(Float.compare(this.subject, number) >= 0))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected float <" + this.subject + "> to be greater than or equal to <" + number + ">"));
 		}
+
+		return this;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void isLessThan(Float number)
+	public FloatCondition isLessThan(Float number)
 	{
 		this.isNotNull();
 		require(number).isNotNull();
 
-		if (!(Float.compare(this.subject, number) < 0))
+		if (this.enabled && !(Float.compare(this.subject, number) < 0))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected float <" + this.subject + "> to be less than <" + number + ">"));
 		}
+
+		return this;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void isLessThanOrEqual(Float number)
+	public FloatCondition isLessThanOrEqual(Float number)
 	{
 		this.isNotNull();
 		require(number).isNotNull();
 
-		if (!(Float.compare(this.subject, number) <= 0))
+		if (this.enabled && !(Float.compare(this.subject, number) <= 0))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected float <" + this.subject + "> to be less than or equal to <" + number + ">"));
 		}
+
+		return this;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void isNear(Float floatingPointNumber)
+	public FloatCondition isNear(Float floatingPointNumber)
 	{
 		this.isNotNull();
 		require(floatingPointNumber).isNotNull();
 
-		if (!(Math.abs(this.subject - floatingPointNumber) < DEFAULT_DOUBLE_EPSILON))
+		if (this.enabled && !(Math.abs(this.subject - floatingPointNumber) < DEFAULT_DOUBLE_EPSILON))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected float <" + this.subject + "> to be near <" + floatingPointNumber + "> with epsilon <" + DEFAULT_DOUBLE_EPSILON + ">"));
 		}
+
+		return this;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void isNearWithTolerance(Float floatingPointNumber, Float tolerance)
+	public FloatCondition isNearWithTolerance(Float floatingPointNumber, Float tolerance)
 	{
 		this.isNotNull();
 		require(floatingPointNumber).isNotNull();
 		require(tolerance).isNotNull();
 
-		if (!(Math.abs(this.subject - floatingPointNumber) < tolerance))
+		if (this.enabled && !(Math.abs(this.subject - floatingPointNumber) < tolerance))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected float <" + this.subject + "> to be near <" + floatingPointNumber + "> with epsilon <" + tolerance + ">"));
 		}
+
+		return this;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void isNearZero()
+	public FloatCondition isNearZero()
 	{
 		this.isNotNull();
 
-		if (!(Math.abs(this.subject) < DEFAULT_FLOAT_EPSILON))
+		if (this.enabled && !(Math.abs(this.subject) < DEFAULT_FLOAT_EPSILON))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected float <" + this.subject + "> to be near zero with epsilon <" + DEFAULT_FLOAT_EPSILON + ">"));
 		}
+
+		return this;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void isNearZeroWithTolerance(Float tolerance)
+	public FloatCondition isNearZeroWithTolerance(Float tolerance)
 	{
 		this.isNotNull();
 		require(tolerance).isNotNull();
 
-		if (!(Math.abs(this.subject) < tolerance))
+		if (this.enabled && !(Math.abs(this.subject) < tolerance))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected float <" + this.subject + "> to be near zero with epsilon <" + tolerance + ">"));
 		}
+
+		return this;
 	}
 
 	/**
@@ -160,5 +176,5 @@ public class FloatCondition extends BasicCondition<Float> implements FloatingPoi
 	 */
 	@Deprecated
 	@Override
-	public void isEqualTo(Float toCompare) { isNear(toCompare); }
+	public FloatCondition isEqualTo(Float toCompare) { return isNear(toCompare); }
 }

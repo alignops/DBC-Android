@@ -28,15 +28,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * @author Trevor
  */
 @RunWith(JUnit4.class)
-public class BasicConditionTest
+public class ObjectConditionTest
 {
 	@Test
-	public void isNull() throws Exception
+	public void isNull_enabled() throws Exception
 	{
-		BasicCondition<?> nullCondition = new BasicCondition<>(null);
+		ObjectCondition nullCondition = new ObjectCondition(null, true);
 		nullCondition.isNull();
 
-		BasicCondition<?> nonNullCondition = new BasicCondition<>(new Object());
+		ObjectCondition nonNullCondition = new ObjectCondition(new Object(), true);
 
 		assertThatThrownBy(nonNullCondition::isNull)
 				.isInstanceOf(DbcAssertionException.class)
@@ -44,12 +44,22 @@ public class BasicConditionTest
 	}
 
 	@Test
-	public void isNotNull() throws Exception
+	public void isNull_disabled() throws Exception
 	{
-		BasicCondition<?> nonNullCondition = new BasicCondition<>(new Object());
+		ObjectCondition nullCondition = new ObjectCondition(null, false);
+		nullCondition.isNull();
+
+		ObjectCondition nonNullCondition = new ObjectCondition(new Object(), false);
+		nonNullCondition.isNull();
+	}
+
+	@Test
+	public void isNotNull_enabled() throws Exception
+	{
+		ObjectCondition nonNullCondition = new ObjectCondition(new Object(), true);
 		nonNullCondition.isNotNull();
 
-		BasicCondition<?> nullCondition = new BasicCondition<>(null);
+		ObjectCondition nullCondition = new ObjectCondition(null, true);
 
 		assertThatThrownBy(nullCondition::isNotNull)
 				.isInstanceOf(DbcAssertionException.class)
@@ -57,9 +67,19 @@ public class BasicConditionTest
 	}
 
 	@Test
-	public void passes() throws Exception
+	public void isNotNull_disabled() throws Exception
 	{
-		BasicCondition<?> condition = new BasicCondition<>(new Object());
+		ObjectCondition nonNullCondition = new ObjectCondition(new Object(), false);
+		nonNullCondition.isNotNull();
+
+		ObjectCondition nullCondition = new ObjectCondition(null, false);
+		nullCondition.isNotNull();
+	}
+
+	@Test
+	public void passes_enabled() throws Exception
+	{
+		ObjectCondition condition = new ObjectCondition(new Object(), true);
 		condition.passes(subject -> true);
 
 		assertThatThrownBy(() -> condition.passes(subject -> false))
@@ -68,9 +88,16 @@ public class BasicConditionTest
 	}
 
 	@Test
-	public void isEqualTo() throws Exception
+	public void passes_disabled() throws Exception
 	{
-		BasicCondition<Integer> condition = new BasicCondition<>(2);
+		ObjectCondition condition = new ObjectCondition(new Object(), false);
+		condition.passes(subject -> true).passes(subject -> false);
+	}
+
+	@Test
+	public void isEqualTo_enabled() throws Exception
+	{
+		ObjectCondition condition = new ObjectCondition(2, true);
 		condition.isEqualTo(2);
 
 		assertThatThrownBy(() -> condition.isEqualTo(3))
@@ -79,9 +106,16 @@ public class BasicConditionTest
 	}
 
 	@Test
-	public void isEqualToCustomComparator() throws Exception
+	public void isEqualTo_disabled() throws Exception
 	{
-		BasicCondition<Integer> condition = new BasicCondition<>(2);
+		ObjectCondition condition = new ObjectCondition(2, false);
+		condition.isEqualTo(2).isEqualTo(3);
+	}
+
+	@Test
+	public void isEqualToCustomComparator_enabled() throws Exception
+	{
+		ObjectCondition condition = new ObjectCondition(2, true);
 		condition.isEqualTo(2, (integer, t1) -> 0);
 
 		assertThatThrownBy(() -> condition.isEqualTo(2, (integer, t1) -> 1))
@@ -89,4 +123,10 @@ public class BasicConditionTest
 				.hasCauseInstanceOf(IllegalArgumentException.class);
 	}
 
+	@Test
+	public void isEqualToCustomComparator_disabled() throws Exception
+	{
+		ObjectCondition condition = new ObjectCondition(2, false);
+		condition.isEqualTo(2, (integer, t1) -> 0).isEqualTo(2, (integer, t1) -> 1);
+	}
 }

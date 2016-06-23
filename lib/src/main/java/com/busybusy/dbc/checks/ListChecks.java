@@ -23,6 +23,6 @@ import java.util.List;
  *
  * @author Trevor
  */
-public interface ListChecks<T extends List<E>, E> extends CollectionChecks<T>
+public interface ListChecks<T extends List<E>, E, Self extends ListChecks<T, E, Self>> extends CollectionChecks<T, Self>
 {
 }

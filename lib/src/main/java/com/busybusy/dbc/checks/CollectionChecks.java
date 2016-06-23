@@ -23,19 +23,19 @@ package com.busybusy.dbc.checks;
  * @see ListChecks
  * @see MapChecks
  */
-public interface CollectionChecks<T> extends BasicChecks<T>
+public interface CollectionChecks<T, Self extends CollectionChecks<T, Self>> extends BasicChecks<T, Self>
 {
 	/**
 	 * Assert that the subject list or map is not empty
 	 */
-	void isNotEmpty();
+	Self isNotEmpty();
 
 	/**
 	 * Assert that the subject list or map has specific size
 	 *
 	 * @param size
 	 */
-	void hasSize(int size);
+	Self hasSize(int size);
 
 	/**
 	 * Assert that the subject list or map has size within range
@@ -43,5 +43,5 @@ public interface CollectionChecks<T> extends BasicChecks<T>
 	 * @param startInclusive minimum size
 	 * @param endInclusive   maximum size
 	 */
-	void hasSizeBetween(int startInclusive, int endInclusive);
+	Self hasSizeBetween(int startInclusive, int endInclusive);
 }

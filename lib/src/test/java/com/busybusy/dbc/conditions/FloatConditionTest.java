@@ -31,9 +31,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class FloatConditionTest
 {
 	@Test
-	public void isGreaterThan() throws Exception
+	public void isGreaterThan_enabled() throws Exception
 	{
-		FloatCondition condition = new FloatCondition(2.0f);
+		FloatCondition condition = new FloatCondition(2.0f, true);
 		condition.isGreaterThan(1f);
 
 		assertThatThrownBy(() -> condition.isGreaterThan(3f))
@@ -42,9 +42,16 @@ public class FloatConditionTest
 	}
 
 	@Test
-	public void isGreaterThanOrEqual() throws Exception
+	public void isGreaterThan_disabled() throws Exception
 	{
-		FloatCondition condition = new FloatCondition(2.0F);
+		FloatCondition condition = new FloatCondition(2.0f, false);
+		condition.isGreaterThan(1f).isGreaterThan(3f);
+	}
+
+	@Test
+	public void isGreaterThanOrEqual_enabled() throws Exception
+	{
+		FloatCondition condition = new FloatCondition(2.0F, true);
 		condition.isGreaterThanOrEqual(2F);
 
 		assertThatThrownBy(() -> condition.isGreaterThanOrEqual(3F))
@@ -53,9 +60,16 @@ public class FloatConditionTest
 	}
 
 	@Test
-	public void isLessThan() throws Exception
+	public void isGreaterThanOrEqual_disabled() throws Exception
 	{
-		FloatCondition condition = new FloatCondition(2.0F);
+		FloatCondition condition = new FloatCondition(2.0F, false);
+		condition.isGreaterThanOrEqual(2F).isGreaterThanOrEqual(3F);
+	}
+
+	@Test
+	public void isLessThan_enabled() throws Exception
+	{
+		FloatCondition condition = new FloatCondition(2.0F, true);
 		condition.isLessThan(3F);
 
 		assertThatThrownBy(() -> condition.isLessThan(1F))
@@ -64,9 +78,16 @@ public class FloatConditionTest
 	}
 
 	@Test
-	public void isLessThanOrEqual() throws Exception
+	public void isLessThan_disabled() throws Exception
 	{
-		FloatCondition condition = new FloatCondition(2.0F);
+		FloatCondition condition = new FloatCondition(2.0F, false);
+		condition.isLessThan(3F).isLessThan(1F);
+	}
+
+	@Test
+	public void isLessThanOrEqual_enabled() throws Exception
+	{
+		FloatCondition condition = new FloatCondition(2.0F, true);
 		condition.isLessThanOrEqual(2F);
 
 		assertThatThrownBy(() -> condition.isLessThanOrEqual(1F))
@@ -75,9 +96,16 @@ public class FloatConditionTest
 	}
 
 	@Test
-	public void isNear() throws Exception
+	public void isLessThanOrEqual_disabled() throws Exception
 	{
-		FloatCondition condition = new FloatCondition(2.0F);
+		FloatCondition condition = new FloatCondition(2.0F, false);
+		condition.isLessThanOrEqual(2F).isLessThanOrEqual(1F);
+	}
+
+	@Test
+	public void isNear_enabled() throws Exception
+	{
+		FloatCondition condition = new FloatCondition(2.0F, true);
 		condition.isNear(2F);
 
 		assertThatThrownBy(() -> condition.isNear(1F))
@@ -86,9 +114,16 @@ public class FloatConditionTest
 	}
 
 	@Test
-	public void isNearCustomTolerance() throws Exception
+	public void isNear_disabled() throws Exception
 	{
-		FloatCondition condition = new FloatCondition(2.0F);
+		FloatCondition condition = new FloatCondition(2.0F, false);
+		condition.isNear(2F).isNear(1F);
+	}
+
+	@Test
+	public void isNearCustomTolerance_enabled() throws Exception
+	{
+		FloatCondition condition = new FloatCondition(2.0F, true);
 		condition.isNearWithTolerance(3F, 2.5F);
 
 		assertThatThrownBy(() -> condition.isNearWithTolerance(1F, .5F))
@@ -97,33 +132,60 @@ public class FloatConditionTest
 	}
 
 	@Test
-	public void isNearZero() throws Exception
+	public void isNearCustomTolerance_disabled() throws Exception
 	{
-		FloatCondition condition = new FloatCondition(0.19e-07F);
+		FloatCondition condition = new FloatCondition(2.0F, false);
+		condition.isNearWithTolerance(3F, 2.5F).isNearWithTolerance(1F, .5F);
+	}
+
+	@Test
+	public void isNearZero_enabled() throws Exception
+	{
+		FloatCondition condition = new FloatCondition(0.19e-07F, true);
 		condition.isNearZero();
 
-		FloatCondition badCondition = new FloatCondition(2F);
+		FloatCondition badCondition = new FloatCondition(2F, true);
 		assertThatThrownBy(badCondition::isNearZero)
 				.isInstanceOf(DbcAssertionException.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
 	}
 
 	@Test
-	public void isNearZeroCustomTolerance() throws Exception
+	public void isNearZero_disabled() throws Exception
 	{
-		FloatCondition condition = new FloatCondition(1F);
+		FloatCondition condition = new FloatCondition(0.19e-07F, false);
+		condition.isNearZero();
+
+		FloatCondition badCondition = new FloatCondition(2F, false);
+		badCondition.isNearZero();
+	}
+
+	@Test
+	public void isNearZeroCustomTolerance_enabled() throws Exception
+	{
+		FloatCondition condition = new FloatCondition(1F, true);
 		condition.isNearZeroWithTolerance(1.5F);
 
-		FloatCondition badCondition = new FloatCondition(2F);
+		FloatCondition badCondition = new FloatCondition(2F, true);
 		assertThatThrownBy(() -> badCondition.isNearZeroWithTolerance(1.5F))
 				.isInstanceOf(DbcAssertionException.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
 	}
 
 	@Test
-	public void isEqualTo() throws Exception
+	public void isNearZeroCustomTolerance_disabled() throws Exception
 	{
-		FloatCondition condition = new FloatCondition(2.0F);
+		FloatCondition condition = new FloatCondition(1F, false);
+		condition.isNearZeroWithTolerance(1.5F);
+
+		FloatCondition badCondition = new FloatCondition(2F, false);
+		badCondition.isNearZeroWithTolerance(1.5F);
+	}
+
+	@Test
+	public void isEqualTo_enabled() throws Exception
+	{
+		FloatCondition condition = new FloatCondition(2.0F, true);
 		condition.isEqualTo(2F);
 
 		assertThatThrownBy(() -> condition.isEqualTo(1F))
@@ -131,4 +193,10 @@ public class FloatConditionTest
 				.hasCauseInstanceOf(IllegalArgumentException.class);
 	}
 
+	@Test
+	public void isEqualTo_disabled() throws Exception
+	{
+		FloatCondition condition = new FloatCondition(2.0F, false);
+		condition.isEqualTo(2F).isEqualTo(1F);
+	}
 }

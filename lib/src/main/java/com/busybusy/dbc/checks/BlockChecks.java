@@ -23,12 +23,12 @@ import com.busybusy.dbc.DbcBlock;
  *
  * @author Trevor
  */
-public interface BlockChecks<T>
+public interface BlockChecks<T, Self extends BlockChecks<T, Self>>
 {
 	/**
 	 * Assert that the subject value passes custom testBlock
 	 *
 	 * @param testBlock code to run against subject value
 	 */
-	void passes(DbcBlock<T> testBlock);
+	Self passes(DbcBlock<T> testBlock);
 }

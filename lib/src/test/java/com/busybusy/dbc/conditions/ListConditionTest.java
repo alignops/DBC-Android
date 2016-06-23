@@ -44,21 +44,31 @@ public class ListConditionTest
 	}
 
 	@Test
-	public void isNotEmpty() throws Exception
+	public void isNotEmpty_enabled() throws Exception
 	{
-		ListCondition<ArrayList<String>, String> condition = new ListCondition<>(this.input);
+		ListCondition<ArrayList<String>, String> condition = new ListCondition<>(this.input, true);
 		condition.isNotEmpty();
 
-		ListCondition<ArrayList<String>, String> badCondition = new ListCondition<>(new ArrayList<>());
+		ListCondition<ArrayList<String>, String> badCondition = new ListCondition<>(new ArrayList<>(), true);
 		Assertions.assertThatThrownBy(badCondition::isNotEmpty)
 		          .isInstanceOf(DbcAssertionException.class)
 		          .hasCauseInstanceOf(IllegalArgumentException.class);
 	}
 
 	@Test
-	public void hasSize() throws Exception
+	public void isNotEmpty_disabled() throws Exception
 	{
-		ListCondition<ArrayList<String>, String> condition = new ListCondition<>(this.input);
+		ListCondition<ArrayList<String>, String> condition = new ListCondition<>(this.input, false);
+		condition.isNotEmpty();
+
+		ListCondition<ArrayList<String>, String> badCondition = new ListCondition<>(new ArrayList<>(), false);
+		badCondition.isNotEmpty();
+	}
+
+	@Test
+	public void hasSize_enabled() throws Exception
+	{
+		ListCondition<ArrayList<String>, String> condition = new ListCondition<>(this.input, true);
 		condition.hasSize(3);
 
 		Assertions.assertThatThrownBy(() -> condition.hasSize(4))
@@ -67,14 +77,28 @@ public class ListConditionTest
 	}
 
 	@Test
-	public void hasSizeBetween() throws Exception
+	public void hasSize_disabled() throws Exception
 	{
-		ListCondition<ArrayList<String>, String> condition = new ListCondition<>(this.input);
+		ListCondition<ArrayList<String>, String> condition = new ListCondition<>(this.input, false);
+		condition.hasSize(3).hasSize(4);
+	}
+
+	@Test
+	public void hasSizeBetween_enabled() throws Exception
+	{
+		ListCondition<ArrayList<String>, String> condition = new ListCondition<>(this.input, true);
 		condition.hasSizeBetween(2, 4);
 
 		Assertions.assertThatThrownBy(() -> condition.hasSizeBetween(4, 7))
 		          .isInstanceOf(DbcAssertionException.class)
 		          .hasCauseInstanceOf(IllegalArgumentException.class);
+	}
+
+	@Test
+	public void hasSizeBetween_disabled() throws Exception
+	{
+		ListCondition<ArrayList<String>, String> condition = new ListCondition<>(this.input, false);
+		condition.hasSizeBetween(2, 4).hasSizeBetween(4, 7);
 	}
 
 }

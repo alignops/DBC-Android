@@ -22,15 +22,15 @@ package com.busybusy.dbc.checks;
  *
  * @author Trevor
  */
-public interface NullChecks
+public interface NullChecks<Self extends NullChecks<Self>>
 {
 	/**
 	 * Assert that the subject value is null
 	 */
-	void isNull();
+	Self isNull();
 
 	/**
 	 * Assert that the subject value is not null
 	 */
-	void isNotNull();
+	Self isNotNull();
 }

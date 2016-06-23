@@ -23,14 +23,14 @@ import java.util.Comparator;
  *
  * @author Trevor
  */
-public interface BasicChecks<T> extends NullChecks, BlockChecks<T>
+public interface BasicChecks<T, Self extends BasicChecks<T, Self>> extends NullChecks<BasicChecks<T, Self>>, BlockChecks<T, Self>
 {
 	/**
 	 * Assert that the subject object is equal to param with .equals(T)
 	 *
 	 * @param toCompare Object to compare against subject
 	 */
-	void isEqualTo(T toCompare);
+	Self isEqualTo(T toCompare);
 
 
 	/**
@@ -39,5 +39,5 @@ public interface BasicChecks<T> extends NullChecks, BlockChecks<T>
 	 * @param toCompare        Object to compare against subject
 	 * @param customComparator Comparator to use against subject and toCompare object
 	 */
-	void isEqualTo(T toCompare, Comparator<T> customComparator);
+	Self isEqualTo(T toCompare, Comparator<T> customComparator);
 }

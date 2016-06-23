@@ -35,79 +35,99 @@ import static com.busybusy.dbc.Dbc.require;
  * @author Trevor
  */
 @NonNls
-public class BasicCondition<T> implements BasicChecks<T>
+public abstract class BasicCondition<T, Self extends BasicCondition<T, Self>> implements BasicChecks<T, Self>
 {
-	protected final T subject;
+	protected final boolean enabled;
+	protected final T       subject;
 
-	public BasicCondition(T subject) {this.subject = subject;}
+	public BasicCondition(T subject, boolean enabled)
+	{
+		this.subject = subject;
+		this.enabled = enabled;
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void isNull()
+	public Self isNull()
 	{
-		if (this.subject != null)
+		if (this.enabled && this.subject != null)
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("A null argument was required but was:" + this.subject));
 		}
+
+		//noinspection unchecked
+		return (Self) this;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void isNotNull()
+	public Self isNotNull()
 	{
-		if (this.subject == null)
+		if (this.enabled && this.subject == null)
 		{
 			DbcAssertionException.throwNew(new NullPointerException("A non null argument was required but was null"));
 		}
+
+		//noinspection unchecked
+		return (Self) this;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void passes(@NonNull DbcBlock<T> testBlock)
+	public Self passes(@NonNull DbcBlock<T> testBlock)
 	{
 		require(testBlock).isNotNull();
 		this.isNotNull();
 
-		if (!testBlock.checkState(this.subject))
+		if (this.enabled && !testBlock.checkState(this.subject))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Assertion in <" + testBlock + "> failed on subject: " + this.subject));
 		}
+
+		//noinspection unchecked
+		return (Self) this;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void isEqualTo(T toCompare)
+	public Self isEqualTo(T toCompare)
 	{
 		require(toCompare).isNotNull();
 		this.isNotNull();
 
-		if (!subject.equals(toCompare))
+		if (this.enabled && !subject.equals(toCompare))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Equality test failed on subject: " + this.subject));
 		}
+
+		//noinspection unchecked
+		return (Self) this;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void isEqualTo(T toCompare, @NonNull Comparator<T> customComparator)
+	public Self isEqualTo(T toCompare, @NonNull Comparator<T> customComparator)
 	{
 		require(toCompare).isNotNull();
 		require(customComparator).isNotNull();
 		this.isNotNull();
 
-		if (customComparator.compare(this.subject, toCompare) != 0)
+		if (this.enabled && customComparator.compare(this.subject, toCompare) != 0)
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Equality test <" + customComparator + "> failed on subject: " + this.subject));
 		}
+
+		//noinspection unchecked
+		return (Self) this;
 	}
 }

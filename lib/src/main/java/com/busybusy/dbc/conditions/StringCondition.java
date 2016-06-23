@@ -27,37 +27,39 @@ import org.jetbrains.annotations.NonNls;
  * @author Trevor
  */
 @NonNls
-public class StringCondition extends BasicCondition<String> implements StringChecks
+public final class StringCondition extends BasicCondition<String, StringCondition> implements StringChecks<StringCondition>
 {
-	private static final String UUID_PATTERN = "[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}";
-
-	public StringCondition(String subject) { super(subject); }
+	public StringCondition(String subject, boolean enabled) { super(subject, enabled); }
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void isValid()
+	public StringCondition isValid()
 	{
 		this.isNotNull();
 
-		if (this.subject.trim().length() == 0)
+		if (this.enabled && this.subject.trim().length() == 0)
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("The provided String is empty"));
 		}
+
+		return this;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void isValidUUID()
+	public StringCondition isValidUUID()
 	{
 		this.isNotNull();
 
-		if (!this.subject.matches(UUID_PATTERN))
+		if (this.enabled && !this.subject.matches(StringChecks.UUID_PATTERN))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("The provided String is not a valid UUID: " + this.subject));
 		}
+
+		return this;
 	}
 }

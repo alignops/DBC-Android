@@ -32,26 +32,46 @@ import java.util.UUID;
 public class StringConditionTest
 {
 	@Test
-	public void isValid() throws Exception
+	public void isValid_enabled() throws Exception
 	{
-		StringCondition condition = new StringCondition("Input");
+		StringCondition condition = new StringCondition("Input", true);
 		condition.isValid();
 
-		StringCondition badCondition = new StringCondition("");
+		StringCondition badCondition = new StringCondition("", true);
 		Assertions.assertThatThrownBy(badCondition::isValid)
 		          .isInstanceOf(DbcAssertionException.class)
 		          .hasCauseInstanceOf(IllegalArgumentException.class);
 	}
 
 	@Test
-	public void isValidUUID() throws Exception
+	public void isValid_disabled() throws Exception
 	{
-		StringCondition condition = new StringCondition(UUID.randomUUID().toString());
+		StringCondition condition = new StringCondition("Input", false);
+		condition.isValid();
+
+		StringCondition badCondition = new StringCondition("", false);
+		badCondition.isValid();
+	}
+
+	@Test
+	public void isValidUUID_enabled() throws Exception
+	{
+		StringCondition condition = new StringCondition(UUID.randomUUID().toString(), true);
 		condition.isValidUUID();
 
-		StringCondition badCondition = new StringCondition("");
+		StringCondition badCondition = new StringCondition("", true);
 		Assertions.assertThatThrownBy(badCondition::isValidUUID)
 		          .isInstanceOf(DbcAssertionException.class)
 		          .hasCauseInstanceOf(IllegalArgumentException.class);
+	}
+
+	@Test
+	public void isValidUUID_disabled() throws Exception
+	{
+		StringCondition condition = new StringCondition(UUID.randomUUID().toString(), false);
+		condition.isValidUUID();
+
+		StringCondition badCondition = new StringCondition("", false);
+		badCondition.isValidUUID();
 	}
 }

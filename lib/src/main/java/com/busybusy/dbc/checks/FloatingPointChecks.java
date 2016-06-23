@@ -25,7 +25,7 @@ package com.busybusy.dbc.checks;
  * @param <T> Type of number to check. Should be float or double. Enforced via object creation in {@linkplain com.busybusy.dbc.Dbc}
  * @author Trevor
  */
-public interface FloatingPointChecks<T extends Number> extends NumberChecks<T>
+public interface FloatingPointChecks<T extends Number, Self extends FloatingPointChecks<T, Self>> extends NumberChecks<T, Self>
 {
 	Float DEFAULT_FLOAT_EPSILON = 1.19e-07F;
 
@@ -36,7 +36,7 @@ public interface FloatingPointChecks<T extends Number> extends NumberChecks<T>
 	 *
 	 * @param floatingPointNumber Value to compare against
 	 */
-	void isNear(T floatingPointNumber);
+	Self isNear(T floatingPointNumber);
 
 
 	/**
@@ -45,12 +45,12 @@ public interface FloatingPointChecks<T extends Number> extends NumberChecks<T>
 	 * @param floatingPointNumber Value to compare against
 	 * @param tolerance           Value to use as tolerance window
 	 */
-	void isNearWithTolerance(T floatingPointNumber, T tolerance);
+	Self isNearWithTolerance(T floatingPointNumber, T tolerance);
 
 	/**
 	 * Assert that the subject value is near zero within {@linkplain #DEFAULT_FLOAT_EPSILON} or {@linkplain #DEFAULT_DOUBLE_EPSILON}
 	 */
-	void isNearZero();
+	Self isNearZero();
 
 
 	/**
@@ -58,5 +58,5 @@ public interface FloatingPointChecks<T extends Number> extends NumberChecks<T>
 	 *
 	 * @param tolerance Value to use as tolerance window
 	 */
-	void isNearZeroWithTolerance(T tolerance);
+	Self isNearZeroWithTolerance(T tolerance);
 }

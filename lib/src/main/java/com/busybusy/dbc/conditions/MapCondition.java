@@ -26,64 +26,72 @@ import java.util.Map;
  *
  * @author Trevor
  */
-public class MapCondition<T extends Map<K, V>, K, V> extends BasicCondition<T> implements MapChecks<T, K, V>
+public final class MapCondition<T extends Map<K, V>, K, V> extends BasicCondition<T, MapCondition<T, K, V>> implements MapChecks<T, K, V, MapCondition<T, K, V>>
 {
-	public MapCondition(T subject) { super(subject); }
+	public MapCondition(T subject, boolean enabled) { super(subject, enabled); }
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void isNotEmpty()
+	public MapCondition<T, K, V> isNotEmpty()
 	{
 		this.isNotNull();
 
-		if (this.subject.isEmpty())
+		if (this.enabled && this.subject.isEmpty())
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected non empty map"));
 		}
+
+		return this;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void hasSize(int size)
+	public MapCondition<T, K, V> hasSize(int size)
 	{
 		this.isNotNull();
 
-		if (!(this.subject.size() == size))
+		if (this.enabled && !(this.subject.size() == size))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected map size to be <" + size + "> but was <" + this.subject.size() + ">"));
 		}
+
+		return this;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void hasSizeBetween(int startInclusive, int endInclusive)
+	public MapCondition<T, K, V> hasSizeBetween(int startInclusive, int endInclusive)
 	{
 		this.isNotNull();
 
 		int mapSize = this.subject.size();
-		if (!((mapSize >= startInclusive && mapSize <= endInclusive) || (mapSize <= startInclusive && mapSize >= endInclusive)))
+		if (this.enabled && !((mapSize >= startInclusive && mapSize <= endInclusive) || (mapSize <= startInclusive && mapSize >= endInclusive)))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected map size to be between <" + startInclusive + "> and < " + endInclusive + "> but was <" + mapSize + ">"));
 		}
+
+		return this;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void containsKey(K key)
+	public MapCondition<T, K, V> containsKey(K key)
 	{
 		this.isNotNull();
 
-		if (!this.subject.containsKey(key))
+		if (this.enabled && !this.subject.containsKey(key))
 		{
 			DbcAssertionException.throwNew(new IllegalArgumentException("Expected map to contain key: " + key));
 		}
+
+		return this;
 	}
 }
