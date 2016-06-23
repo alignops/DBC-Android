@@ -16,7 +16,7 @@
 
 package com.busybusy.dbc.conditions;
 
-import com.busybusy.dbc.DbcAssertionException;
+import com.busybusy.dbc.DbcAssertionError;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,100 +33,59 @@ public class ObjectConditionTest
 	@Test
 	public void isNull_enabled() throws Exception
 	{
-		ObjectCondition nullCondition = new ObjectCondition(null, true);
+		ObjectCondition nullCondition = new ObjectCondition(null);
 		nullCondition.isNull();
 
-		ObjectCondition nonNullCondition = new ObjectCondition(new Object(), true);
+		ObjectCondition nonNullCondition = new ObjectCondition(new Object());
 
 		assertThatThrownBy(nonNullCondition::isNull)
-				.isInstanceOf(DbcAssertionException.class)
+				.isInstanceOf(DbcAssertionError.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void isNull_disabled() throws Exception
-	{
-		ObjectCondition nullCondition = new ObjectCondition(null, false);
-		nullCondition.isNull();
-
-		ObjectCondition nonNullCondition = new ObjectCondition(new Object(), false);
-		nonNullCondition.isNull();
 	}
 
 	@Test
 	public void isNotNull_enabled() throws Exception
 	{
-		ObjectCondition nonNullCondition = new ObjectCondition(new Object(), true);
+		ObjectCondition nonNullCondition = new ObjectCondition(new Object());
 		nonNullCondition.isNotNull();
 
-		ObjectCondition nullCondition = new ObjectCondition(null, true);
+		ObjectCondition nullCondition = new ObjectCondition(null);
 
 		assertThatThrownBy(nullCondition::isNotNull)
-				.isInstanceOf(DbcAssertionException.class)
+				.isInstanceOf(DbcAssertionError.class)
 				.hasCauseInstanceOf(NullPointerException.class);
-	}
-
-	@Test
-	public void isNotNull_disabled() throws Exception
-	{
-		ObjectCondition nonNullCondition = new ObjectCondition(new Object(), false);
-		nonNullCondition.isNotNull();
-
-		ObjectCondition nullCondition = new ObjectCondition(null, false);
-		nullCondition.isNotNull();
 	}
 
 	@Test
 	public void passes_enabled() throws Exception
 	{
-		ObjectCondition condition = new ObjectCondition(new Object(), true);
+		ObjectCondition condition = new ObjectCondition(new Object());
 		condition.passes(subject -> true);
 
 		assertThatThrownBy(() -> condition.passes(subject -> false))
-				.isInstanceOf(DbcAssertionException.class)
+				.isInstanceOf(DbcAssertionError.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void passes_disabled() throws Exception
-	{
-		ObjectCondition condition = new ObjectCondition(new Object(), false);
-		condition.passes(subject -> true).passes(subject -> false);
 	}
 
 	@Test
 	public void isEqualTo_enabled() throws Exception
 	{
-		ObjectCondition condition = new ObjectCondition(2, true);
+		ObjectCondition condition = new ObjectCondition(2);
 		condition.isEqualTo(2);
 
 		assertThatThrownBy(() -> condition.isEqualTo(3))
-				.isInstanceOf(DbcAssertionException.class)
+				.isInstanceOf(DbcAssertionError.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void isEqualTo_disabled() throws Exception
-	{
-		ObjectCondition condition = new ObjectCondition(2, false);
-		condition.isEqualTo(2).isEqualTo(3);
 	}
 
 	@Test
 	public void isEqualToCustomComparator_enabled() throws Exception
 	{
-		ObjectCondition condition = new ObjectCondition(2, true);
+		ObjectCondition condition = new ObjectCondition(2);
 		condition.isEqualTo(2, (integer, t1) -> 0);
 
 		assertThatThrownBy(() -> condition.isEqualTo(2, (integer, t1) -> 1))
-				.isInstanceOf(DbcAssertionException.class)
+				.isInstanceOf(DbcAssertionError.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void isEqualToCustomComparator_disabled() throws Exception
-	{
-		ObjectCondition condition = new ObjectCondition(2, false);
-		condition.isEqualTo(2, (integer, t1) -> 0).isEqualTo(2, (integer, t1) -> 1);
 	}
 }

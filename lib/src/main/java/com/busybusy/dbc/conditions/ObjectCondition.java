@@ -23,5 +23,5 @@ package com.busybusy.dbc.conditions;
  */
 public final class ObjectCondition extends BasicCondition<Object, ObjectCondition>
 {
-	public ObjectCondition(Object subject, boolean enabled) { super(subject, enabled); }
+	public ObjectCondition(Object subject) { super(subject); }
 }

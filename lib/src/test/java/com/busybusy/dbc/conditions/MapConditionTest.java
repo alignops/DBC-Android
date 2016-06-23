@@ -16,7 +16,7 @@
 
 package com.busybusy.dbc.conditions;
 
-import com.busybusy.dbc.DbcAssertionException;
+import com.busybusy.dbc.DbcAssertionError;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
@@ -47,77 +47,45 @@ public class MapConditionTest
 	@Test
 	public void isNotEmpty_enabled() throws Exception
 	{
-		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input, true);
+		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input);
 		condition.isNotEmpty();
 
-		MapCondition<Map<String, String>, String, String> badCondition = new MapCondition<>(new LinkedHashMap<>(), true);
+		MapCondition<Map<String, String>, String, String> badCondition = new MapCondition<>(new LinkedHashMap<>());
 		Assertions.assertThatThrownBy(badCondition::isNotEmpty)
-		          .isInstanceOf(DbcAssertionException.class)
+		          .isInstanceOf(DbcAssertionError.class)
 		          .hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void isNotEmpty_disabled() throws Exception
-	{
-		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input, false);
-		condition.isNotEmpty();
-
-		MapCondition<Map<String, String>, String, String> badCondition = new MapCondition<>(new LinkedHashMap<>(), false);
-		badCondition.isNotEmpty();
 	}
 
 	@Test
 	public void hasSize_enabled() throws Exception
 	{
-		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input, true);
+		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input);
 		condition.hasSize(3);
 
 		Assertions.assertThatThrownBy(() -> condition.hasSize(2))
-		          .isInstanceOf(DbcAssertionException.class)
+		          .isInstanceOf(DbcAssertionError.class)
 		          .hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void hasSize_disabled() throws Exception
-	{
-		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input, false);
-		condition.hasSize(3).hasSize(2);
 	}
 
 	@Test
 	public void hasSizeBetween_enabled() throws Exception
 	{
-		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input, true);
+		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input);
 		condition.hasSizeBetween(3, 5);
 
 		Assertions.assertThatThrownBy(() -> condition.hasSizeBetween(25, 624))
-		          .isInstanceOf(DbcAssertionException.class)
+		          .isInstanceOf(DbcAssertionError.class)
 		          .hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void hasSizeBetween_disabled() throws Exception
-	{
-		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input, false);
-		condition.hasSizeBetween(3, 5).hasSizeBetween(25, 624);
 	}
 
 	@Test
 	public void containsKey_enabled() throws Exception
 	{
-		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input, true);
+		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input);
 		condition.containsKey("KeyTwo");
 
 		Assertions.assertThatThrownBy(() -> condition.containsKey("Chicago"))
-		          .isInstanceOf(DbcAssertionException.class)
+		          .isInstanceOf(DbcAssertionError.class)
 		          .hasCauseInstanceOf(IllegalArgumentException.class);
 	}
-
-	@Test
-	public void containsKey_disabled() throws Exception
-	{
-		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input, false);
-		condition.containsKey("KeyTwo").containsKey("Chicago");
-	}
-
 }

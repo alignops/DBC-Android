@@ -18,7 +18,7 @@ package com.busybusy.dbc.conditions;
 
 import android.support.annotation.NonNull;
 
-import com.busybusy.dbc.DbcAssertionException;
+import com.busybusy.dbc.DbcAssertionError;
 import com.busybusy.dbc.DbcBlock;
 import com.busybusy.dbc.checks.BasicChecks;
 
@@ -39,13 +39,11 @@ import static com.busybusy.dbc.Dbc.require;
 public abstract class BasicCondition<T, Self extends BasicCondition<T, Self>> implements BasicChecks<T, Self>
 {
 	protected       Message message;
-	protected final boolean enabled;
 	protected final T       subject;
 
-	public BasicCondition(T subject, boolean enabled)
+	public BasicCondition(T subject)
 	{
 		this.subject = subject;
-		this.enabled = enabled;
 	}
 
 	/**
@@ -82,9 +80,9 @@ public abstract class BasicCondition<T, Self extends BasicCondition<T, Self>> im
 	@Override
 	public Self isNull()
 	{
-		if (this.enabled && this.subject != null)
+		if (this.subject != null)
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("A null argument was required but was:" + this.subject), this.message);
+			DbcAssertionError.throwNew(new IllegalArgumentException("A null argument was required but was:" + this.subject), this.message);
 		}
 
 		return result();
@@ -96,9 +94,9 @@ public abstract class BasicCondition<T, Self extends BasicCondition<T, Self>> im
 	@Override
 	public Self isNotNull()
 	{
-		if (this.enabled && this.subject == null)
+		if (this.subject == null)
 		{
-			DbcAssertionException.throwNew(new NullPointerException("A non null argument was required but was null"), this.message);
+			DbcAssertionError.throwNew(new NullPointerException("A non null argument was required but was null"), this.message);
 		}
 
 		return result();
@@ -113,9 +111,9 @@ public abstract class BasicCondition<T, Self extends BasicCondition<T, Self>> im
 		require(this.subject).isNotNull();
 		require(testBlock).isNotNull();
 
-		if (this.enabled && !testBlock.checkState(this.subject))
+		if (!testBlock.checkState(this.subject))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Assertion in <" + testBlock + "> failed on subject: " + this.subject), this.message);
+			DbcAssertionError.throwNew(new IllegalArgumentException("Assertion in <" + testBlock + "> failed on subject: " + this.subject), this.message);
 		}
 
 		return result();
@@ -130,9 +128,9 @@ public abstract class BasicCondition<T, Self extends BasicCondition<T, Self>> im
 		require(this.subject).isNotNull();
 		require(toCompare).isNotNull();
 
-		if (this.enabled && !subject.equals(toCompare))
+		if (!subject.equals(toCompare))
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Equality test failed on subject: " + this.subject), this.message);
+			DbcAssertionError.throwNew(new IllegalArgumentException("Equality test failed on subject: " + this.subject), this.message);
 		}
 
 		return result();
@@ -148,9 +146,9 @@ public abstract class BasicCondition<T, Self extends BasicCondition<T, Self>> im
 		require(toCompare).isNotNull();
 		require(customComparator).isNotNull();
 
-		if (this.enabled && customComparator.compare(this.subject, toCompare) != 0)
+		if (customComparator.compare(this.subject, toCompare) != 0)
 		{
-			DbcAssertionException.throwNew(new IllegalArgumentException("Equality test <" + customComparator + "> failed on subject: " + this.subject), this.message);
+			DbcAssertionError.throwNew(new IllegalArgumentException("Equality test <" + customComparator + "> failed on subject: " + this.subject), this.message);
 		}
 
 		return result();

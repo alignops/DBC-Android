@@ -16,7 +16,7 @@
 
 package com.busybusy.dbc.conditions;
 
-import com.busybusy.dbc.DbcAssertionException;
+import com.busybusy.dbc.DbcAssertionError;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,73 +33,44 @@ public class IntegralConditionTest
 	@Test
 	public void isGreaterThan_enabled() throws Exception
 	{
-		IntegralCondition<Integer> condition = new IntegralCondition<>(2, true);
+		IntegralCondition<Integer> condition = new IntegralCondition<>(2);
 		condition.isGreaterThan(1);
 
 		assertThatThrownBy(() -> condition.isGreaterThan(7))
-				.isInstanceOf(DbcAssertionException.class)
+				.isInstanceOf(DbcAssertionError.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void isGreaterThan_disabled() throws Exception
-	{
-		IntegralCondition<Integer> condition = new IntegralCondition<>(2, false);
-		condition.isGreaterThan(1).isGreaterThan(7);
 	}
 
 	@Test
 	public void isGreaterThanOrEqual_enabled() throws Exception
 	{
-		IntegralCondition<Integer> condition = new IntegralCondition<>(2, true);
+		IntegralCondition<Integer> condition = new IntegralCondition<>(2);
 		condition.isGreaterThanOrEqual(2);
 
 		assertThatThrownBy(() -> condition.isGreaterThanOrEqual(7))
-				.isInstanceOf(DbcAssertionException.class)
+				.isInstanceOf(DbcAssertionError.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void isGreaterThanOrEqual_disabled() throws Exception
-	{
-		IntegralCondition<Integer> condition = new IntegralCondition<>(2, false);
-		condition.isGreaterThanOrEqual(2).isGreaterThanOrEqual(7);
 	}
 
 	@Test
 	public void isLessThan_enabled() throws Exception
 	{
-		IntegralCondition<Integer> condition = new IntegralCondition<>(2, true);
+		IntegralCondition<Integer> condition = new IntegralCondition<>(2);
 		condition.isLessThan(3);
 
 		assertThatThrownBy(() -> condition.isLessThan(1))
-				.isInstanceOf(DbcAssertionException.class)
+				.isInstanceOf(DbcAssertionError.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void isLessThan_disabled() throws Exception
-	{
-		IntegralCondition<Integer> condition = new IntegralCondition<>(2, false);
-		condition.isLessThan(3).isLessThan(1);
 	}
 
 	@Test
 	public void isLessThanOrEqual_enabled() throws Exception
 	{
-		IntegralCondition<Integer> condition = new IntegralCondition<>(2, true);
+		IntegralCondition<Integer> condition = new IntegralCondition<>(2);
 		condition.isLessThanOrEqual(2);
 
 		assertThatThrownBy(() -> condition.isLessThanOrEqual(1))
-				.isInstanceOf(DbcAssertionException.class)
+				.isInstanceOf(DbcAssertionError.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
 	}
-
-	@Test
-	public void isLessThanOrEqual_disabled() throws Exception
-	{
-		IntegralCondition<Integer> condition = new IntegralCondition<>(2, false);
-		condition.isLessThanOrEqual(2).isLessThanOrEqual(1);
-	}
-
 }

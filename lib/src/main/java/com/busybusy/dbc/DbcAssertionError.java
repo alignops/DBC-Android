@@ -16,6 +16,8 @@
 
 package com.busybusy.dbc;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -28,14 +30,20 @@ import org.jetbrains.annotations.Contract;
  *
  * @author Trevor
  */
-public class DbcAssertionException extends RuntimeException
+public class DbcAssertionError extends AssertionError
 {
-	public DbcAssertionException(Throwable cause)
+	public DbcAssertionError(Object detailMessage)
+	{
+		super(detailMessage);
+	}
+
+	public DbcAssertionError(Throwable cause)
 	{
 		super(cause);
 	}
 
-	public DbcAssertionException(String message, Throwable cause)
+	@TargetApi(Build.VERSION_CODES.KITKAT)
+	public DbcAssertionError(String message, Throwable cause)
 	{
 		super(message, cause);
 	}
@@ -48,11 +56,18 @@ public class DbcAssertionException extends RuntimeException
 	{
 		if (message == null)
 		{
-			throw new DbcAssertionException(throwable);
+			throw new DbcAssertionError(throwable);
 		}
 		else
 		{
-			throw new DbcAssertionException(message.toString(), throwable);
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+			{
+				throw new DbcAssertionError(message.toString(), throwable);
+			}
+			else
+			{
+				throw new DbcAssertionError(message.toString());
+			}
 		}
 	}
 }

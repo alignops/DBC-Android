@@ -16,7 +16,7 @@
 
 package com.busybusy.dbc.conditions;
 
-import com.busybusy.dbc.DbcAssertionException;
+import com.busybusy.dbc.DbcAssertionError;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,170 +33,101 @@ public class DoubleConditionTest
 	@Test
 	public void isGreaterThan_enabled() throws Exception
 	{
-		DoubleCondition condition = new DoubleCondition(2.0D, true);
+		DoubleCondition condition = new DoubleCondition(2.0D);
 		condition.isGreaterThan(1D);
 
 		assertThatThrownBy(() -> condition.isGreaterThan(3D))
-				.isInstanceOf(DbcAssertionException.class)
+				.isInstanceOf(DbcAssertionError.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void isGreaterThan_disabled() throws Exception
-	{
-		DoubleCondition condition = new DoubleCondition(2.0D, false);
-		condition.isGreaterThan(1D).isGreaterThan(3D);
 	}
 
 	@Test
 	public void isGreaterThanOrEqual_enabled() throws Exception
 	{
-		DoubleCondition condition = new DoubleCondition(2.0D, true);
+		DoubleCondition condition = new DoubleCondition(2.0D);
 		condition.isGreaterThanOrEqual(2D);
 
 		assertThatThrownBy(() -> condition.isGreaterThanOrEqual(3D))
-				.isInstanceOf(DbcAssertionException.class)
+				.isInstanceOf(DbcAssertionError.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void isGreaterThanOrEqual_disabled() throws Exception
-	{
-		DoubleCondition condition = new DoubleCondition(2.0D, false);
-		condition.isGreaterThanOrEqual(2D).isGreaterThanOrEqual(3D);
 	}
 
 	@Test
 	public void isLessThan_enabled() throws Exception
 	{
-		DoubleCondition condition = new DoubleCondition(2.0D, true);
+		DoubleCondition condition = new DoubleCondition(2.0D);
 		condition.isLessThan(3D);
 
 		assertThatThrownBy(() -> condition.isLessThan(1D))
-				.isInstanceOf(DbcAssertionException.class)
+				.isInstanceOf(DbcAssertionError.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void isLessThan_disabled() throws Exception
-	{
-		DoubleCondition condition = new DoubleCondition(2.0D, false);
-		condition.isLessThan(3D).isLessThan(1D);
 	}
 
 	@Test
 	public void isLessThanOrEqual_enabled() throws Exception
 	{
-		DoubleCondition condition = new DoubleCondition(2.0D, true);
+		DoubleCondition condition = new DoubleCondition(2.0D);
 		condition.isLessThanOrEqual(2D);
 
 		assertThatThrownBy(() -> condition.isLessThanOrEqual(1D))
-				.isInstanceOf(DbcAssertionException.class)
+				.isInstanceOf(DbcAssertionError.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void isLessThanOrEqual_disabled() throws Exception
-	{
-		DoubleCondition condition = new DoubleCondition(2.0D, false);
-		condition.isLessThanOrEqual(2D).isLessThanOrEqual(1D);
 	}
 
 	@Test
 	public void isNear_enabled() throws Exception
 	{
-		DoubleCondition condition = new DoubleCondition(2.0D, true);
+		DoubleCondition condition = new DoubleCondition(2.0D);
 		condition.isNear(2D);
 
 		assertThatThrownBy(() -> condition.isNear(1D))
-				.isInstanceOf(DbcAssertionException.class)
+				.isInstanceOf(DbcAssertionError.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void isNear_disabled() throws Exception
-	{
-		DoubleCondition condition = new DoubleCondition(2.0D, false);
-		condition.isNear(2D).isNear(1D);
 	}
 
 	@Test
 	public void isNearCustomTolerance_enabled() throws Exception
 	{
-		DoubleCondition condition = new DoubleCondition(2.0D, true);
+		DoubleCondition condition = new DoubleCondition(2.0D);
 		condition.isNearWithTolerance(3D, 2.5D);
 
 		assertThatThrownBy(() -> condition.isNearWithTolerance(1D, .5D))
-				.isInstanceOf(DbcAssertionException.class)
+				.isInstanceOf(DbcAssertionError.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void isNearCustomTolerance_disabled() throws Exception
-	{
-		DoubleCondition condition = new DoubleCondition(2.0D, false);
-		condition.isNearWithTolerance(3D, 2.5D).isNearWithTolerance(1D, .5D);
 	}
 
 	@Test
 	public void isNearZero_enabled() throws Exception
 	{
-		DoubleCondition condition = new DoubleCondition(0.22E-16, true);
+		DoubleCondition condition = new DoubleCondition(0.22E-16);
 		condition.isNearZero();
 
-		DoubleCondition badCondition = new DoubleCondition(2D, true);
+		DoubleCondition badCondition = new DoubleCondition(2D);
 		assertThatThrownBy(badCondition::isNearZero)
-				.isInstanceOf(DbcAssertionException.class)
+				.isInstanceOf(DbcAssertionError.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void isNearZero_disabled() throws Exception
-	{
-		DoubleCondition condition = new DoubleCondition(0.22E-16, false);
-		condition.isNearZero();
-
-		DoubleCondition badCondition = new DoubleCondition(2D, false);
-		badCondition.isNearZero();
 	}
 
 	@Test
 	public void isNearZeroCustomTolerance_enabled() throws Exception
 	{
-		DoubleCondition condition = new DoubleCondition(1D, true);
+		DoubleCondition condition = new DoubleCondition(1D);
 		condition.isNearZeroWithTolerance(1.5D);
 
-		DoubleCondition badCondition = new DoubleCondition(2D, true);
+		DoubleCondition badCondition = new DoubleCondition(2D);
 		assertThatThrownBy(() -> badCondition.isNearZeroWithTolerance(1.5D))
-				.isInstanceOf(DbcAssertionException.class)
+				.isInstanceOf(DbcAssertionError.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void isNearZeroCustomTolerance_disabled() throws Exception
-	{
-		DoubleCondition condition = new DoubleCondition(1D, false);
-		condition.isNearZeroWithTolerance(1.5D);
-
-		DoubleCondition badCondition = new DoubleCondition(2D, false);
-		badCondition.isNearZeroWithTolerance(1.5D);
 	}
 
 	@Test
 	public void isEqualTo_enabled() throws Exception
 	{
-		DoubleCondition condition = new DoubleCondition(2.0D, true);
+		DoubleCondition condition = new DoubleCondition(2.0D);
 		condition.isEqualTo(2D);
 
 		assertThatThrownBy(() -> condition.isEqualTo(1D))
-				.isInstanceOf(DbcAssertionException.class)
+				.isInstanceOf(DbcAssertionError.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void isEqualTo_disabled() throws Exception
-	{
-		DoubleCondition condition = new DoubleCondition(2.0D, false);
-		condition.isEqualTo(2D).isEqualTo(1D);
 	}
 }

@@ -29,7 +29,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -197,31 +196,8 @@ public class DbcTest
 
 	private <T, R extends BasicCondition> void testMethodReturnsType(Func<T, ? extends R> method, T target, Class<? extends R> expectedResult) throws Exception
 	{
-		R     result;
-		Field field = BasicCondition.class.getDeclaredField("enabled");
-		field.setAccessible(true);
-
-		enable();
-		result = method.apply(target);
+		R result = method.apply(target);
 		assertThat(result).isInstanceOf(expectedResult);
-		assertThat(field.getBoolean(result)).isTrue();
-
-		disable();
-		result = method.apply(target);
-		assertThat(result).isInstanceOf(expectedResult);
-		assertThat(field.getBoolean(result)).isFalse();
-	}
-
-	private void enable()
-	{
-		DbcManager manager = DbcManager.getInstance();
-		manager.setConfig(true, true, true);
-	}
-
-	private void disable()
-	{
-		DbcManager manager = DbcManager.getInstance();
-		manager.setConfig(false, false, false);
 	}
 
 }

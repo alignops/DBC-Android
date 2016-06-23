@@ -16,7 +16,7 @@
 
 package com.busybusy.dbc.conditions;
 
-import com.busybusy.dbc.DbcAssertionException;
+import com.busybusy.dbc.DbcAssertionError;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -34,44 +34,24 @@ public class StringConditionTest
 	@Test
 	public void isValid_enabled() throws Exception
 	{
-		StringCondition condition = new StringCondition("Input", true);
+		StringCondition condition = new StringCondition("Input");
 		condition.isValid();
 
-		StringCondition badCondition = new StringCondition("", true);
+		StringCondition badCondition = new StringCondition("");
 		Assertions.assertThatThrownBy(badCondition::isValid)
-		          .isInstanceOf(DbcAssertionException.class)
+		          .isInstanceOf(DbcAssertionError.class)
 		          .hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void isValid_disabled() throws Exception
-	{
-		StringCondition condition = new StringCondition("Input", false);
-		condition.isValid();
-
-		StringCondition badCondition = new StringCondition("", false);
-		badCondition.isValid();
 	}
 
 	@Test
 	public void isValidUUID_enabled() throws Exception
 	{
-		StringCondition condition = new StringCondition(UUID.randomUUID().toString(), true);
+		StringCondition condition = new StringCondition(UUID.randomUUID().toString());
 		condition.isValidUUID();
 
-		StringCondition badCondition = new StringCondition("", true);
+		StringCondition badCondition = new StringCondition("");
 		Assertions.assertThatThrownBy(badCondition::isValidUUID)
-		          .isInstanceOf(DbcAssertionException.class)
+		          .isInstanceOf(DbcAssertionError.class)
 		          .hasCauseInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void isValidUUID_disabled() throws Exception
-	{
-		StringCondition condition = new StringCondition(UUID.randomUUID().toString(), false);
-		condition.isValidUUID();
-
-		StringCondition badCondition = new StringCondition("", false);
-		badCondition.isValidUUID();
 	}
 }
