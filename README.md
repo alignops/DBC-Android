@@ -1,5 +1,6 @@
 # DBC-Android
 Fluent design by contract assertions for Android
+[![](https://jitpack.io/v/busybusy/DBC-Android.svg)](https://jitpack.io/#busybusy/DBC-Android)
 
 ## Installation
 Add the JitPack repository to your root build.gradle:
