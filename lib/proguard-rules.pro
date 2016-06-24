@@ -14,28 +14,28 @@
 
 # This progaurd config should strip out all of the assertions from the processed code
 -assumenosideeffects class com.busybusy.dbc.Dbc {
-	public static ObjectCondition require(T);
-	public static DoubleCondition require(Double);
-    public static FloatCondition require(Float);
-    public static IntegralCondition require(Integer);
-    public static IntegralCondition require(Long);
-    public static ListCondition require(T);
-    public static MapCondition require(T);
-    public static StringCondition require(String);
-	public static ObjectCondition check(T);
-	public static DoubleCondition check(Double);
-    public static FloatCondition check(Float);
-    public static IntegralCondition check(Integer);
-    public static IntegralCondition check(Long);
-    public static ListCondition check(T);
-    public static MapCondition check(T);
-    public static StringCondition check(String);
-	public static ObjectCondition ensure(T);
-	public static DoubleCondition ensure(Double);
-    public static FloatCondition ensure(Float);
-    public static IntegralCondition ensure(Integer);
-    public static IntegralCondition ensure(Long);
-    public static ListCondition ensure(T);
-    public static MapCondition ensure(T);
-    public static StringCondition ensure(String);
+	public static com.busybusy.dbc.conditions.ObjectCondition require(*);
+	public static com.busybusy.dbc.conditions.DoubleCondition require(java.lang.Double);
+    public static com.busybusy.dbc.conditions.FloatCondition require(java.lang.Float);
+    public static com.busybusy.dbc.conditions.IntegralCondition require(java.lang.Integer);
+    public static com.busybusy.dbc.conditions.IntegralCondition require(java.lang.Long);
+    public static com.busybusy.dbc.conditions.ListCondition require(*);
+    public static com.busybusy.dbc.conditions.MapCondition require(*);
+    public static com.busybusy.dbc.conditions.StringCondition require(java.lang.String);
+	public static com.busybusy.dbc.conditions.ObjectCondition check(*);
+	public static com.busybusy.dbc.conditions.DoubleCondition check(java.lang.Double);
+    public static com.busybusy.dbc.conditions.FloatCondition check(java.lang.Float);
+    public static com.busybusy.dbc.conditions.IntegralCondition check(java.lang.Integer);
+    public static com.busybusy.dbc.conditions.IntegralCondition check(java.lang.Long);
+    public static com.busybusy.dbc.conditions.ListCondition check(*);
+    public static com.busybusy.dbc.conditions.MapCondition check(*);
+    public static com.busybusy.dbc.conditions.StringCondition check(java.lang.String);
+	public static com.busybusy.dbc.conditions.ObjectCondition ensure(*);
+	public static com.busybusy.dbc.conditions.DoubleCondition ensure(java.lang.Double);
+    public static com.busybusy.dbc.conditions.FloatCondition ensure(java.lang.Float);
+    public static com.busybusy.dbc.conditions.IntegralCondition ensure(java.lang.Integer);
+    public static com.busybusy.dbc.conditions.IntegralCondition ensure(java.lang.Long);
+    public static com.busybusy.dbc.conditions.ListCondition ensure(*);
+    public static com.busybusy.dbc.conditions.MapCondition ensure(*);
+    public static com.busybusy.dbc.conditions.StringCondition ensure(java.lang.String);
 }
