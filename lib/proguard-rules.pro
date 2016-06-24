@@ -13,29 +13,103 @@
 #  limitations under the License.
 
 # This progaurd config should strip out all of the assertions from the processed code
+
 -assumenosideeffects class com.busybusy.dbc.Dbc {
-	public static com.busybusy.dbc.conditions.ObjectCondition require(*);
-	public static com.busybusy.dbc.conditions.DoubleCondition require(java.lang.Double);
-    public static com.busybusy.dbc.conditions.FloatCondition require(java.lang.Float);
-    public static com.busybusy.dbc.conditions.IntegralCondition require(java.lang.Integer);
-    public static com.busybusy.dbc.conditions.IntegralCondition require(java.lang.Long);
-    public static com.busybusy.dbc.conditions.ListCondition require(*);
-    public static com.busybusy.dbc.conditions.MapCondition require(*);
-    public static com.busybusy.dbc.conditions.StringCondition require(java.lang.String);
-	public static com.busybusy.dbc.conditions.ObjectCondition check(*);
-	public static com.busybusy.dbc.conditions.DoubleCondition check(java.lang.Double);
-    public static com.busybusy.dbc.conditions.FloatCondition check(java.lang.Float);
-    public static com.busybusy.dbc.conditions.IntegralCondition check(java.lang.Integer);
-    public static com.busybusy.dbc.conditions.IntegralCondition check(java.lang.Long);
-    public static com.busybusy.dbc.conditions.ListCondition check(*);
-    public static com.busybusy.dbc.conditions.MapCondition check(*);
-    public static com.busybusy.dbc.conditions.StringCondition check(java.lang.String);
-	public static com.busybusy.dbc.conditions.ObjectCondition ensure(*);
-	public static com.busybusy.dbc.conditions.DoubleCondition ensure(java.lang.Double);
-    public static com.busybusy.dbc.conditions.FloatCondition ensure(java.lang.Float);
-    public static com.busybusy.dbc.conditions.IntegralCondition ensure(java.lang.Integer);
-    public static com.busybusy.dbc.conditions.IntegralCondition ensure(java.lang.Long);
-    public static com.busybusy.dbc.conditions.ListCondition ensure(*);
-    public static com.busybusy.dbc.conditions.MapCondition ensure(*);
-    public static com.busybusy.dbc.conditions.StringCondition ensure(java.lang.String);
+	public static ** require(...);
+	public static ** check(...);
+	public static ** ensure(...);
+}
+
+-assumenosideeffects class com.busybusy.dbc.conditions.DoubleCondition {
+	public ** isNear(...);
+	public ** isNearWithTolerance(...);
+	public ** isNearZero();
+	public ** isNearZeroWithTolerance(...);
+
+	public ** isGreaterThan(...);
+	public ** isGreaterThanOrEqual(...);
+	public ** isLessThan(...);
+	public ** isLessThanOrEqual(...);
+
+	public ** message(...);
+	public ** isNotNull();
+	public ** isNull();
+	public ** passes(...);
+	public ** isEqualTo(...);
+}
+
+-assumenosideeffects class com.busybusy.dbc.conditions.FloatCondition {
+	public ** isNear(...);
+	public ** isNearWithTolerance(...);
+	public ** isNearZero();
+	public ** isNearZeroWithTolerance(...);
+
+	public ** isGreaterThan(...);
+	public ** isGreaterThanOrEqual(...);
+	public ** isLessThan(...);
+	public ** isLessThanOrEqual(...);
+
+	public ** message(...);
+	public ** isNotNull();
+	public ** isNull();
+	public ** passes(...);
+	public ** isEqualTo(...);
+}
+
+-assumenosideeffects class com.busybusy.dbc.conditions.IntegralCondition {
+	public ** isGreaterThan(...);
+	public ** isGreaterThanOrEqual(...);
+	public ** isLessThan(...);
+	public ** isLessThanOrEqual(...);
+
+	public ** message(...);
+	public ** isNotNull();
+	public ** isNull();
+	public ** passes(...);
+	public ** isEqualTo(...);
+}
+
+-assumenosideeffects class com.busybusy.dbc.conditions.ListCondition {
+	public ** isNotEmpty();
+	public ** hasSize(...);
+	public ** hasSizeBetween(...);
+
+	public ** message(...);
+	public ** isNotNull();
+	public ** isNull();
+	public ** passes(...);
+	public ** isEqualTo(...);
+}
+
+-assumenosideeffects class com.busybusy.dbc.conditions.MapCondition {
+	public ** containsKey(...);
+
+	public ** isNotEmpty();
+	public ** hasSize(...);
+	public ** hasSizeBetween(...);
+
+	public ** message(...);
+	public ** isNotNull();
+	public ** isNull();
+	public ** passes(...);
+	public ** isEqualTo(...);
+}
+
+-assumenosideeffects class com.busybusy.dbc.conditions.ObjectCondition {
+	public ** isNotNull();
+	public ** isNull();
+	public ** message(...);
+	public ** passes(...);
+	public ** isEqualTo(...);
+}
+
+-assumenosideeffects class com.busybusy.dbc.conditions.StringCondition {
+	public ** isValid();
+	public ** isValidUUID();
+
+	public ** isNotNull();
+	public ** isNull();
+	public ** message(...);
+	public ** passes(...);
+	public ** isEqualTo(...);
 }
