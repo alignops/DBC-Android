@@ -13,7 +13,7 @@
 #  limitations under the License.
 
 # This progaurd config should strip out all of the assertions from the processed code
--assumenosideeffects class com.busybusy.Dbc {
+-assumenosideeffects class com.busybusy.dbc.Dbc {
 	public static ObjectCondition require(T);
 	public static DoubleCondition require(Double);
     public static FloatCondition require(Float);
