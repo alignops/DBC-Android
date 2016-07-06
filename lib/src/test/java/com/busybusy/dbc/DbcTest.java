@@ -17,6 +17,7 @@
 package com.busybusy.dbc;
 
 import com.busybusy.dbc.conditions.BasicCondition;
+import com.busybusy.dbc.conditions.BooleanCondition;
 import com.busybusy.dbc.conditions.DoubleCondition;
 import com.busybusy.dbc.conditions.FloatCondition;
 import com.busybusy.dbc.conditions.IntegralCondition;
@@ -44,6 +45,12 @@ public class DbcTest
 	public void requireObject() throws Exception
 	{
 		testMethod(Dbc::require, new Object(), ObjectCondition.class);
+	}
+
+	@Test
+	public void requireBoolean() throws Exception
+	{
+		testMethod(Dbc::require, true, BooleanCondition.class);
 	}
 
 	@Test
@@ -95,6 +102,12 @@ public class DbcTest
 	}
 
 	@Test
+	public void checkBoolean() throws Exception
+	{
+		testMethod(Dbc::check, true, BooleanCondition.class);
+	}
+
+	@Test
 	public void checkDouble() throws Exception
 	{
 		testMethod(Dbc::check, 2.0D, DoubleCondition.class);
@@ -140,6 +153,12 @@ public class DbcTest
 	public void ensureObject() throws Exception
 	{
 		testMethod(Dbc::ensure, new Object(), ObjectCondition.class);
+	}
+
+	@Test
+	public void ensureBoolean() throws Exception
+	{
+		testMethod(Dbc::ensure, true, BooleanCondition.class);
 	}
 
 	@Test

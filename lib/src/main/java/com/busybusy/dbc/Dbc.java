@@ -16,6 +16,7 @@
 
 package com.busybusy.dbc;
 
+import com.busybusy.dbc.conditions.BooleanCondition;
 import com.busybusy.dbc.conditions.DoubleCondition;
 import com.busybusy.dbc.conditions.FloatCondition;
 import com.busybusy.dbc.conditions.IntegralCondition;
@@ -30,11 +31,12 @@ import java.util.Map;
 /**
  * In debug code, the following methods assist in using "Design by contract" in java
  * <p>
- * In non-debug code, these methods can be stripped out via the provided progaurd config file
+ * In non-debug code, these methods can be stripped out via the provided proguard config file
  *
  * @author Trevor
  * @see <a href="https://en.wikipedia.org/wiki/Design_by_contract">Wikipedia : Design by Contract</a>
  */
+@SuppressWarnings("WeakerAccess")
 public class Dbc
 {
 	private Dbc() {}
@@ -42,6 +44,11 @@ public class Dbc
 	public static <T> ObjectCondition require(T subject)
 	{
 		return new ObjectCondition(subject);
+	}
+
+	public static BooleanCondition require(Boolean subject)
+	{
+		return new BooleanCondition(subject);
 	}
 
 	public static DoubleCondition require(Double subject)
@@ -84,6 +91,11 @@ public class Dbc
 		return new ObjectCondition(subject);
 	}
 
+	public static BooleanCondition check(Boolean subject)
+	{
+		return new BooleanCondition(subject);
+	}
+
 	public static DoubleCondition check(Double subject)
 	{
 		return new DoubleCondition(subject);
@@ -122,6 +134,11 @@ public class Dbc
 	public static <T> ObjectCondition ensure(T subject)
 	{
 		return new ObjectCondition(subject);
+	}
+
+	public static BooleanCondition ensure(Boolean subject)
+	{
+		return new BooleanCondition(subject);
 	}
 
 	public static DoubleCondition ensure(Double subject)
