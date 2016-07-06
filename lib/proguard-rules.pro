@@ -20,6 +20,17 @@
 	public static ** ensure(...);
 }
 
+-assumenosideeffects class com.busybusy.dbc.conditions.BooleanCondition {
+	public ** isTrue();
+	public ** isFalse();
+
+	public ** message(...);
+	public ** isNotNull();
+	public ** isNull();
+	public ** passes(...);
+	public ** isEqualTo(...);
+}
+
 -assumenosideeffects class com.busybusy.dbc.conditions.DoubleCondition {
 	public ** isNear(...);
 	public ** isNearWithTolerance(...);
