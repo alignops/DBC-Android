@@ -4,10 +4,11 @@ buildscript {
 		maven { url "https://jitpack.io" }
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:2.2.0-alpha3'
+		classpath 'com.android.tools.build:gradle:2.2.0-alpha5'
 		classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4'
 		classpath 'me.tatarka:gradle-retrolambda:3.2.5'
 		classpath 'me.tatarka.retrolambda.projectlombok:lombok.ast:0.2.3.a2'
+		classpath 'com.google.guava:guava:19.0'
 	}
 
 	configurations.classpath.exclude group: 'com.android.tools.external.lombok'

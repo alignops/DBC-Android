@@ -16,6 +16,7 @@
 
 package com.busybusy.dbc.checks;
 
+import android.support.annotation.CheckResult;
 import android.support.annotation.NonNull;
 
 import java.util.Comparator;
@@ -33,6 +34,7 @@ public interface BasicChecks<T, Self extends BasicChecks<T, Self>> extends NullC
 	 *
 	 * @param message Message to use if the next check fails
 	 */
+	@CheckResult
 	Self message(@NonNull String message);
 
 	/**
@@ -40,6 +42,7 @@ public interface BasicChecks<T, Self extends BasicChecks<T, Self>> extends NullC
 	 *
 	 * @param lazyMessage A callable setup to produce a message if the next check fails
 	 */
+	@CheckResult
 	Self message(@NonNull Callable<String> lazyMessage);
 
 	/**
