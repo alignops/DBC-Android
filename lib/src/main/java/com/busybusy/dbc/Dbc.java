@@ -98,7 +98,7 @@ public class Dbc
 	}
 
 	@CheckResult
-	public static <T> ObjectCondition check(T subject)
+	public static <T> ObjectCondition<T> check(T subject)
 	{
 		return new ObjectCondition<>(subject);
 	}
@@ -152,7 +152,7 @@ public class Dbc
 	}
 
 	@CheckResult
-	public static <T> ObjectCondition ensure(T subject)
+	public static <T> ObjectCondition<T> ensure(T subject)
 	{
 		return new ObjectCondition<>(subject);
 	}
