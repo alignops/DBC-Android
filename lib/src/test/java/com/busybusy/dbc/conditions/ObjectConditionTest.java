@@ -33,10 +33,10 @@ public class ObjectConditionTest
 	@Test
 	public void isNull_enabled() throws Exception
 	{
-		ObjectCondition nullCondition = new ObjectCondition(null);
+		ObjectCondition<Object> nullCondition = new ObjectCondition<>(null);
 		nullCondition.isNull();
 
-		ObjectCondition nonNullCondition = new ObjectCondition(new Object());
+		ObjectCondition<Object> nonNullCondition = new ObjectCondition<>(new Object());
 
 		assertThatThrownBy(nonNullCondition::isNull)
 				.isInstanceOf(DbcAssertionError.class)
@@ -46,10 +46,10 @@ public class ObjectConditionTest
 	@Test
 	public void isNotNull_enabled() throws Exception
 	{
-		ObjectCondition nonNullCondition = new ObjectCondition(new Object());
+		ObjectCondition<Object> nonNullCondition = new ObjectCondition<>(new Object());
 		nonNullCondition.isNotNull();
 
-		ObjectCondition nullCondition = new ObjectCondition(null);
+		ObjectCondition<Object> nullCondition = new ObjectCondition<>(null);
 
 		assertThatThrownBy(nullCondition::isNotNull)
 				.isInstanceOf(DbcAssertionError.class)
@@ -59,7 +59,7 @@ public class ObjectConditionTest
 	@Test
 	public void passes_enabled() throws Exception
 	{
-		ObjectCondition condition = new ObjectCondition(new Object());
+		ObjectCondition<Object> condition = new ObjectCondition<>(new Object());
 		condition.passes(subject -> true);
 
 		assertThatThrownBy(() -> condition.passes(subject -> false))
@@ -70,8 +70,13 @@ public class ObjectConditionTest
 	@Test
 	public void isEqualTo_enabled() throws Exception
 	{
-		ObjectCondition condition = new ObjectCondition(2);
-		condition.isEqualTo(2);
+		ObjectCondition<Integer> condition = new ObjectCondition<>(2)
+				.message("Checking that the generics signatures are correct")
+				.passes(subject -> {
+					long value = subject.longValue();
+					return true;
+				})
+				.isEqualTo(2);
 
 		assertThatThrownBy(() -> condition.isEqualTo(3))
 				.isInstanceOf(DbcAssertionError.class)
@@ -81,7 +86,7 @@ public class ObjectConditionTest
 	@Test
 	public void isEqualToCustomComparator_enabled() throws Exception
 	{
-		ObjectCondition condition = new ObjectCondition(2);
+		ObjectCondition<Integer> condition = new ObjectCondition<>(2);
 		condition.isEqualTo(2, (integer, t1) -> 0);
 
 		assertThatThrownBy(() -> condition.isEqualTo(2, (integer, t1) -> 1))

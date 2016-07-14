@@ -16,6 +16,8 @@
 
 package com.busybusy.dbc;
 
+import android.support.annotation.CheckResult;
+
 import com.busybusy.dbc.conditions.BooleanCondition;
 import com.busybusy.dbc.conditions.DoubleCondition;
 import com.busybusy.dbc.conditions.FloatCondition;
@@ -41,136 +43,163 @@ public class Dbc
 {
 	private Dbc() {}
 
-	public static <T> ObjectCondition require(T subject)
+	@CheckResult
+	public static <T> ObjectCondition<T> require(T subject)
 	{
-		return new ObjectCondition(subject);
+		return new ObjectCondition<>(subject);
 	}
 
+	@CheckResult
 	public static BooleanCondition require(Boolean subject)
 	{
 		return new BooleanCondition(subject);
 	}
 
+	@CheckResult
 	public static DoubleCondition require(Double subject)
 	{
 		return new DoubleCondition(subject);
 	}
 
+	@CheckResult
 	public static FloatCondition require(Float subject)
 	{
 		return new FloatCondition(subject);
 	}
 
+	@CheckResult
 	public static IntegralCondition<Integer> require(Integer subject)
 	{
 		return new IntegralCondition<>(subject);
 	}
 
+	@CheckResult
 	public static IntegralCondition<Long> require(Long subject)
 	{
 		return new IntegralCondition<>(subject);
 	}
 
+	@CheckResult
 	public static <T extends List<E>, E> ListCondition<T, E> require(T subject)
 	{
 		return new ListCondition<>(subject);
 	}
 
+	@CheckResult
 	public static <T extends Map<K, V>, K, V> MapCondition<T, K, V> require(T subject)
 	{
 		return new MapCondition<>(subject);
 	}
 
+	@CheckResult
 	public static StringCondition require(String subject)
 	{
 		return new StringCondition(subject);
 	}
 
-	public static <T> ObjectCondition check(T subject)
+	@CheckResult
+	public static <T> ObjectCondition<T> check(T subject)
 	{
-		return new ObjectCondition(subject);
+		return new ObjectCondition<>(subject);
 	}
 
+	@CheckResult
 	public static BooleanCondition check(Boolean subject)
 	{
 		return new BooleanCondition(subject);
 	}
 
+	@CheckResult
 	public static DoubleCondition check(Double subject)
 	{
 		return new DoubleCondition(subject);
 	}
 
+	@CheckResult
 	public static FloatCondition check(Float subject)
 	{
 		return new FloatCondition(subject);
 	}
 
+	@CheckResult
 	public static IntegralCondition<Integer> check(Integer subject)
 	{
 		return new IntegralCondition<>(subject);
 	}
 
+	@CheckResult
 	public static IntegralCondition<Long> check(Long subject)
 	{
 		return new IntegralCondition<>(subject);
 	}
 
+	@CheckResult
 	public static <T extends List<E>, E> ListCondition<T, E> check(T subject)
 	{
 		return new ListCondition<>(subject);
 	}
 
+	@CheckResult
 	public static <T extends Map<K, V>, K, V> MapCondition<T, K, V> check(T subject)
 	{
 		return new MapCondition<>(subject);
 	}
 
+	@CheckResult
 	public static StringCondition check(String subject)
 	{
 		return new StringCondition(subject);
 	}
 
-	public static <T> ObjectCondition ensure(T subject)
+	@CheckResult
+	public static <T> ObjectCondition<T> ensure(T subject)
 	{
-		return new ObjectCondition(subject);
+		return new ObjectCondition<>(subject);
 	}
 
+	@CheckResult
 	public static BooleanCondition ensure(Boolean subject)
 	{
 		return new BooleanCondition(subject);
 	}
 
+	@CheckResult
 	public static DoubleCondition ensure(Double subject)
 	{
 		return new DoubleCondition(subject);
 	}
 
+	@CheckResult
 	public static FloatCondition ensure(Float subject)
 	{
 		return new FloatCondition(subject);
 	}
 
+	@CheckResult
 	public static IntegralCondition<Integer> ensure(Integer subject)
 	{
 		return new IntegralCondition<>(subject);
 	}
 
+	@CheckResult
 	public static IntegralCondition<Long> ensure(Long subject)
 	{
 		return new IntegralCondition<>(subject);
 	}
 
+	@CheckResult
 	public static <T extends List<E>, E> ListCondition<T, E> ensure(T subject)
 	{
 		return new ListCondition<>(subject);
 	}
 
+	@CheckResult
 	public static <T extends Map<K, V>, K, V> MapCondition<T, K, V> ensure(T subject)
 	{
 		return new MapCondition<>(subject);
 	}
 
+	@CheckResult
 	public static StringCondition ensure(String subject)
 	{
 		return new StringCondition(subject);

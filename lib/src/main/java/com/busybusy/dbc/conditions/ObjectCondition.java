@@ -21,7 +21,7 @@ package com.busybusy.dbc.conditions;
  *
  * @author Trevor
  */
-public final class ObjectCondition extends BasicCondition<Object, ObjectCondition>
+public final class ObjectCondition<T> extends BasicCondition<T, ObjectCondition<T>>
 {
-	public ObjectCondition(Object subject) { super(subject); }
+	public ObjectCondition(T subject) { super(subject); }
 }
