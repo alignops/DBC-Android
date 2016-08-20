@@ -16,6 +16,7 @@
 
 package com.busybusy.dbc.conditions;
 
+import android.support.annotation.CheckResult;
 import android.support.annotation.NonNull;
 
 import com.busybusy.dbc.DbcAssertionError;
@@ -49,6 +50,7 @@ public abstract class BasicCondition<T, Self extends BasicCondition<T, Self>> im
 	/**
 	 * {@inheritDoc}
 	 */
+	@CheckResult
 	@Override
 	public Self message(@NonNull String message)
 	{
@@ -63,6 +65,7 @@ public abstract class BasicCondition<T, Self extends BasicCondition<T, Self>> im
 	/**
 	 * {@inheritDoc}
 	 */
+	@CheckResult
 	@Override
 	public Self message(@NonNull Callable<String> lazyMessage)
 	{
