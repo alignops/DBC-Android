@@ -44,7 +44,7 @@ public class ListConditionTest
 	}
 
 	@Test
-	public void isNotEmpty_enabled() throws Exception
+	public void isNotEmpty() throws Exception
 	{
 		ListCondition<ArrayList<String>, String> condition = new ListCondition<>(this.input);
 		condition.isNotEmpty();
@@ -56,7 +56,7 @@ public class ListConditionTest
 	}
 
 	@Test
-	public void hasSize_enabled() throws Exception
+	public void hasSize() throws Exception
 	{
 		ListCondition<ArrayList<String>, String> condition = new ListCondition<>(this.input);
 		condition.hasSize(3);
@@ -67,7 +67,7 @@ public class ListConditionTest
 	}
 
 	@Test
-	public void hasSizeBetween_enabled() throws Exception
+	public void hasSizeBetween() throws Exception
 	{
 		ListCondition<ArrayList<String>, String> condition = new ListCondition<>(this.input);
 		condition.hasSizeBetween(2, 4);

@@ -31,7 +31,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class ObjectConditionTest
 {
 	@Test
-	public void isNull_enabled() throws Exception
+	public void isNull() throws Exception
 	{
 		ObjectCondition nullCondition = new ObjectCondition(null);
 		nullCondition.isNull();
@@ -44,7 +44,7 @@ public class ObjectConditionTest
 	}
 
 	@Test
-	public void isNotNull_enabled() throws Exception
+	public void isNotNull() throws Exception
 	{
 		ObjectCondition nonNullCondition = new ObjectCondition(new Object());
 		nonNullCondition.isNotNull();
@@ -57,7 +57,7 @@ public class ObjectConditionTest
 	}
 
 	@Test
-	public void passes_enabled() throws Exception
+	public void passes() throws Exception
 	{
 		ObjectCondition condition = new ObjectCondition(new Object());
 		condition.passes(subject -> true);
@@ -68,7 +68,18 @@ public class ObjectConditionTest
 	}
 
 	@Test
-	public void isEqualTo_enabled() throws Exception
+	public void fails() throws Exception
+	{
+		ObjectCondition condition = new ObjectCondition(new Object());
+		condition.fails(subject -> false);
+
+		assertThatThrownBy(() -> condition.fails(subject -> true))
+				.isInstanceOf(DbcAssertionError.class)
+				.hasCauseInstanceOf(IllegalArgumentException.class);
+	}
+
+	@Test
+	public void isEqualTo() throws Exception
 	{
 		ObjectCondition condition = new ObjectCondition(2);
 		condition.isEqualTo(2);
@@ -79,7 +90,7 @@ public class ObjectConditionTest
 	}
 
 	@Test
-	public void isEqualToCustomComparator_enabled() throws Exception
+	public void isEqualToCustomComparator() throws Exception
 	{
 		ObjectCondition condition = new ObjectCondition(2);
 		condition.isEqualTo(2, (integer, t1) -> 0);

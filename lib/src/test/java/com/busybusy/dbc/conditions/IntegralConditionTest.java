@@ -31,7 +31,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class IntegralConditionTest
 {
 	@Test
-	public void isGreaterThan_enabled() throws Exception
+	public void isGreaterThan() throws Exception
 	{
 		IntegralCondition<Integer> condition = new IntegralCondition<>(2);
 		condition.isGreaterThan(1);
@@ -42,7 +42,7 @@ public class IntegralConditionTest
 	}
 
 	@Test
-	public void isGreaterThanOrEqual_enabled() throws Exception
+	public void isGreaterThanOrEqual() throws Exception
 	{
 		IntegralCondition<Integer> condition = new IntegralCondition<>(2);
 		condition.isGreaterThanOrEqual(2);
@@ -53,7 +53,7 @@ public class IntegralConditionTest
 	}
 
 	@Test
-	public void isLessThan_enabled() throws Exception
+	public void isLessThan() throws Exception
 	{
 		IntegralCondition<Integer> condition = new IntegralCondition<>(2);
 		condition.isLessThan(3);
@@ -64,7 +64,7 @@ public class IntegralConditionTest
 	}
 
 	@Test
-	public void isLessThanOrEqual_enabled() throws Exception
+	public void isLessThanOrEqual() throws Exception
 	{
 		IntegralCondition<Integer> condition = new IntegralCondition<>(2);
 		condition.isLessThanOrEqual(2);

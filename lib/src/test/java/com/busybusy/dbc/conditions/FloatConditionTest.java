@@ -31,7 +31,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class FloatConditionTest
 {
 	@Test
-	public void isGreaterThan_enabled() throws Exception
+	public void isGreaterThan() throws Exception
 	{
 		FloatCondition condition = new FloatCondition(2.0f);
 		condition.isGreaterThan(1f);
@@ -42,7 +42,7 @@ public class FloatConditionTest
 	}
 
 	@Test
-	public void isGreaterThanOrEqual_enabled() throws Exception
+	public void isGreaterThanOrEqual() throws Exception
 	{
 		FloatCondition condition = new FloatCondition(2.0F);
 		condition.isGreaterThanOrEqual(2F);
@@ -53,7 +53,7 @@ public class FloatConditionTest
 	}
 
 	@Test
-	public void isLessThan_enabled() throws Exception
+	public void isLessThan() throws Exception
 	{
 		FloatCondition condition = new FloatCondition(2.0F);
 		condition.isLessThan(3F);
@@ -64,7 +64,7 @@ public class FloatConditionTest
 	}
 
 	@Test
-	public void isLessThanOrEqual_enabled() throws Exception
+	public void isLessThanOrEqual() throws Exception
 	{
 		FloatCondition condition = new FloatCondition(2.0F);
 		condition.isLessThanOrEqual(2F);
@@ -75,7 +75,7 @@ public class FloatConditionTest
 	}
 
 	@Test
-	public void isNear_enabled() throws Exception
+	public void isNear() throws Exception
 	{
 		FloatCondition condition = new FloatCondition(2.0F);
 		condition.isNear(2F);
@@ -86,7 +86,7 @@ public class FloatConditionTest
 	}
 
 	@Test
-	public void isNearCustomTolerance_enabled() throws Exception
+	public void isNearCustomTolerance() throws Exception
 	{
 		FloatCondition condition = new FloatCondition(2.0F);
 		condition.isNearWithTolerance(3F, 2.5F);
@@ -97,7 +97,7 @@ public class FloatConditionTest
 	}
 
 	@Test
-	public void isNearZero_enabled() throws Exception
+	public void isNearZero() throws Exception
 	{
 		FloatCondition condition = new FloatCondition(0.19e-07F);
 		condition.isNearZero();
@@ -109,7 +109,7 @@ public class FloatConditionTest
 	}
 
 	@Test
-	public void isNearZeroCustomTolerance_enabled() throws Exception
+	public void isNearZeroCustomTolerance() throws Exception
 	{
 		FloatCondition condition = new FloatCondition(1F);
 		condition.isNearZeroWithTolerance(1.5F);
@@ -121,7 +121,7 @@ public class FloatConditionTest
 	}
 
 	@Test
-	public void isEqualTo_enabled() throws Exception
+	public void isEqualTo() throws Exception
 	{
 		FloatCondition condition = new FloatCondition(2.0F);
 		condition.isEqualTo(2F);
