@@ -28,6 +28,7 @@
 	public ** isNotNull();
 	public ** isNull();
 	public ** passes(...);
+	public ** fails(...);
 	public ** isEqualTo(...);
 }
 
@@ -46,6 +47,7 @@
 	public ** isNotNull();
 	public ** isNull();
 	public ** passes(...);
+	public ** fails(...);
 	public ** isEqualTo(...);
 }
 
@@ -64,6 +66,7 @@
 	public ** isNotNull();
 	public ** isNull();
 	public ** passes(...);
+	public ** fails(...);
 	public ** isEqualTo(...);
 }
 
@@ -77,6 +80,7 @@
 	public ** isNotNull();
 	public ** isNull();
 	public ** passes(...);
+	public ** fails(...);
 	public ** isEqualTo(...);
 }
 
@@ -89,6 +93,7 @@
 	public ** isNotNull();
 	public ** isNull();
 	public ** passes(...);
+	public ** fails(...);
 	public ** isEqualTo(...);
 }
 
@@ -103,6 +108,7 @@
 	public ** isNotNull();
 	public ** isNull();
 	public ** passes(...);
+	public ** fails(...);
 	public ** isEqualTo(...);
 }
 
@@ -111,6 +117,7 @@
 	public ** isNull();
 	public ** message(...);
 	public ** passes(...);
+	public ** fails(...);
 	public ** isEqualTo(...);
 }
 
@@ -122,5 +129,6 @@
 	public ** isNull();
 	public ** message(...);
 	public ** passes(...);
+	public ** fails(...);
 	public ** isEqualTo(...);
 }
