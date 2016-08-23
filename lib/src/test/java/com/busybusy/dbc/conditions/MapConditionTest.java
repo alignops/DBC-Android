@@ -45,7 +45,7 @@ public class MapConditionTest
 	}
 
 	@Test
-	public void isNotEmpty_enabled() throws Exception
+	public void isNotEmpty() throws Exception
 	{
 		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input);
 		condition.isNotEmpty();
@@ -57,7 +57,7 @@ public class MapConditionTest
 	}
 
 	@Test
-	public void hasSize_enabled() throws Exception
+	public void hasSize() throws Exception
 	{
 		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input);
 		condition.hasSize(3);
@@ -68,7 +68,7 @@ public class MapConditionTest
 	}
 
 	@Test
-	public void hasSizeBetween_enabled() throws Exception
+	public void hasSizeBetween() throws Exception
 	{
 		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input);
 		condition.hasSizeBetween(3, 5);
@@ -79,7 +79,7 @@ public class MapConditionTest
 	}
 
 	@Test
-	public void containsKey_enabled() throws Exception
+	public void containsKey() throws Exception
 	{
 		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input);
 		condition.containsKey("KeyTwo");

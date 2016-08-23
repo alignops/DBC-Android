@@ -32,7 +32,7 @@ import java.util.UUID;
 public class StringConditionTest
 {
 	@Test
-	public void isValid_enabled() throws Exception
+	public void isValid() throws Exception
 	{
 		StringCondition condition = new StringCondition("Input");
 		condition.isValid();
@@ -44,7 +44,7 @@ public class StringConditionTest
 	}
 
 	@Test
-	public void isValidUUID_enabled() throws Exception
+	public void isValidUUID() throws Exception
 	{
 		StringCondition condition = new StringCondition(UUID.randomUUID().toString());
 		condition.isValidUUID();

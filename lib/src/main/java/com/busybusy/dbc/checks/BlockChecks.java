@@ -16,6 +16,8 @@
 
 package com.busybusy.dbc.checks;
 
+import android.support.annotation.NonNull;
+
 import com.busybusy.dbc.DbcBlock;
 
 /**
@@ -30,5 +32,12 @@ public interface BlockChecks<T, Self extends BlockChecks<T, Self>>
 	 *
 	 * @param testBlock code to run against subject value
 	 */
-	Self passes(DbcBlock<T> testBlock);
+	Self passes(@NonNull DbcBlock<T> testBlock);
+
+	/**
+	 * Assert that the subject value fails custom testBlock
+	 *
+	 * @param testBlock code to run against subject value
+	 */
+	Self fails(@NonNull DbcBlock<T> testBlock);
 }

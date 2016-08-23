@@ -31,7 +31,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class DoubleConditionTest
 {
 	@Test
-	public void isGreaterThan_enabled() throws Exception
+	public void isGreaterThan() throws Exception
 	{
 		DoubleCondition condition = new DoubleCondition(2.0D);
 		condition.isGreaterThan(1D);
@@ -42,7 +42,7 @@ public class DoubleConditionTest
 	}
 
 	@Test
-	public void isGreaterThanOrEqual_enabled() throws Exception
+	public void isGreaterThanOrEqual() throws Exception
 	{
 		DoubleCondition condition = new DoubleCondition(2.0D);
 		condition.isGreaterThanOrEqual(2D);
@@ -53,7 +53,7 @@ public class DoubleConditionTest
 	}
 
 	@Test
-	public void isLessThan_enabled() throws Exception
+	public void isLessThan() throws Exception
 	{
 		DoubleCondition condition = new DoubleCondition(2.0D);
 		condition.isLessThan(3D);
@@ -64,7 +64,7 @@ public class DoubleConditionTest
 	}
 
 	@Test
-	public void isLessThanOrEqual_enabled() throws Exception
+	public void isLessThanOrEqual() throws Exception
 	{
 		DoubleCondition condition = new DoubleCondition(2.0D);
 		condition.isLessThanOrEqual(2D);
@@ -75,7 +75,7 @@ public class DoubleConditionTest
 	}
 
 	@Test
-	public void isNear_enabled() throws Exception
+	public void isNear() throws Exception
 	{
 		DoubleCondition condition = new DoubleCondition(2.0D);
 		condition.isNear(2D);
@@ -86,7 +86,7 @@ public class DoubleConditionTest
 	}
 
 	@Test
-	public void isNearCustomTolerance_enabled() throws Exception
+	public void isNearCustomTolerance() throws Exception
 	{
 		DoubleCondition condition = new DoubleCondition(2.0D);
 		condition.isNearWithTolerance(3D, 2.5D);
@@ -97,7 +97,7 @@ public class DoubleConditionTest
 	}
 
 	@Test
-	public void isNearZero_enabled() throws Exception
+	public void isNearZero() throws Exception
 	{
 		DoubleCondition condition = new DoubleCondition(0.22E-16);
 		condition.isNearZero();
@@ -109,7 +109,7 @@ public class DoubleConditionTest
 	}
 
 	@Test
-	public void isNearZeroCustomTolerance_enabled() throws Exception
+	public void isNearZeroCustomTolerance() throws Exception
 	{
 		DoubleCondition condition = new DoubleCondition(1D);
 		condition.isNearZeroWithTolerance(1.5D);
@@ -121,7 +121,7 @@ public class DoubleConditionTest
 	}
 
 	@Test
-	public void isEqualTo_enabled() throws Exception
+	public void isEqualTo() throws Exception
 	{
 		DoubleCondition condition = new DoubleCondition(2.0D);
 		condition.isEqualTo(2D);

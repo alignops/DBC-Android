@@ -126,6 +126,23 @@ public abstract class BasicCondition<T, Self extends BasicCondition<T, Self>> im
 	 * {@inheritDoc}
 	 */
 	@Override
+	public Self fails(@NonNull DbcBlock<T> testBlock)
+	{
+		require(this.subject).isNotNull();
+		require(testBlock).isNotNull();
+
+		if (testBlock.checkState(this.subject))
+		{
+			DbcAssertionError.throwNew(new IllegalArgumentException("Assertion in <" + testBlock + "> failed on subject:" + this.subject), this.message);
+		}
+
+		return result();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public Self isEqualTo(T toCompare)
 	{
 		require(this.subject).isNotNull();
