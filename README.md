@@ -24,7 +24,6 @@ dependencies {
 ```
 
 ## Usage
-To remove the assertions from your code simple ensure that proguard minify is enabled
 
 Use the design by contract assertions throughout your code to verify assumptions
 ```java
@@ -54,6 +53,18 @@ public String someMethod(@NonNull String arg1) {
     return result;
 }
 ```
+
+## Build time removal
+
+To remove the assertions from your code simple ensure that proguard minify is enabled and that you are using a config similar to the following:
+```groovy
+proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+```
+
+The configuration necessary for proguard to remove the dbc related methods is included in the AAR dependency and should be automatically applied.
+
+Due to the nature of dbc assertions and that they typically result in a fatal error,
+it is highly recommend you verify that your proguard configuration is correctly removing all related method calls before publishing your release APK to the play store.
 
 ## License
 
