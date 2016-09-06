@@ -95,6 +95,10 @@
 	public ** passes(...);
 	public ** fails(...);
 	public ** isEqualTo(...);
+	public ** hasSizeGreaterThan(...);
+	public ** hasSizeGreaterThanOrEqual(...);
+	public ** hasSizeLessThan(...);
+	public ** hasSizeLessThanOrEqual(...);
 }
 
 -assumenosideeffects class com.busybusy.dbc.conditions.MapCondition {
@@ -110,6 +114,10 @@
 	public ** passes(...);
 	public ** fails(...);
 	public ** isEqualTo(...);
+	public ** hasSizeGreaterThan(...);
+	public ** hasSizeGreaterThanOrEqual(...);
+	public ** hasSizeLessThan(...);
+	public ** hasSizeLessThanOrEqual(...);
 }
 
 -assumenosideeffects class com.busybusy.dbc.conditions.ObjectCondition {
