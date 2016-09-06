@@ -30,6 +30,7 @@
 	public ** passes(...);
 	public ** fails(...);
 	public ** isEqualTo(...);
+	public ** isNotEqualTo(...);
 }
 
 -assumenosideeffects class com.busybusy.dbc.conditions.DoubleCondition {
@@ -49,6 +50,7 @@
 	public ** passes(...);
 	public ** fails(...);
 	public ** isEqualTo(...);
+	public ** isNotEqualTo(...);
 }
 
 -assumenosideeffects class com.busybusy.dbc.conditions.FloatCondition {
@@ -68,6 +70,7 @@
 	public ** passes(...);
 	public ** fails(...);
 	public ** isEqualTo(...);
+	public ** isNotEqualTo(...);
 }
 
 -assumenosideeffects class com.busybusy.dbc.conditions.IntegralCondition {
@@ -82,6 +85,7 @@
 	public ** passes(...);
 	public ** fails(...);
 	public ** isEqualTo(...);
+	public ** isNotEqualTo(...);
 }
 
 -assumenosideeffects class com.busybusy.dbc.conditions.ListCondition {
@@ -95,6 +99,7 @@
 	public ** passes(...);
 	public ** fails(...);
 	public ** isEqualTo(...);
+	public ** isNotEqualTo(...);
 }
 
 -assumenosideeffects class com.busybusy.dbc.conditions.MapCondition {
@@ -110,6 +115,7 @@
 	public ** passes(...);
 	public ** fails(...);
 	public ** isEqualTo(...);
+	public ** isNotEqualTo(...);
 }
 
 -assumenosideeffects class com.busybusy.dbc.conditions.ObjectCondition {
@@ -119,6 +125,7 @@
 	public ** passes(...);
 	public ** fails(...);
 	public ** isEqualTo(...);
+	public ** isNotEqualTo(...);
 }
 
 -assumenosideeffects class com.busybusy.dbc.conditions.StringCondition {
@@ -131,4 +138,5 @@
 	public ** passes(...);
 	public ** fails(...);
 	public ** isEqualTo(...);
+	public ** isNotEqualTo(...);
 }
