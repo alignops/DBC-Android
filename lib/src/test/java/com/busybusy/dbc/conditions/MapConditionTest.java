@@ -88,4 +88,49 @@ public class MapConditionTest
 		          .isInstanceOf(DbcAssertionError.class)
 		          .hasCauseInstanceOf(IllegalArgumentException.class);
 	}
+
+	@Test
+	public void hasSizeGreaterThan() throws Exception
+	{
+		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input);
+		condition.hasSizeGreaterThan(2);
+
+		Assertions.assertThatThrownBy(() -> condition.hasSizeGreaterThan(3))
+		          .isInstanceOf(DbcAssertionError.class)
+		          .hasCauseInstanceOf(IllegalStateException.class);
+	}
+
+	@Test
+	public void hasSizeGreaterThanOrEqual() throws Exception
+	{
+		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input);
+		condition.hasSizeGreaterThanOrEqual(3);
+
+		Assertions.assertThatThrownBy(() -> condition.hasSizeGreaterThan(4))
+		          .isInstanceOf(DbcAssertionError.class)
+		          .hasCauseInstanceOf(IllegalStateException.class);
+	}
+
+	@Test
+	public void hasSizeLessThan() throws Exception
+	{
+		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input);
+		condition.hasSizeLessThan(4);
+
+		Assertions.assertThatThrownBy(() -> condition.hasSizeLessThan(2))
+		          .isInstanceOf(DbcAssertionError.class)
+		          .hasCauseInstanceOf(IllegalStateException.class);
+
+	}
+
+	@Test
+	public void hasSizeLessThanOrEqual() throws Exception
+	{
+		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input);
+		condition.hasSizeLessThanOrEqual(3);
+
+		Assertions.assertThatThrownBy(() -> condition.hasSizeLessThanOrEqual(2))
+		          .isInstanceOf(DbcAssertionError.class)
+		          .hasCauseInstanceOf(IllegalStateException.class);
+	}
 }

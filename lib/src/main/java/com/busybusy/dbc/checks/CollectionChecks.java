@@ -44,4 +44,32 @@ public interface CollectionChecks<T, Self extends CollectionChecks<T, Self>> ext
 	 * @param endInclusive   maximum size
 	 */
 	Self hasSizeBetween(int startInclusive, int endInclusive);
+
+	/**
+	 * Assert that the subject collection has size greater than specific value
+	 *
+	 * @param minSizeExclusive minimum exclusive size
+	 */
+	Self hasSizeGreaterThan(int minSizeExclusive);
+
+	/**
+	 * Assert that the subject collection has size greater or equal than specific value
+	 *
+	 * @param minSize minimum size
+	 */
+	Self hasSizeGreaterThanOrEqual(int minSize);
+
+	/**
+	 * Assert that the subject collection has size less than specific value
+	 *
+	 * @param maxSizeExclusive maximum exclusive size
+	 */
+	Self hasSizeLessThan(int maxSizeExclusive);
+
+	/**
+	 * Assert that the subject collection has size less or equal than specific value
+	 *
+	 * @param maxSize maximum size
+	 */
+	Self hasSizeLessThanOrEqual(int maxSize);
 }

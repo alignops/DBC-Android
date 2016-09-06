@@ -80,4 +80,68 @@ public final class ListCondition<T extends List<E>, E> extends BasicCondition<T,
 
 		return result();
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ListCondition<T, E> hasSizeGreaterThan(int minSizeExclusive)
+	{
+		require(this.subject).isNotNull();
+
+		if (!(this.subject.size() > minSizeExclusive))
+		{
+			DbcAssertionError.throwNew(new IllegalStateException("Expected list size to be greater than <" + minSizeExclusive + "> but was <" + this.subject.size() + ">"), this.message);
+		}
+
+		return result();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ListCondition<T, E> hasSizeGreaterThanOrEqual(int minSize)
+	{
+		require(this.subject).isNotNull();
+
+		if (!(this.subject.size() >= minSize))
+		{
+			DbcAssertionError.throwNew(new IllegalStateException("Expected list size to be greater than or equal <" + minSize + "> but was <" + this.subject.size() + ">"), this.message);
+		}
+
+		return result();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ListCondition<T, E> hasSizeLessThan(int maxSizeExclusive)
+	{
+		require(this.subject).isNotNull();
+
+		if (!(this.subject.size() < maxSizeExclusive))
+		{
+			DbcAssertionError.throwNew(new IllegalStateException("Expected list size to be less than <" + maxSizeExclusive + "> but was <" + this.subject.size() + ">"), this.message);
+		}
+
+		return result();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ListCondition<T, E> hasSizeLessThanOrEqual(int maxSize)
+	{
+		require(this.subject).isNotNull();
+
+		if (!(this.subject.size() <= maxSize))
+		{
+			DbcAssertionError.throwNew(new IllegalStateException("Expected list size to be less than or equal <" + maxSize + "> but was <" + this.subject.size() + ">"), this.message);
+		}
+
+		return result();
+	}
 }
