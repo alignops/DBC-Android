@@ -31,7 +31,7 @@ import static com.busybusy.dbc.Dbc.require;
 @NonNls
 public final class StringCondition extends BasicCondition<CharSequence, StringCondition> implements StringChecks<StringCondition>
 {
-	public StringCondition(String subject) { super(subject); }
+	public StringCondition(CharSequence subject) { super(subject); }
 
 	/**
 	 * {@inheritDoc}
