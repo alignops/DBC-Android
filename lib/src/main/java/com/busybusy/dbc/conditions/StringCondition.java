@@ -29,9 +29,9 @@ import static com.busybusy.dbc.Dbc.require;
  * @author Trevor
  */
 @NonNls
-public final class StringCondition extends BasicCondition<String, StringCondition> implements StringChecks<StringCondition>
+public final class StringCondition extends BasicCondition<CharSequence, StringCondition> implements StringChecks<StringCondition>
 {
-	public StringCondition(String subject) { super(subject); }
+	public StringCondition(CharSequence subject) { super(subject); }
 
 	/**
 	 * {@inheritDoc}
@@ -41,7 +41,7 @@ public final class StringCondition extends BasicCondition<String, StringConditio
 	{
 		require(this.subject).isNotNull();
 
-		if (this.subject.trim().length() == 0)
+		if (this.subject.toString().trim().length() == 0)
 		{
 			DbcAssertionError.throwNew(new IllegalArgumentException("The provided String is empty"), this.message);
 		}
@@ -57,7 +57,7 @@ public final class StringCondition extends BasicCondition<String, StringConditio
 	{
 		require(this.subject).isNotNull();
 
-		if (!this.subject.matches(StringChecks.UUID_PATTERN))
+		if (!this.subject.toString().matches(StringChecks.UUID_PATTERN))
 		{
 			DbcAssertionError.throwNew(new IllegalArgumentException("The provided String is not a valid UUID: " + this.subject), this.message);
 		}
