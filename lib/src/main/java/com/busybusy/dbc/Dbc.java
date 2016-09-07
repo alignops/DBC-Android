@@ -92,7 +92,7 @@ public class Dbc
 	}
 
 	@CheckResult
-	public static StringCondition require(String subject)
+	public static StringCondition require(CharSequence subject)
 	{
 		return new StringCondition(subject);
 	}
@@ -146,7 +146,7 @@ public class Dbc
 	}
 
 	@CheckResult
-	public static StringCondition check(String subject)
+	public static StringCondition check(CharSequence subject)
 	{
 		return new StringCondition(subject);
 	}
@@ -200,7 +200,7 @@ public class Dbc
 	}
 
 	@CheckResult
-	public static StringCondition ensure(String subject)
+	public static StringCondition ensure(CharSequence subject)
 	{
 		return new StringCondition(subject);
 	}
