@@ -70,7 +70,7 @@ public class ObjectConditionTest
 	@Test
 	public void fails() throws Exception
 	{
-		ObjectCondition condition = new ObjectCondition(new Object());
+		ObjectCondition<Object> condition = new ObjectCondition<>(new Object());
 		condition.fails(subject -> false);
 
 		assertThatThrownBy(() -> condition.fails(subject -> true))
@@ -83,10 +83,7 @@ public class ObjectConditionTest
 	{
 		ObjectCondition<Integer> condition = new ObjectCondition<>(2)
 				.message("Checking that the generics signatures are correct")
-				.passes(subject -> {
-					long value = subject.longValue();
-					return true;
-				})
+				.passes(subject -> true)
 				.isEqualTo(2);
 
 		assertThatThrownBy(() -> condition.isEqualTo(3))
@@ -98,9 +95,31 @@ public class ObjectConditionTest
 	public void isEqualToCustomComparator() throws Exception
 	{
 		ObjectCondition<Integer> condition = new ObjectCondition<>(2);
-		condition.isEqualTo(2, (integer, t1) -> 0);
+		condition.isEqualTo(2, (integer, t1) -> integer - t1);
 
 		assertThatThrownBy(() -> condition.isEqualTo(2, (integer, t1) -> 1))
+				.isInstanceOf(DbcAssertionError.class)
+				.hasCauseInstanceOf(IllegalArgumentException.class);
+	}
+
+	@Test
+	public void isNotEqualTo() throws Exception
+	{
+		ObjectCondition<Integer> condition = new ObjectCondition<>(2);
+		condition.isNotEqualTo(3);
+
+		assertThatThrownBy(() -> condition.isNotEqualTo(2))
+				.isInstanceOf(DbcAssertionError.class)
+				.hasCauseInstanceOf(IllegalArgumentException.class);
+	}
+
+	@Test
+	public void isNotEqualToCustomComparator() throws Exception
+	{
+		ObjectCondition<Integer> condition = new ObjectCondition<>(2);
+		condition.isNotEqualTo(3, (integer, t1) -> integer - t1);
+
+		assertThatThrownBy(() -> condition.isNotEqualTo(2, (integer, t1) -> 0))
 				.isInstanceOf(DbcAssertionError.class)
 				.hasCauseInstanceOf(IllegalArgumentException.class);
 	}

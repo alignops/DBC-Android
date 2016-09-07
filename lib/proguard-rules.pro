@@ -30,6 +30,7 @@
 	public ** passes(...);
 	public ** fails(...);
 	public ** isEqualTo(...);
+	public ** isNotEqualTo(...);
 }
 
 -assumenosideeffects class com.busybusy.dbc.conditions.DoubleCondition {
@@ -49,6 +50,7 @@
 	public ** passes(...);
 	public ** fails(...);
 	public ** isEqualTo(...);
+	public ** isNotEqualTo(...);
 }
 
 -assumenosideeffects class com.busybusy.dbc.conditions.FloatCondition {
@@ -68,6 +70,7 @@
 	public ** passes(...);
 	public ** fails(...);
 	public ** isEqualTo(...);
+	public ** isNotEqualTo(...);
 }
 
 -assumenosideeffects class com.busybusy.dbc.conditions.IntegralCondition {
@@ -82,12 +85,17 @@
 	public ** passes(...);
 	public ** fails(...);
 	public ** isEqualTo(...);
+	public ** isNotEqualTo(...);
 }
 
 -assumenosideeffects class com.busybusy.dbc.conditions.ListCondition {
 	public ** isNotEmpty();
 	public ** hasSize(...);
 	public ** hasSizeBetween(...);
+	public ** hasSizeGreaterThan(...);
+	public ** hasSizeGreaterThanOrEqual(...);
+	public ** hasSizeLessThan(...);
+	public ** hasSizeLessThanOrEqual(...);
 
 	public ** message(...);
 	public ** isNotNull();
@@ -95,10 +103,7 @@
 	public ** passes(...);
 	public ** fails(...);
 	public ** isEqualTo(...);
-	public ** hasSizeGreaterThan(...);
-	public ** hasSizeGreaterThanOrEqual(...);
-	public ** hasSizeLessThan(...);
-	public ** hasSizeLessThanOrEqual(...);
+	public ** isNotEqualTo(...);
 }
 
 -assumenosideeffects class com.busybusy.dbc.conditions.MapCondition {
@@ -107,6 +112,10 @@
 	public ** isNotEmpty();
 	public ** hasSize(...);
 	public ** hasSizeBetween(...);
+	public ** hasSizeGreaterThan(...);
+	public ** hasSizeGreaterThanOrEqual(...);
+	public ** hasSizeLessThan(...);
+	public ** hasSizeLessThanOrEqual(...);
 
 	public ** message(...);
 	public ** isNotNull();
@@ -114,10 +123,7 @@
 	public ** passes(...);
 	public ** fails(...);
 	public ** isEqualTo(...);
-	public ** hasSizeGreaterThan(...);
-	public ** hasSizeGreaterThanOrEqual(...);
-	public ** hasSizeLessThan(...);
-	public ** hasSizeLessThanOrEqual(...);
+	public ** isNotEqualTo(...);
 }
 
 -assumenosideeffects class com.busybusy.dbc.conditions.ObjectCondition {
@@ -127,6 +133,7 @@
 	public ** passes(...);
 	public ** fails(...);
 	public ** isEqualTo(...);
+	public ** isNotEqualTo(...);
 }
 
 -assumenosideeffects class com.busybusy.dbc.conditions.StringCondition {
@@ -139,4 +146,5 @@
 	public ** passes(...);
 	public ** fails(...);
 	public ** isEqualTo(...);
+	public ** isNotEqualTo(...);
 }
