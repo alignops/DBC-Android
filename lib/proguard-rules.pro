@@ -92,6 +92,10 @@
 	public ** isNotEmpty();
 	public ** hasSize(...);
 	public ** hasSizeBetween(...);
+	public ** hasSizeGreaterThan(...);
+	public ** hasSizeGreaterThanOrEqual(...);
+	public ** hasSizeLessThan(...);
+	public ** hasSizeLessThanOrEqual(...);
 
 	public ** message(...);
 	public ** isNotNull();
@@ -108,6 +112,10 @@
 	public ** isNotEmpty();
 	public ** hasSize(...);
 	public ** hasSizeBetween(...);
+	public ** hasSizeGreaterThan(...);
+	public ** hasSizeGreaterThanOrEqual(...);
+	public ** hasSizeLessThan(...);
+	public ** hasSizeLessThanOrEqual(...);
 
 	public ** message(...);
 	public ** isNotNull();
