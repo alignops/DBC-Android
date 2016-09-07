@@ -76,4 +76,48 @@ public class ListConditionTest
 		          .isInstanceOf(DbcAssertionError.class)
 		          .hasCauseInstanceOf(IllegalArgumentException.class);
 	}
+
+	@Test
+	public void hasSizeGreaterThan() throws Exception
+	{
+		ListCondition<ArrayList<String>, String> condition = new ListCondition<>(this.input);
+		condition.hasSizeGreaterThan(1);
+
+		Assertions.assertThatThrownBy(() -> condition.hasSizeGreaterThan(3))
+		          .isInstanceOf(DbcAssertionError.class)
+		          .hasCauseInstanceOf(IllegalStateException.class);
+	}
+
+	@Test
+	public void hasSizeGreaterThanOrEqual() throws Exception
+	{
+		ListCondition<ArrayList<String>, String> condition = new ListCondition<>(this.input);
+		condition.hasSizeGreaterThanOrEqual(3);
+
+		Assertions.assertThatThrownBy(() -> condition.hasSizeGreaterThanOrEqual(4))
+		          .isInstanceOf(DbcAssertionError.class)
+		          .hasCauseInstanceOf(IllegalStateException.class);
+	}
+
+	@Test
+	public void hasSizeLessThan() throws Exception
+	{
+		ListCondition<ArrayList<String>, String> condition = new ListCondition<>(this.input);
+		condition.hasSizeLessThan(4);
+
+		Assertions.assertThatThrownBy(() -> condition.hasSizeLessThan(3))
+		          .isInstanceOf(DbcAssertionError.class)
+		          .hasCauseInstanceOf(IllegalStateException.class);
+	}
+
+	@Test
+	public void hasSizeLessThanOrEqual() throws Exception
+	{
+		ListCondition<ArrayList<String>, String> condition = new ListCondition<>(this.input);
+		condition.hasSizeLessThanOrEqual(3);
+
+		Assertions.assertThatThrownBy(() -> condition.hasSizeLessThanOrEqual(2))
+		          .isInstanceOf(DbcAssertionError.class)
+		          .hasCauseInstanceOf(IllegalStateException.class);
+	}
 }

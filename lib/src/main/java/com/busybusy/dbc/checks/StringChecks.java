@@ -21,7 +21,7 @@ package com.busybusy.dbc.checks;
  *
  * @author Trevor
  */
-public interface StringChecks<Self extends StringChecks<Self>> extends BasicChecks<String, Self>
+public interface StringChecks<Self extends StringChecks<Self>> extends BasicChecks<CharSequence, Self>
 {
 	String UUID_PATTERN = "[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}";
 

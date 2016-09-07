@@ -96,4 +96,64 @@ public final class MapCondition<T extends Map<K, V>, K, V> extends BasicConditio
 
 		return result();
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public MapCondition<T, K, V> hasSizeGreaterThan(int minSizeExclusive)
+	{
+		require(this.subject).isNotNull();
+
+		if (!(this.subject.size() > minSizeExclusive))
+		{
+			DbcAssertionError.throwNew(new IllegalStateException("Expected map size to be greater than <" + minSizeExclusive + "> but was <" + this.subject.size() + ">"), this.message);
+		}
+		return result();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public MapCondition<T, K, V> hasSizeGreaterThanOrEqual(int minSize)
+	{
+		require(this.subject).isNotNull();
+
+		if (!(this.subject.size() >= minSize))
+		{
+			DbcAssertionError.throwNew(new IllegalStateException("Expected map size to be greater than or equal <" + minSize + "> but was <" + this.subject.size() + ">"), this.message);
+		}
+		return result();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public MapCondition<T, K, V> hasSizeLessThan(int maxSizeExclusive)
+	{
+		require(this.subject).isNotNull();
+
+		if (!(this.subject.size() < maxSizeExclusive))
+		{
+			DbcAssertionError.throwNew(new IllegalStateException("Expected map size to be less than <" + maxSizeExclusive + "> but was <" + this.subject.size() + ">"), this.message);
+		}
+		return result();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public MapCondition<T, K, V> hasSizeLessThanOrEqual(int maxSize)
+	{
+		require(this.subject).isNotNull();
+
+		if (!(this.subject.size() <= maxSize))
+		{
+			DbcAssertionError.throwNew(new IllegalStateException("Expected map size to be less than or equal <" + maxSize + "> but was <" + this.subject.size() + ">"), this.message);
+		}
+		return result();
+	}
 }
