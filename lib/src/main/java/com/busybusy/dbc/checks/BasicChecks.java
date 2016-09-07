@@ -52,7 +52,6 @@ public interface BasicChecks<T, Self extends BasicChecks<T, Self>> extends NullC
 	 */
 	Self isEqualTo(T toCompare);
 
-
 	/**
 	 * Assert that the subject object is equal to param with custom comparator
 	 *
@@ -60,4 +59,19 @@ public interface BasicChecks<T, Self extends BasicChecks<T, Self>> extends NullC
 	 * @param customComparator Comparator to use against subject and toCompare object
 	 */
 	Self isEqualTo(T toCompare, Comparator<T> customComparator);
+
+	/**
+	 * Assert that the subject object is not equal to param with .equals(T)
+	 *
+	 * @param toCompare Object to compare against subject
+	 */
+	Self isNotEqualTo(T toCompare);
+
+	/**
+	 * Assert that the subject object is not equal to param with custom comparator
+	 *
+	 * @param toCompare        Object to compare against subject
+	 * @param customComparator Comparator to use against subject and toCompare object
+	 */
+	Self isNotEqualTo(T toCompare, Comparator<T> customComparator);
 }

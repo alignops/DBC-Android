@@ -174,6 +174,41 @@ public abstract class BasicCondition<T, Self extends BasicCondition<T, Self>> im
 		return result();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Self isNotEqualTo(T toCompare)
+	{
+		require(this.subject).isNotNull();
+		require(toCompare).isNotNull();
+
+		if (subject.equals(toCompare))
+		{
+			DbcAssertionError.throwNew(new IllegalArgumentException("Equality test passed on subject: " + this.subject), this.message);
+		}
+
+		return result();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Self isNotEqualTo(T toCompare, Comparator<T> customComparator)
+	{
+		require(this.subject).isNotNull();
+		require(toCompare).isNotNull();
+		require(customComparator).isNotNull();
+
+		if (customComparator.compare(this.subject, toCompare) == 0)
+		{
+			DbcAssertionError.throwNew(new IllegalArgumentException("Equality test <" + customComparator + "> passed on subject: " + this.subject), this.message);
+		}
+
+		return result();
+	}
+
 	protected Self result()
 	{
 		this.message = null;
