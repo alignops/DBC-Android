@@ -108,6 +108,7 @@
 
 -assumenosideeffects class com.busybusy.dbc.conditions.MapCondition {
 	public ** containsKey(...);
+	public ** containsValue(...);
 
 	public ** isNotEmpty();
 	public ** hasSize(...);

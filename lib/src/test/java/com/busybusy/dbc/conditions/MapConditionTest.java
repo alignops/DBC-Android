@@ -90,6 +90,18 @@ public class MapConditionTest
 	}
 
 	@Test
+	public void containsValue() throws Exception
+	{
+		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input);
+		condition.containsValue("ValOne");
+
+		Assertions.assertThatThrownBy(() -> condition.containsValue("Chicago"))
+		          .isInstanceOf(DbcAssertionError.class)
+		          .hasCauseInstanceOf(IllegalArgumentException.class);
+
+	}
+
+	@Test
 	public void hasSizeGreaterThan() throws Exception
 	{
 		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input);
