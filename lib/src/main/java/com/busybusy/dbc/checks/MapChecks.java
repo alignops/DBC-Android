@@ -31,4 +31,11 @@ public interface MapChecks<T extends Map<K, V>, K, V, Self extends MapChecks<T, 
 	 * @param key key to verify
 	 */
 	Self containsKey(K key);
+
+	/**
+	 * Assert that the subject map contains value
+	 *
+	 * @param value value to verify
+	 */
+	Self containsValue(V value);
 }

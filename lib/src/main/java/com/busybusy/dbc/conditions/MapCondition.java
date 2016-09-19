@@ -101,6 +101,22 @@ public final class MapCondition<T extends Map<K, V>, K, V> extends BasicConditio
 	 * {@inheritDoc}
 	 */
 	@Override
+	public MapCondition<T, K, V> containsValue(V value)
+	{
+		require(this.subject).isNotNull();
+
+		if (!this.subject.containsValue(value))
+		{
+			DbcAssertionError.throwNew(new IllegalArgumentException("Expected map to contain value: " + value), this.message);
+		}
+
+		return result();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public MapCondition<T, K, V> hasSizeGreaterThan(int minSizeExclusive)
 	{
 		require(this.subject).isNotNull();
