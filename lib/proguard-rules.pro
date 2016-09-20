@@ -33,6 +33,19 @@
 	public ** isNotEqualTo(...);
 }
 
+-assumenosideeffects class com.busybusy.dbc.conditions.BundleCondition {
+	public ** containsKey(...);
+	public ** valueIsOfType(...);
+
+	public ** message(...);
+	public ** isNotNull();
+	public ** isNull();
+	public ** passes(...);
+	public ** fails(...);
+	public ** isEqualTo(...);
+	public ** isNotEqualTo(...);
+}
+
 -assumenosideeffects class com.busybusy.dbc.conditions.DoubleCondition {
 	public ** isNear(...);
 	public ** isNearWithTolerance(...);

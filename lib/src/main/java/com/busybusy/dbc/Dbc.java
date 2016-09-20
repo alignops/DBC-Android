@@ -16,9 +16,11 @@
 
 package com.busybusy.dbc;
 
+import android.os.Bundle;
 import android.support.annotation.CheckResult;
 
 import com.busybusy.dbc.conditions.BooleanCondition;
+import com.busybusy.dbc.conditions.BundleCondition;
 import com.busybusy.dbc.conditions.DoubleCondition;
 import com.busybusy.dbc.conditions.FloatCondition;
 import com.busybusy.dbc.conditions.IntegralCondition;
@@ -53,6 +55,12 @@ public class Dbc
 	public static BooleanCondition require(Boolean subject)
 	{
 		return new BooleanCondition(subject);
+	}
+
+	@CheckResult
+	public static BundleCondition require(Bundle bundle)
+	{
+		return new BundleCondition(bundle);
 	}
 
 	@CheckResult
@@ -110,6 +118,12 @@ public class Dbc
 	}
 
 	@CheckResult
+	public static BundleCondition check(Bundle bundle)
+	{
+		return new BundleCondition(bundle);
+	}
+
+	@CheckResult
 	public static DoubleCondition check(Double subject)
 	{
 		return new DoubleCondition(subject);
@@ -161,6 +175,12 @@ public class Dbc
 	public static BooleanCondition ensure(Boolean subject)
 	{
 		return new BooleanCondition(subject);
+	}
+
+	@CheckResult
+	public static BundleCondition ensure(Bundle bundle)
+	{
+		return new BundleCondition(bundle);
 	}
 
 	@CheckResult
