@@ -16,8 +16,11 @@
 
 package com.busybusy.dbc;
 
+import android.os.Bundle;
+
 import com.busybusy.dbc.conditions.BasicCondition;
 import com.busybusy.dbc.conditions.BooleanCondition;
+import com.busybusy.dbc.conditions.BundleCondition;
 import com.busybusy.dbc.conditions.DoubleCondition;
 import com.busybusy.dbc.conditions.FloatCondition;
 import com.busybusy.dbc.conditions.IntegralCondition;
@@ -28,7 +31,8 @@ import com.busybusy.dbc.conditions.StringCondition;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,7 +42,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * @author Trevor
  */
-@RunWith(JUnit4.class)
+@RunWith(RobolectricTestRunner.class)
+@Config(sdk = 23, constants = BuildConfig.class)
 public class DbcTest
 {
 	@Test
@@ -51,6 +56,12 @@ public class DbcTest
 	public void requireBoolean() throws Exception
 	{
 		testMethod(Dbc::require, true, BooleanCondition.class);
+	}
+
+	@Test
+	public void requireBundle() throws Exception
+	{
+		testMethod(Dbc::require, new Bundle(), BundleCondition.class);
 	}
 
 	@Test
@@ -108,6 +119,12 @@ public class DbcTest
 	}
 
 	@Test
+	public void checkBundle() throws Exception
+	{
+		testMethod(Dbc::check, new Bundle(), BundleCondition.class);
+	}
+
+	@Test
 	public void checkDouble() throws Exception
 	{
 		testMethod(Dbc::check, 2.0D, DoubleCondition.class);
@@ -159,6 +176,12 @@ public class DbcTest
 	public void ensureBoolean() throws Exception
 	{
 		testMethod(Dbc::ensure, true, BooleanCondition.class);
+	}
+
+	@Test
+	public void ensureBundle() throws Exception
+	{
+		testMethod(Dbc::ensure, new Bundle(), BundleCondition.class);
 	}
 
 	@Test

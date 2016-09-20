@@ -118,7 +118,7 @@ public class MapConditionTest
 		MapCondition<Map<String, String>, String, String> condition = new MapCondition<>(this.input);
 		condition.hasSizeGreaterThanOrEqual(3);
 
-		Assertions.assertThatThrownBy(() -> condition.hasSizeGreaterThan(4))
+		Assertions.assertThatThrownBy(() -> condition.hasSizeGreaterThanOrEqual(4))
 		          .isInstanceOf(DbcAssertionError.class)
 		          .hasCauseInstanceOf(IllegalStateException.class);
 	}
