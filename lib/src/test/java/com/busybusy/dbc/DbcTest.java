@@ -97,6 +97,12 @@ public class DbcTest
 	}
 
 	@Test
+	public void requireArray() throws Exception
+	{
+		testMethod(Dbc::require, new Integer[]{1, 2, 3}, ListCondition.class);
+	}
+
+	@Test
 	public void requireMap() throws Exception
 	{
 		testMethod(Dbc::require, new HashMap<>(), MapCondition.class);
@@ -163,6 +169,12 @@ public class DbcTest
 	}
 
 	@Test
+	public void checkArray() throws Exception
+	{
+		testMethod(Dbc::check, new Integer[]{1, 2, 3}, ListCondition.class);
+	}
+
+	@Test
 	public void checkMap() throws Exception
 	{
 		testMethod(Dbc::check, new HashMap<>(), MapCondition.class);
@@ -226,6 +238,12 @@ public class DbcTest
 	public void ensureList() throws Exception
 	{
 		testMethod(Dbc::ensure, new ArrayList<>(), ListCondition.class);
+	}
+
+	@Test
+	public void ensureArray() throws Exception
+	{
+		testMethod(Dbc::ensure, new Integer[]{1, 2, 3}, ListCondition.class);
 	}
 
 	@Test

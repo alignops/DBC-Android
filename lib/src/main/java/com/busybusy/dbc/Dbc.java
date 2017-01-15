@@ -30,6 +30,8 @@ import com.busybusy.dbc.conditions.ObjectCondition;
 import com.busybusy.dbc.conditions.SetCondition;
 import com.busybusy.dbc.conditions.StringCondition;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -93,6 +95,15 @@ public class Dbc
 	public static <T extends List<E>, E> ListCondition<T, E> require(T subject)
 	{
 		return new ListCondition<>(subject);
+	}
+
+	@CheckResult
+	public static <E> ListCondition<List<E>, E> require(E[] subject)
+	{
+		List<E> listSub = new ArrayList<>();
+		Collections.addAll(listSub, subject);
+
+		return new ListCondition<>(listSub);
 	}
 
 	@CheckResult
@@ -162,6 +173,15 @@ public class Dbc
 	}
 
 	@CheckResult
+	public static <E> ListCondition<List<E>, E> check(E[] subject)
+	{
+		List<E> listSub = new ArrayList<>();
+		Collections.addAll(listSub, subject);
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
 	public static <T extends Map<K, V>, K, V> MapCondition<T, K, V> check(T subject)
 	{
 		return new MapCondition<>(subject);
@@ -225,6 +245,15 @@ public class Dbc
 	public static <T extends List<E>, E> ListCondition<T, E> ensure(T subject)
 	{
 		return new ListCondition<>(subject);
+	}
+
+	@CheckResult
+	public static <E> ListCondition<List<E>, E> ensure(E[] subject)
+	{
+		List<E> listSub = new ArrayList<>();
+		Collections.addAll(listSub, subject);
+
+		return new ListCondition<>(listSub);
 	}
 
 	@CheckResult
