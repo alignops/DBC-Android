@@ -27,6 +27,7 @@ import com.busybusy.dbc.conditions.IntegralCondition;
 import com.busybusy.dbc.conditions.ListCondition;
 import com.busybusy.dbc.conditions.MapCondition;
 import com.busybusy.dbc.conditions.ObjectCondition;
+import com.busybusy.dbc.conditions.SetCondition;
 import com.busybusy.dbc.conditions.StringCondition;
 
 import org.junit.Test;
@@ -36,6 +37,7 @@ import org.robolectric.annotation.Config;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -43,7 +45,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Trevor
  */
 @RunWith(RobolectricTestRunner.class)
-@Config(sdk = 23, constants = BuildConfig.class)
+@Config(sdk = 25, constants = BuildConfig.class)
 public class DbcTest
 {
 	@Test
@@ -98,6 +100,12 @@ public class DbcTest
 	public void requireMap() throws Exception
 	{
 		testMethod(Dbc::require, new HashMap<>(), MapCondition.class);
+	}
+
+	@Test
+	public void requireSet() throws Exception
+	{
+		testMethod(Dbc::require, new HashSet<>(), SetCondition.class);
 	}
 
 	@Test
@@ -161,6 +169,12 @@ public class DbcTest
 	}
 
 	@Test
+	public void checkSet() throws Exception
+	{
+		testMethod(Dbc::check, new HashSet<>(), SetCondition.class);
+	}
+
+	@Test
 	public void checkString() throws Exception
 	{
 		testMethod(Dbc::check, "String", StringCondition.class);
@@ -218,6 +232,12 @@ public class DbcTest
 	public void ensureMap() throws Exception
 	{
 		testMethod(Dbc::ensure, new HashMap<>(), MapCondition.class);
+	}
+
+	@Test
+	public void ensureSet() throws Exception
+	{
+		testMethod(Dbc::ensure, new HashSet<>(), SetCondition.class);
 	}
 
 	@Test

@@ -19,8 +19,6 @@ package com.busybusy.dbc.conditions;
 import com.busybusy.dbc.DbcAssertionError;
 import com.busybusy.dbc.checks.FloatingPointChecks;
 
-import org.jetbrains.annotations.NonNls;
-
 import static com.busybusy.dbc.Dbc.require;
 
 /**
@@ -28,7 +26,6 @@ import static com.busybusy.dbc.Dbc.require;
  *
  * @author Trevor
  */
-@NonNls
 public final class FloatCondition extends BasicCondition<Float, FloatCondition> implements FloatingPointChecks<Float, FloatCondition>
 {
 	public FloatCondition(Float subject) { super(subject); }

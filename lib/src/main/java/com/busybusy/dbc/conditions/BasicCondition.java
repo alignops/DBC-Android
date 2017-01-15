@@ -23,8 +23,6 @@ import com.busybusy.dbc.DbcAssertionError;
 import com.busybusy.dbc.DbcBlock;
 import com.busybusy.dbc.checks.BasicChecks;
 
-import org.jetbrains.annotations.NonNls;
-
 import java.util.Comparator;
 import java.util.concurrent.Callable;
 
@@ -36,7 +34,6 @@ import static com.busybusy.dbc.Dbc.require;
  * @param <T> type of object
  * @author Trevor
  */
-@NonNls
 public abstract class BasicCondition<T, Self extends BasicCondition<T, Self>> implements BasicChecks<T, Self>
 {
 	protected       Message message;

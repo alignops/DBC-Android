@@ -27,10 +27,12 @@ import com.busybusy.dbc.conditions.IntegralCondition;
 import com.busybusy.dbc.conditions.ListCondition;
 import com.busybusy.dbc.conditions.MapCondition;
 import com.busybusy.dbc.conditions.ObjectCondition;
+import com.busybusy.dbc.conditions.SetCondition;
 import com.busybusy.dbc.conditions.StringCondition;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * In debug code, the following methods assist in using "Design by contract" in java
@@ -100,6 +102,12 @@ public class Dbc
 	}
 
 	@CheckResult
+	public static <T extends Set<E>, E> SetCondition<T, E> require(T subject)
+	{
+		return new SetCondition<>(subject);
+	}
+
+	@CheckResult
 	public static StringCondition require(CharSequence subject)
 	{
 		return new StringCondition(subject);
@@ -160,6 +168,12 @@ public class Dbc
 	}
 
 	@CheckResult
+	public static <T extends Set<E>, E> SetCondition<T, E> check(T subject)
+	{
+		return new SetCondition<>(subject);
+	}
+
+	@CheckResult
 	public static StringCondition check(CharSequence subject)
 	{
 		return new StringCondition(subject);
@@ -217,6 +231,12 @@ public class Dbc
 	public static <T extends Map<K, V>, K, V> MapCondition<T, K, V> ensure(T subject)
 	{
 		return new MapCondition<>(subject);
+	}
+
+	@CheckResult
+	public static <T extends Set<E>, E> SetCondition<T, E> ensure(T subject)
+	{
+		return new SetCondition<>(subject);
 	}
 
 	@CheckResult
