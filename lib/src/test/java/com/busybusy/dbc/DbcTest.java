@@ -45,7 +45,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Trevor
  */
 @RunWith(RobolectricTestRunner.class)
-@Config(sdk = 25, constants = BuildConfig.class)
+@Config(sdk = 23, constants = BuildConfig.class)
 public class DbcTest
 {
 	@Test
@@ -100,6 +100,54 @@ public class DbcTest
 	public void requireArray() throws Exception
 	{
 		testMethod(Dbc::require, new Integer[]{1, 2, 3}, ListCondition.class);
+	}
+
+	@Test
+	public void requirePrimArrayInt() throws Exception
+	{
+		testMethod(Dbc::require, new int[]{1, 2, 3}, ListCondition.class);
+	}
+
+	@Test
+	public void requirePrimArrayShort() throws Exception
+	{
+		testMethod(Dbc::require, new short[]{1, 2, 3}, ListCondition.class);
+	}
+
+	@Test
+	public void requirePrimArrayLong() throws Exception
+	{
+		testMethod(Dbc::require, new long[]{1, 2, 3}, ListCondition.class);
+	}
+
+	@Test
+	public void requirePrimArrayFloat() throws Exception
+	{
+		testMethod(Dbc::require, new float[]{1, 2, 3}, ListCondition.class);
+	}
+
+	@Test
+	public void requirePrimArrayDouble() throws Exception
+	{
+		testMethod(Dbc::require, new double[]{1, 2, 3}, ListCondition.class);
+	}
+
+	@Test
+	public void requirePrimArrayBoolean() throws Exception
+	{
+		testMethod(Dbc::require, new boolean[]{true, false, true}, ListCondition.class);
+	}
+
+	@Test
+	public void requirePrimArrayChar() throws Exception
+	{
+		testMethod(Dbc::require, new char[]{'1', '2', '3'}, ListCondition.class);
+	}
+
+	@Test
+	public void requirePrimArrayByte() throws Exception
+	{
+		testMethod(Dbc::require, new byte[]{'1', '2', '3'}, ListCondition.class);
 	}
 
 	@Test
@@ -175,6 +223,54 @@ public class DbcTest
 	}
 
 	@Test
+	public void checkPrimArrayInt() throws Exception
+	{
+		testMethod(Dbc::check, new int[]{1, 2, 3}, ListCondition.class);
+	}
+
+	@Test
+	public void checkPrimArrayShort() throws Exception
+	{
+		testMethod(Dbc::check, new short[]{1, 2, 3}, ListCondition.class);
+	}
+
+	@Test
+	public void checkPrimArrayLong() throws Exception
+	{
+		testMethod(Dbc::check, new long[]{1, 2, 3}, ListCondition.class);
+	}
+
+	@Test
+	public void checkPrimArrayFloat() throws Exception
+	{
+		testMethod(Dbc::check, new float[]{1, 2, 3}, ListCondition.class);
+	}
+
+	@Test
+	public void checkPrimArrayDouble() throws Exception
+	{
+		testMethod(Dbc::check, new double[]{1, 2, 3}, ListCondition.class);
+	}
+
+	@Test
+	public void checkPrimArrayBoolean() throws Exception
+	{
+		testMethod(Dbc::check, new boolean[]{true, false, true}, ListCondition.class);
+	}
+
+	@Test
+	public void checkPrimArrayChar() throws Exception
+	{
+		testMethod(Dbc::check, new char[]{'1', '2', '3'}, ListCondition.class);
+	}
+
+	@Test
+	public void checkPrimArrayByte() throws Exception
+	{
+		testMethod(Dbc::check, new byte[]{'1', '2', '3'}, ListCondition.class);
+	}
+
+	@Test
 	public void checkMap() throws Exception
 	{
 		testMethod(Dbc::check, new HashMap<>(), MapCondition.class);
@@ -244,6 +340,54 @@ public class DbcTest
 	public void ensureArray() throws Exception
 	{
 		testMethod(Dbc::ensure, new Integer[]{1, 2, 3}, ListCondition.class);
+	}
+
+	@Test
+	public void ensurePrimArrayInt() throws Exception
+	{
+		testMethod(Dbc::ensure, new int[]{1, 2, 3}, ListCondition.class);
+	}
+
+	@Test
+	public void ensurePrimArrayShort() throws Exception
+	{
+		testMethod(Dbc::ensure, new short[]{1, 2, 3}, ListCondition.class);
+	}
+
+	@Test
+	public void ensurePrimArrayLong() throws Exception
+	{
+		testMethod(Dbc::ensure, new long[]{1, 2, 3}, ListCondition.class);
+	}
+
+	@Test
+	public void ensurePrimArrayFloat() throws Exception
+	{
+		testMethod(Dbc::ensure, new float[]{1, 2, 3}, ListCondition.class);
+	}
+
+	@Test
+	public void ensurePrimArrayDouble() throws Exception
+	{
+		testMethod(Dbc::ensure, new double[]{1, 2, 3}, ListCondition.class);
+	}
+
+	@Test
+	public void ensurePrimArrayBoolean() throws Exception
+	{
+		testMethod(Dbc::ensure, new boolean[]{true, false, true}, ListCondition.class);
+	}
+
+	@Test
+	public void ensurePrimArrayChar() throws Exception
+	{
+		testMethod(Dbc::ensure, new char[]{'1', '2', '3'}, ListCondition.class);
+	}
+
+	@Test
+	public void ensurePrimArrayByte() throws Exception
+	{
+		testMethod(Dbc::ensure, new byte[]{'1', '2', '3'}, ListCondition.class);
 	}
 
 	@Test

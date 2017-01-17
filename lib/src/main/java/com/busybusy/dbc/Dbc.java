@@ -100,8 +100,140 @@ public class Dbc
 	@CheckResult
 	public static <E> ListCondition<List<E>, E> require(E[] subject)
 	{
-		List<E> listSub = new ArrayList<>();
-		Collections.addAll(listSub, subject);
+		List<E> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			Collections.addAll(listSub, subject);
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Short>, Short> require(short[] subject)
+	{
+		List<Short> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (short i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Integer>, Integer> require(int[] subject)
+	{
+		List<Integer> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (int i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Long>, Long> require(long[] subject)
+	{
+		List<Long> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (long i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Float>, Float> require(float[] subject)
+	{
+		List<Float> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (float i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Double>, Double> require(double[] subject)
+	{
+		List<Double> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (double i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Character>, Character> require(char[] subject)
+	{
+		List<Character> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (char i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Boolean>, Boolean> require(boolean[] subject)
+	{
+		List<Boolean> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (boolean i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Byte>, Byte> require(byte[] subject)
+	{
+		List<Byte> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (byte i : subject)
+			{
+				listSub.add(i);
+			}
+		}
 
 		return new ListCondition<>(listSub);
 	}
@@ -175,8 +307,140 @@ public class Dbc
 	@CheckResult
 	public static <E> ListCondition<List<E>, E> check(E[] subject)
 	{
-		List<E> listSub = new ArrayList<>();
-		Collections.addAll(listSub, subject);
+		List<E> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			Collections.addAll(listSub, subject);
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Short>, Short> check(short[] subject)
+	{
+		List<Short> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (short i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Integer>, Integer> check(int[] subject)
+	{
+		List<Integer> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (int i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Long>, Long> check(long[] subject)
+	{
+		List<Long> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (long i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Float>, Float> check(float[] subject)
+	{
+		List<Float> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (float i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Double>, Double> check(double[] subject)
+	{
+		List<Double> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (double i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Character>, Character> check(char[] subject)
+	{
+		List<Character> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (char i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Boolean>, Boolean> check(boolean[] subject)
+	{
+		List<Boolean> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (boolean i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Byte>, Byte> check(byte[] subject)
+	{
+		List<Byte> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (byte i : subject)
+			{
+				listSub.add(i);
+			}
+		}
 
 		return new ListCondition<>(listSub);
 	}
@@ -250,8 +514,140 @@ public class Dbc
 	@CheckResult
 	public static <E> ListCondition<List<E>, E> ensure(E[] subject)
 	{
-		List<E> listSub = new ArrayList<>();
-		Collections.addAll(listSub, subject);
+		List<E> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			Collections.addAll(listSub, subject);
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Short>, Short> ensure(short[] subject)
+	{
+		List<Short> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (short i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Integer>, Integer> ensure(int[] subject)
+	{
+		List<Integer> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (int i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Long>, Long> ensure(long[] subject)
+	{
+		List<Long> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (long i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Float>, Float> ensure(float[] subject)
+	{
+		List<Float> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (float i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Double>, Double> ensure(double[] subject)
+	{
+		List<Double> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (double i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Character>, Character> ensure(char[] subject)
+	{
+		List<Character> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (char i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Boolean>, Boolean> ensure(boolean[] subject)
+	{
+		List<Boolean> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (boolean i : subject)
+			{
+				listSub.add(i);
+			}
+		}
+
+		return new ListCondition<>(listSub);
+	}
+
+	@CheckResult
+	public static ListCondition<List<Byte>, Byte> ensure(byte[] subject)
+	{
+		List<Byte> listSub = null;
+		if (subject != null)
+		{
+			listSub = new ArrayList<>();
+			for (byte i : subject)
+			{
+				listSub.add(i);
+			}
+		}
 
 		return new ListCondition<>(listSub);
 	}
