@@ -4,9 +4,9 @@ buildscript {
 		maven { url "https://jitpack.io" }
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:2.2.0-beta3'
+		classpath 'com.android.tools.build:gradle:2.2.3'
 		classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
-		classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+		classpath 'me.tatarka:gradle-retrolambda:3.4.0'
 		classpath 'me.tatarka.retrolambda.projectlombok:lombok.ast:0.2.3.a2'
 	}
 
@@ -24,6 +24,6 @@ task clean(type: Delete) {
 }
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '3.0'
+	gradleVersion = '3.3'
 	distributionUrl = "https://services.gradle.org/distributions/gradle-${gradleVersion}-all.zip"
 }

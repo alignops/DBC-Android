@@ -19,8 +19,6 @@ package com.busybusy.dbc.conditions;
 import com.busybusy.dbc.DbcAssertionError;
 import com.busybusy.dbc.checks.StringChecks;
 
-import org.jetbrains.annotations.NonNls;
-
 import static com.busybusy.dbc.Dbc.require;
 
 /**
@@ -28,7 +26,6 @@ import static com.busybusy.dbc.Dbc.require;
  *
  * @author Trevor
  */
-@NonNls
 public final class StringCondition extends BasicCondition<CharSequence, StringCondition> implements StringChecks<StringCondition>
 {
 	public StringCondition(CharSequence subject) { super(subject); }

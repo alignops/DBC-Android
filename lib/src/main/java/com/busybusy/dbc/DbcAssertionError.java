@@ -23,8 +23,6 @@ import android.support.annotation.Nullable;
 
 import com.busybusy.dbc.conditions.Message;
 
-import org.jetbrains.annotations.Contract;
-
 /**
  * Exception type throw from DBC operations. It is used as a wrapper around the underlying issue
  *
@@ -51,7 +49,6 @@ public class DbcAssertionError extends AssertionError
 	/**
 	 * @param throwable the throwable to use as the cause of the new exception
 	 */
-	@Contract("_, _ -> fail")
 	public static void throwNew(@NonNull Throwable throwable, @Nullable Message message)
 	{
 		if (message == null)

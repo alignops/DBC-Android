@@ -140,6 +140,26 @@
 	public ** isNotEqualTo(...);
 }
 
+-assumenosideeffects class com.busybusy.dbc.conditions.SetCondition {
+	public ** contains(...);
+
+	public ** isNotEmpty();
+	public ** hasSize(...);
+	public ** hasSizeBetween(...);
+	public ** hasSizeGreaterThan(...);
+	public ** hasSizeGreaterThanOrEqual(...);
+	public ** hasSizeLessThan(...);
+	public ** hasSizeLessThanOrEqual(...);
+
+	public ** message(...);
+	public ** isNotNull();
+	public ** isNull();
+	public ** passes(...);
+	public ** fails(...);
+	public ** isEqualTo(...);
+	public ** isNotEqualTo(...);
+}
+
 -assumenosideeffects class com.busybusy.dbc.conditions.ObjectCondition {
 	public ** isNotNull();
 	public ** isNull();

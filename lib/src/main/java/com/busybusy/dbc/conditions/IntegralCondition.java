@@ -19,8 +19,6 @@ package com.busybusy.dbc.conditions;
 import com.busybusy.dbc.DbcAssertionError;
 import com.busybusy.dbc.checks.NumberChecks;
 
-import org.jetbrains.annotations.NonNls;
-
 import static com.busybusy.dbc.Dbc.require;
 
 /**
@@ -28,7 +26,6 @@ import static com.busybusy.dbc.Dbc.require;
  *
  * @author Trevor
  */
-@NonNls
 public class IntegralCondition<T extends Number> extends BasicCondition<T, IntegralCondition<T>> implements NumberChecks<T, IntegralCondition<T>>
 {
 	public IntegralCondition(T subject) { super(subject); }
