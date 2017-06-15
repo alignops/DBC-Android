@@ -49,6 +49,9 @@ public class StringConditionTest
 		StringCondition condition = new StringCondition(UUID.randomUUID().toString());
 		condition.isValidUUID();
 
+		StringCondition upperCasedCondition = new StringCondition(UUID.randomUUID().toString().toUpperCase());
+		upperCasedCondition.isValidUUID();
+
 		StringCondition badCondition = new StringCondition("");
 		Assertions.assertThatThrownBy(badCondition::isValidUUID)
 		          .isInstanceOf(DbcAssertionError.class)
