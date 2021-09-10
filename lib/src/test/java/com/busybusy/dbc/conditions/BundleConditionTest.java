@@ -18,7 +18,6 @@ package com.busybusy.dbc.conditions;
 
 import android.os.Bundle;
 
-import com.busybusy.dbc.BuildConfig;
 import com.busybusy.dbc.DbcAssertionError;
 
 import org.assertj.core.api.Assertions;
@@ -31,7 +30,7 @@ import org.robolectric.annotation.Config;
  * @author Tjones
  */
 @RunWith(RobolectricTestRunner.class)
-@Config(sdk = 23, constants = BuildConfig.class)
+@Config(sdk = 23)
 public class BundleConditionTest
 {
 	@Test

@@ -16,7 +16,7 @@
 
 package com.busybusy.dbc.checks;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * @author Trevor

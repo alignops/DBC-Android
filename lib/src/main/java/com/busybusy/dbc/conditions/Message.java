@@ -16,9 +16,10 @@
 
 package com.busybusy.dbc.conditions;
 
-import android.support.annotation.NonNull;
 
 import java.util.concurrent.Callable;
+
+import androidx.annotation.NonNull;
 
 import static com.busybusy.dbc.Dbc.require;
 

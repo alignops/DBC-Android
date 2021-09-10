@@ -17,10 +17,11 @@
 package com.busybusy.dbc.conditions;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
 import com.busybusy.dbc.DbcAssertionError;
 import com.busybusy.dbc.checks.BundleChecks;
+
+import androidx.annotation.NonNull;
 
 import static com.busybusy.dbc.Dbc.check;
 import static com.busybusy.dbc.Dbc.require;
