@@ -45,7 +45,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Trevor
  */
 @RunWith(RobolectricTestRunner.class)
-@Config(sdk = 23, constants = BuildConfig.class)
+@Config(sdk = 23)
 public class DbcTest
 {
 	@Test

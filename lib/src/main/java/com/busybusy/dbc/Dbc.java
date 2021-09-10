@@ -17,7 +17,6 @@
 package com.busybusy.dbc;
 
 import android.os.Bundle;
-import android.support.annotation.CheckResult;
 
 import com.busybusy.dbc.conditions.BooleanCondition;
 import com.busybusy.dbc.conditions.BundleCondition;
@@ -35,6 +34,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import androidx.annotation.CheckResult;
 
 /**
  * In debug code, the following methods assist in using "Design by contract" in java

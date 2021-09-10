@@ -16,9 +16,9 @@
 
 package com.busybusy.dbc.checks;
 
-import android.support.annotation.NonNull;
-
 import com.busybusy.dbc.DbcBlock;
+
+import androidx.annotation.NonNull;
 
 /**
  * Custom checks via functional interface on objects

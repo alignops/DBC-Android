@@ -18,10 +18,11 @@ package com.busybusy.dbc;
 
 import android.annotation.TargetApi;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.busybusy.dbc.conditions.Message;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Exception type throw from DBC operations. It is used as a wrapper around the underlying issue

@@ -16,8 +16,6 @@
 
 package com.busybusy.dbc.conditions;
 
-import android.support.annotation.CheckResult;
-import android.support.annotation.NonNull;
 
 import com.busybusy.dbc.DbcAssertionError;
 import com.busybusy.dbc.DbcBlock;
@@ -25,6 +23,9 @@ import com.busybusy.dbc.checks.BasicChecks;
 
 import java.util.Comparator;
 import java.util.concurrent.Callable;
+
+import androidx.annotation.CheckResult;
+import androidx.annotation.NonNull;
 
 import static com.busybusy.dbc.Dbc.require;
 

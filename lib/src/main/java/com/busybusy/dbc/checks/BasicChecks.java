@@ -16,11 +16,12 @@
 
 package com.busybusy.dbc.checks;
 
-import android.support.annotation.CheckResult;
-import android.support.annotation.NonNull;
 
 import java.util.Comparator;
 import java.util.concurrent.Callable;
+
+import androidx.annotation.CheckResult;
+import androidx.annotation.NonNull;
 
 /**
  * Combined marker type
