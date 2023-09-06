@@ -31,9 +31,6 @@ import com.busybusy.dbc.conditions.SetCondition;
 import com.busybusy.dbc.conditions.StringCondition;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,8 +41,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * @author Trevor
  */
-@RunWith(RobolectricTestRunner.class)
-@Config(sdk = 23)
 public class DbcTest
 {
 	@Test
