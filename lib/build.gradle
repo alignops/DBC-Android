@@ -38,7 +38,6 @@ dependencies {
 
 	testImplementation 'junit:junit:4.12'
 	testImplementation 'org.assertj:assertj-core:3.8.0'
-	testImplementation 'org.robolectric:robolectric:4.7.3'
 }
 
 
