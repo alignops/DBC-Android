@@ -9,7 +9,6 @@ android {
 		minSdkVersion 16
 		targetSdkVersion 33
 		versionCode 1
-		versionName "1.6.3"
 		consumerProguardFiles 'proguard-rules.pro'
 	}
 
@@ -34,7 +33,7 @@ android {
 }
 
 dependencies {
-	api "androidx.annotation:annotation:1.7.0"
+	implementation "androidx.annotation:annotation:1.7.0"
 
 	testImplementation 'junit:junit:4.12'
 	testImplementation 'org.assertj:assertj-core:3.8.0'
@@ -79,7 +78,7 @@ publishing {
 
 	repositories {
 		maven {
-			name = "GitHubPackages"
+			name = "github"
 			url = uri("https://maven.pkg.github.com/busybusy/android-packages")
 			credentials {
 				username = System.getenv("GITHUB_PACKAGES_USER")
